@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Run Whisperers Cricket Academy</title>
+    <meta name="description" content="Upcoming cricket tournaments, matches, and events for Run Whisperers Cricket Academy in Namibia and internationally.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-cricket-green: #1a472a;
+            --color-dark-green: #2d5a3d;
+            --color-medium-green: #3e7a52;
+            --color-light-green: #5a9c73;
+            --color-cricket-gold: #d4af37;
+            --color-light-brown: #a67c52;
+            --color-beige: #f5f1e8;
+            --color-off-white: #f9f7f3;
+            --color-black: #1a1a1a;
+            --color-white: #ffffff;
+            --color-gray: #6c757d;
+            --color-light-gray: #e9ecef;
+            --color-red: #dc3545;
+            --color-blue: #0d6efd;
+            
+            --font-heading: 'Montserrat', 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            
+            --border-radius: 8px;
+            --border-radius-large: 16px;
+            
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-black);
+            background-color: var(--color-off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-black);
+        }
+
+        .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-light-green));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        .btn-danger {
+            background-color: var(--color-red);
+            color: var(--color-white);
+        }
+
+        .btn-danger:hover {
+            background-color: #bb2d3b;
+            transform: translateY(-3px);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-dark-green);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-large);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #25D366;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float i {
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-cricket-green);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
+            color: var(--color-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-black);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .nav-menu a.active {
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-cricket-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-cricket-green);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
+                        url('https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            color: var(--color-white);
+        }
+
+        .page-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .page-hero-title .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--color-cricket-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Event Filters */
+        .event-filters {
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-small);
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--color-light-gray);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+        }
+
+        .filter-btn:hover {
+            background: var(--color-medium-green);
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-cricket-green);
+        }
+
+        /* Calendar Widget */
+        .calendar-widget {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-small);
+            margin-bottom: 3rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-cricket-green);
+            padding: 10px 0;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-day:hover {
+            background: var(--color-light-gray);
+        }
+
+        .calendar-day.active {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+        }
+
+        .calendar-day.has-event {
+            position: relative;
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--color-cricket-gold);
+            border-radius: 50%;
+        }
+
+        /* Events Grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .event-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .event-card.featured {
+            border: 2px solid var(--color-cricket-gold);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-cricket-gold);
+            color: var(--color-cricket-green);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .event-badge.upcoming {
+            background: var(--color-blue);
+            color: var(--color-white);
+        }
+
+        .event-badge.ongoing {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+        }
+
+        .event-badge.completed {
+            background: var(--color-gray);
+            color: var(--color-white);
+        }
+
+        .event-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--color-cricket-gold);
+            color: var(--color-cricket-green);
+            padding: 10px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .date-day {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .date-month {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-cricket-green);
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--color-gray);
+        }
+
+        .event-meta i {
+            margin-right: 5px;
+            color: var(--color-cricket-green);
+            width: 16px;
+        }
+
+        .event-description {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-black);
+        }
+
+        .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .event-price {
+            font-weight: 600;
+            color: var(--color-cricket-green);
+        }
+
+        .event-price.free {
+            color: var(--color-medium-green);
+        }
+
+        /* Event Categories */
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .category-tag {
+            background: var(--color-light-gray);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--color-gray);
+        }
+
+        .category-tag.national {
+            background: #e3f2fd;
+            color: var(--color-blue);
+        }
+
+        .category-tag.international {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .category-tag.junior {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .category-tag.tournament {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            border-color: var(--color-cricket-green);
+        }
+
+        /* Featured Event Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            padding: 3rem;
+            border-radius: var(--border-radius-large);
+            margin: 3rem 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .featured-content h2 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+        }
+
+        .featured-content p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .countdown-timer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Registration Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-white);
+            border-radius: var(--border-radius-large);
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-gray);
+        }
+
+        .modal-close:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .modal-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-cricket-green);
+        }
+
+        /* Event Calendar */
+        .event-calendar {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-medium);
+            margin: 3rem 0;
+        }
+
+        .calendar-month {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color-cricket-green);
+        }
+
+        /* Event Categories Section */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .category-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Venue Map */
+        .venue-map {
+            height: 400px;
+            background: var(--color-light-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .venue-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            max-width: 300px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background-color: var(--color-off-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background-color: var(--color-white);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social .social-link:hover {
+            background-color: var(--color-cricket-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-cricket-gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--color-cricket-gold);
+            width: 20px;
+        }
+
+        .newsletter {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter h4 {
+            color: var(--color-white);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-white);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-banner {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--color-white);
+                padding: 2rem;
+                box-shadow: var(--shadow-medium);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin-bottom: 1rem;
+            }
+            
+            /* Event Grid */
+            .events-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            .countdown-timer {
+                justify-content: center;
+            }
+            
+            /* WhatsApp Button */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Footer */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .event-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .modal {
+                padding: 2rem 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .page-hero {
+                height: 40vh;
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/264811234567" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="registrationModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 class="modal-title">Register for Event</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="ageGroup">Age Group *</label>
+                    <select id="ageGroup" required>
+                        <option value="">Select Age Group</option>
+                        <option value="junior">Junior (8-16 years)</option>
+                        <option value="senior">Senior (17+)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Cricket Experience Level</label>
+                    <select id="experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">RUN WHISPERERS</span>
+                        <span class="logo-sub">Cricket • Academy • Community</span>
+                    </div>
+                </a>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html" class="active">Upcoming Events</a></li>
+                    <li><a href="booking.html">Book Training</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-background"></div>
+        
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">Cricket <span class="highlight">Events</span></h1>
+                <p class="page-hero-subtitle">Join our exciting cricket tournaments, matches, and competitions in Namibia and internationally.</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Events</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Categories -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Categories</h2>
+                <p class="section-subtitle">Browse events by category</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-category="all">
+                    <div class="category-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>All Events</h3>
+                    <p>View all upcoming cricket events and tournaments</p>
+                </div>
+                
+                <div class="category-card" data-category="national">
+                    <div class="category-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>National</h3>
+                    <p>Namibia domestic tournaments and leagues</p>
+                </div>
+                
+                <div class="category-card" data-category="international">
+                    <div class="category-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>International</h3>
+                    <p>Events in South Africa, Zimbabwe, and beyond</p>
+                </div>
+                
+                <div class="category-card" data-category="junior">
+                    <div class="category-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Junior Events</h3>
+                    <p>Tournaments for players aged 8-16 years</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Filters -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="event-filters">
+                <div class="filter-group">
+                    <div class="search-box">
+                        <input type="text" id="eventSearch" placeholder="Search events...">
+                    </div>
+                    <button class="filter-btn active" data-filter="all">All Events</button>
+                    <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                    <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Event Banner -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="featured-banner">
+                <div class="featured-content">
+                    <span class="event-badge featured">FEATURED</span>
+                    <h2>Namibia National Cricket Championship 2025</h2>
+                    <p>The premier cricket tournament in Namibia featuring top teams from across the country. Join us for this exciting 5-day event with professional coaching clinics and competitive matches.</p>
+                    <div class="countdown-timer" id="countdownTimer">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="days">00</div>
+                            <div class="countdown-label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">00</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="minutes">00</div>
+                            <div class="countdown-label">Minutes</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="seconds">00</div>
+                            <div class="countdown-label">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-action">
+                    <button class="btn btn-primary btn-large" id="registerFeatured">Register Now</button>
+                    <button class="btn btn-secondary btn-large">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Events</h2>
+                <p class="section-subtitle">Don't miss our exciting cricket tournaments</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="events-grid" id="eventsContainer">
+                <!-- Event 1 -->
+                <div class="event-card" data-category="national" data-status="upcoming">
+                    <div class="event-badge upcoming">UPCOMING</div>
+                    <div class="event-date">
+                        <span class="date-day">15</span>
+                        <span class="date-month">JUN</span>
+                    </div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Windhoek Open Tournament">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Windhoek Open Tournament</h3>
+                        <div class="category-tags">
+                            <span class="category-tag national">National</span>
+                            <span class="category-tag tournament">Tournament</span>
+                        </div>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Windhoek Sports Fields</span>
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 6:00 PM</span>
+                        </div>
+                        <p class="event-description">Annual open tournament featuring teams from across Windhoek. All skill levels welcome with separate divisions for different experience levels.</p>
+                        <div class="event-footer">
+                            <div class="event-price">N$ 250</div>
+                            <button class="btn btn-small btn-primary register-btn" data-event="Windhoek Open Tournament">Register</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="event-card featured" data-category="international" data-status="upcoming">
+                    <div class="event-badge upcoming">UPCOMING</div>
+                    <div class="event-date">
+                        <span class="date-day">22</span>
+                        <span class="date-month">JUN</span>
+                    </div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="South Africa Tour">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">South Africa Development Tour</h3>
+                        <div class="category-tags">
+                            <span class="category-tag international">International</span>
+                            <span class="category-tag junior">Junior</span>
+                        </div>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Johannesburg, SA</span>
+                            <span><i class="fas fa-clock"></i> 5-Day Tour</span>
+                        </div>
+                        <p class="event-description">Development tour for junior players to gain international experience. Includes matches against South African academy teams and coaching clinics.</p>
+                        <div class="event-footer">
+                            <div class="event-price">N$ 5,000</div>
+                            <button class="btn btn-small btn-primary register-btn" data-event="South Africa Development Tour">Register</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="event-card" data-category="national" data-status="ongoing">
+                    <div class="event-badge ongoing">ONGOING</div>
+                    <div class="event-date">
+                        <span class="date-day">01</span>
+                        <span class="date-month">JUN</span>
+                    </div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1536599018109-73a2d2c7039f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Summer League">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Summer Cricket League</h3>
+                        <div class="category-tags">
+                            <span class="category-tag national">National</span>
+                            <span class="category-tag tournament">League</span>
+                        </div>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Various Venues</span>
+                            <span><i class="fas fa-clock"></i> Weekends</span>
+                        </div>
+                        <p class="event-description">8-week summer league with matches every weekend. Points system with finals at the end of the season. Perfect for regular competitive play.</p>
+                        <div class="event-footer">
+                            <div class="event-price">N$ 800</div>
+                            <button class="btn btn-small btn-secondary" disabled>League in Progress</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 4 -->
+                <div class="event-card" data-category="junior" data-status="upcoming">
+                    <div class="event-badge upcoming">UPCOMING</div>
+                    <div class="event-date">
+                        <span class="date-day">30</span>
+                        <span class="date-month">JUN</span>
+                    </div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Junior Championship">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Junior Championship Series</h3>
+                        <div class="category-tags">
+                            <span class="category-tag junior">Junior</span>
+                            <span class="category-tag tournament">Championship</span>
+                        </div>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Academy Grounds</span>
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                        </div>
+                        <p class="event-description">Special tournament for junior players aged 8-16. Age group divisions with modified rules for younger players. Focus on skill development and fun.</p>
+                        <div class="event-footer">
+                            <div class="event-price free">FREE</div>
+                            <button class="btn btn-small btn-primary register-btn" data-event="Junior Championship Series">Register</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 5 -->
+                <div class="event-card" data-category="international" data-status="upcoming">
+                    <div class="event-badge upcoming">UPCOMING</div>
+                    <div class="event-date">
+                        <span class="date-day">10</span>
+                        <span class="date-month">JUL</span>
+                    </div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Zimbabwe Challenge">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Zimbabwe Challenge Cup</h3>
+                        <div class="category-tags">
+                            <span class="category-tag international">International</span>
+                        </div>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Harare, Zimbabwe</span>
+                            <span><i class="fas fa-clock"></i> 4-Day Event</span>
+                        </div>
+                        <p class="event-description">Competitive tournament against top Zimbabwean academy teams. Opportunity for international exposure and competitive experience.</p>
+                        <div class="event-footer">
+                            <div class="event-price">N$ 3,500</div>
+                            <button class="btn btn-small btn-primary register-btn" data-event="Zimbabwe Challenge Cup">Register</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 6 -->
+                <div class="event-card" data-category="national" data-status="completed">
+                    <div class="event-badge completed">COMPLETED</div>
+                    <div class="event-date">
+                        <span class="date-day">15</span>
+                        <span class="date-month">MAY</span>
+                    </div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Spring Tournament">
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">Spring T20 Tournament</h3>
+                        <div class="category-tags">
+                            <span class="category-tag national">National</span>
+                        </div>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Windhoek</span>
+                            <span><i class="fas fa-clock"></i> Completed</span>
+                        </div>
+                        <p class="event-description">Fast-paced T20 tournament that took place last month. Exciting matches with high scoring games and excellent sportsmanship displayed.</p>
+                        <div class="event-footer">
+                            <div class="event-price">Completed</div>
+                            <button class="btn btn-small btn-secondary">View Results</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Calendar -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Calendar</h2>
+                <p class="section-subtitle">Schedule of upcoming cricket events</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="event-calendar">
+                <div class="calendar-header">
+                    <button class="btn btn-small"><i class="fas fa-chevron-left"></i></button>
+                    <h3 class="calendar-month">June 2025</h3>
+                    <button class="btn btn-small"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                    
+                    <!-- Calendar days will be populated by JavaScript -->
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day has-event">2</div>
+                    <div class="calendar-day">3</div>
+                    <div class="calendar-day">4</div>
+                    <div class="calendar-day has-event">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day has-event">10</div>
+                    <div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day has-event active">14</div>
+                    <div class="calendar-day has-event">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day">20</div>
+                    <div class="calendar-day">21</div>
+                    <div class="calendar-day has-event">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day">24</div>
+                    <div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div>
+                    <div class="calendar-day">27</div>
+                    <div class="calendar-day has-event">28</div>
+                    <div class="calendar-day">29</div>
+                    <div class="calendar-day">30</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Map -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Venues</h2>
+                <p class="section-subtitle">Locations for our cricket events</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="venue-map">
+                <div class="venue-info">
+                    <h3>Main Venue</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Windhoek Sports Fields</p>
+                    <p><i class="fas fa-phone"></i> +264 81 123 4567</p>
+                    <p><i class="fas fa-car"></i> Ample parking available</p>
+                    <p><i class="fas fa-utensils"></i> Food & beverages on site</p>
+                </div>
+                <!-- Map would be integrated here -->
+                <div style="width: 100%; height: 100%; background: var(--color-light-gray); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--color-gray); margin-bottom: 1rem;"></i>
+                        <p style="color: var(--color-gray);">Interactive map would be integrated here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Don't Miss Out on Exciting Cricket Events!</h2>
+            <p>Stay updated with our latest tournaments, matches, and competitions. Register early to secure your spot.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#eventsContainer" class="btn btn-primary btn-large">View All Events</a>
+                <a href="contacts.html" class="btn btn-secondary btn-large">Contact Event Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-baseball-ball"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">RUN WHISPERERS</span>
+                            <span class="logo-sub">Cricket • Academy • Community</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Upcoming Events</a></li>
+                        <li><a href="booking.html">Book Training</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Event Categories</h3>
+                    <ul>
+                        <li><a href="events.html?category=national">National Tournaments</a></li>
+                        <li><a href="events.html?category=international">International Events</a></li>
+                        <li><a href="events.html?category=junior">Junior Competitions</a></li>
+                        <li><a href="events.html">All Events</a></li>
+                        <li><a href="events.html?status=upcoming">Upcoming Events</a></li>
+                        <li><a href="events.html?status=completed">Past Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Windhoek Sports Fields, Namibia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+264 81 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>events@runwhispererscricket.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Event Hotline: Mon-Fri 8am-6pm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <h4>Get Event Updates</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Run Whisperers Cricket Academy. All Rights Reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Event Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const spans = navToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+        
+        // Countdown Timer for Featured Event
+        function updateCountdown() {
+            const countdownDate = new Date('June 15, 2025 09:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('countdownTimer').innerHTML = '<h3 style="color: var(--color-cricket-gold);">Event Started!</h3>';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Event Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const searchInput = document.getElementById('eventSearch');
+        
+        // Filter by status
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                // Show/hide events based on filter
+                eventCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.status === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Filter by category
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.dataset.category;
+                
+                eventCards.forEach(eventCard => {
+                    if (category === 'all' || eventCard.dataset.category === category) {
+                        eventCard.style.display = 'block';
+                    } else {
+                        eventCard.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            eventCards.forEach(card => {
+                const title = card.querySelector('.event-title').textContent.toLowerCase();
+                const description = card.querySelector('.event-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Modal functionality
+        const registrationModal = document.getElementById('registrationModal');
+        const modalClose = document.getElementById('modalClose');
+        const registerFeatured = document.getElementById('registerFeatured');
+        const registerBtns = document.querySelectorAll('.register-btn');
+        const registrationForm = document.getElementById('registrationForm');
+        
+        // Open modal for featured event
+        registerFeatured.addEventListener('click', () => {
+            registrationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Open modal for regular events
+        registerBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const eventName = btn.dataset.event;
+                registrationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // You could pre-fill event name here if needed
+            });
+        });
+        
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            registrationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        registrationModal.addEventListener('click', (e) => {
+            if (e.target === registrationModal) {
+                registrationModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Handle form submission
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for registering! We will contact you with more details soon.');
+            registrationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            registrationForm.reset();
+        });
+        
+        // Pagination
+        const pageBtns = document.querySelectorAll('.page-btn');
+        pageBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                pageBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // In a real app, this would load page content
+            });
+        });
+        
+        // Calendar day click
+        const calendarDays = document.querySelectorAll('.calendar-day');
+        calendarDays.forEach(day => {
+            if (day.classList.contains('has-event')) {
+                day.addEventListener('click', () => {
+                    alert('Event details for this day would be shown here.');
+                });
+            }
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+            }
+        });
+        
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive event updates and notifications.`);
+                this.reset();
+            });
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check URL parameters for filters
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            const status = urlParams.get('status');
+            
+            if (category) {
+                const categoryBtn = document.querySelector(`.category-card[data-category="${category}"]`);
+                if (categoryBtn) categoryBtn.click();
+            }
+            
+            if (status) {
+                const statusBtn = document.querySelector(`.filter-btn[data-filter="${status}"]`);
+                if (statusBtn) statusBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>

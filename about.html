@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Run Whisperers | Cricket Academy & Community</title>
+    <meta name="description" content="Learn about Run Whisperers Cricket Academy - Our history, mission, coaching team, facilities, and community impact in Namibia.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-cricket-green: #1a472a;
+            --color-dark-green: #2d5a3d;
+            --color-medium-green: #3e7a52;
+            --color-light-green: #5a9c73;
+            --color-cricket-gold: #d4af37;
+            --color-light-brown: #a67c52;
+            --color-beige: #f5f1e8;
+            --color-off-white: #f9f7f3;
+            --color-black: #1a1a1a;
+            --color-white: #ffffff;
+            --color-gray: #6c757d;
+            --color-light-gray: #e9ecef;
+            
+            --font-heading: 'Montserrat', 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            
+            --border-radius: 8px;
+            --border-radius-large: 16px;
+            
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-black);
+            background-color: var(--color-off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-black);
+        }
+
+        .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-light-green));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-dark-green);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-large);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #25D366;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float i {
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-cricket-green);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
+            color: var(--color-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-black);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .nav-menu a.active {
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-cricket-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-cricket-green);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
+                        url('https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            color: var(--color-white);
+        }
+
+        .page-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .page-hero-title .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--color-cricket-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background-color: var(--color-off-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background-color: var(--color-white);
+        }
+
+        .section-dark {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+        }
+
+        .section-dark h2,
+        .section-dark h3,
+        .section-dark .section-title {
+            color: var(--color-white);
+        }
+
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* About Intro */
+        .about-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-intro-text {
+            padding-right: 2rem;
+        }
+
+        .about-intro-image {
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-large);
+        }
+
+        .about-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-intro-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--color-cricket-green), var(--color-cricket-gold));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--color-white);
+            transform: rotate(45deg);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--color-white);
+            transform: rotate(45deg);
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -100px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -100px;
+        }
+
+        /* Mission & Values */
+        .mission-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+            border-top: 4px solid var(--color-cricket-gold);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Coaching Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--color-cricket-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            background: var(--color-light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-cricket-green);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .team-social a:hover {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+        }
+
+        /* Facilities */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .facility-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .facility-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .facility-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .facility-card:hover .facility-image img {
+            transform: scale(1.1);
+        }
+
+        .facility-content {
+            padding: 1.5rem;
+        }
+
+        .facility-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Stats Counter */
+        .stats-counter {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item-large {
+            padding: 2rem;
+        }
+
+        .stat-number-large {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--color-cricket-gold);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label-large {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--color-cricket-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: var(--color-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--color-gray);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-cricket-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-role {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            color: var(--color-cricket-gold);
+            opacity: 0.2;
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .partner-logo {
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            transition: var(--transition);
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+        }
+
+        .cta-section h2 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social .social-link:hover {
+            background-color: var(--color-cricket-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-cricket-gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--color-cricket-gold);
+            width: 20px;
+        }
+
+        .newsletter {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter h4 {
+            color: var(--color-white);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-white);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .facilities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .stats-counter {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .mission-values {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--color-white);
+                padding: 2rem;
+                box-shadow: var(--shadow-medium);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin-bottom: 1rem;
+            }
+            
+            /* About Intro */
+            .about-intro {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-intro-text {
+                padding-right: 0;
+            }
+            
+            /* Timeline */
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-year {
+                left: 0 !important;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                right: auto;
+            }
+            
+            /* WhatsApp Button */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Footer */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mission-values {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-counter {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .page-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/264811234567" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">RUN WHISPERERS</span>
+                        <span class="logo-sub">Cricket • Academy • Community</span>
+                    </div>
+                </a>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="events.html">Upcoming Events</a></li>
+                    <li><a href="booking.html">Book Training</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-background"></div>
+        
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">About <span class="highlight">Run Whisperers</span></h1>
+                <p class="page-hero-subtitle">Discover our journey, values, and commitment to developing cricket talent in Namibia and beyond.</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>About Us</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">From humble beginnings to Namibia's premier cricket academy</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="about-intro">
+                <div class="about-intro-text">
+                    <h3>Founded on Passion for Cricket</h3>
+                    <p>Run Whisperers was founded in 2020 in the heart of Namibia by a group of passionate cricket enthusiasts who believed in nurturing local talent. What started as a small community club with just 15 members has grown into a premier cricket academy with over 120 active players.</p>
+                    <p>Our founders, former national team players and certified coaches, recognized the need for professional cricket development in Namibia. They combined their expertise to create a comprehensive training program that focuses not just on skills, but also on character building and sportsmanship.</p>
+                    <p>Today, we're proud to be recognized as one of Namibia's leading cricket academies, with our teams competing successfully in national tournaments and international competitions across Africa.</p>
+                </div>
+                <div class="about-intro-image">
+                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Run Whisperers Cricket Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Journey</h2>
+                <p class="section-subtitle">Key milestones in our development</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>Academy Founded</h3>
+                        <p>Run Whisperers Cricket Academy was officially established with 15 founding members and two certified coaches.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2021</div>
+                    <div class="timeline-content">
+                        <h3>First Tournament Win</h3>
+                        <p>Our junior team won their first regional tournament, marking the beginning of our competitive success.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-content">
+                        <h3>International Expansion</h3>
+                        <p>We competed in our first international tournament in South Africa, finishing in the top 3.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h3>Facility Upgrade</h3>
+                        <p>Completed major upgrades to our training facilities including new nets and batting cages.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Professional Partnerships</h3>
+                        <p>Formed partnerships with international cricket boards and equipment sponsors.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>National Recognition</h3>
+                        <p>Recognized as Namibia's fastest-growing cricket academy with 120+ active players.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Mission & Values</h2>
+                <p class="section-subtitle">What drives us every day</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="mission-values">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To develop world-class cricket talent in Namibia through professional coaching, modern facilities, and international exposure.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To become Africa's leading cricket academy, producing players who compete at international levels.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Excellence, Integrity, Teamwork, Respect, and Sportsmanship guide everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Team -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Coaching Team</h2>
+                <p class="section-subtitle">Certified professionals with international experience</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Head Coach">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">David Muller</h3>
+                        <div class="team-role">Head Coach & Founder</div>
+                        <p>Former Namibia national team captain with 15 years coaching experience.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1584467735871-8db9ac8b0216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Batting Coach">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Sarah van der Merwe</h3>
+                        <div class="team-role">Batting Specialist</div>
+                        <p>Former South African domestic player with Level 3 coaching certification.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bowling Coach">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">James Petersen</h3>
+                        <div class="team-role">Bowling Coach</div>
+                        <p>Former professional fast bowler with expertise in biomechanics.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fitness Coach">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Maria Shikongo</h3>
+                        <div class="team-role">Fitness & Conditioning</div>
+                        <p>Sports science graduate specializing in cricket-specific fitness training.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">World-Class Facilities</h2>
+                <p class="section-subtitle">Training environment designed for excellence</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Training Nets">
+                    </div>
+                    <div class="facility-content">
+                        <h3>Professional Training Nets</h3>
+                        <p>8 bowling lanes with different surfaces including turf, concrete, and artificial pitches.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Gym Facilities">
+                    </div>
+                    <div class="facility-content">
+                        <h3>Fitness Center</h3>
+                        <p>Fully equipped gym with cricket-specific training equipment and recovery facilities.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Classroom">
+                    </div>
+                    <div class="facility-content">
+                        <h3>Video Analysis Room</h3>
+                        <p>High-tech classroom with video analysis software for technical improvement sessions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="stats-counter">
+                <div class="stat-item-large">
+                    <div class="stat-number-large" data-count="120">0</div>
+                    <div class="stat-label-large">Active Players</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-number-large" data-count="8">0</div>
+                    <div class="stat-label-large">Certified Coaches</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-number-large" data-count="45">0</div>
+                    <div class="stat-label-large">Tournaments Won</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-number-large" data-count="8">0</div>
+                    <div class="stat-label-large">Countries Played</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notable Achievements</h2>
+                <p class="section-subtitle">Milestones we're proud of</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>2023 National Champions</h3>
+                    <p>Under-19 team won the Namibia National Cricket Championship</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>International Success</h3>
+                    <p>Top 3 finish in South Africa International Youth Tournament</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Talent Development</h3>
+                    <p>5 players selected for Namibia national team development squad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Players Say</h2>
+                <p class="section-subtitle">Testimonials from our cricket community</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">"Run Whisperers transformed my game completely. The professional coaching and facilities helped me get selected for the Namibia U-19 team. The academy's focus on both skill development and mental toughness is exceptional."</p>
+                    <div class="testimonial-author">Thomas Shilongo</div>
+                    <div class="testimonial-role">Namibia U-19 National Team</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Partners</h2>
+                <p class="section-subtitle">Organizations that support our mission</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60/1a472a/ffffff?text=Namibia+Cricket" alt="Namibia Cricket Board">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60/2d5a3d/ffffff?text=Sports+Ministry" alt="Ministry of Sport">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60/3e7a52/ffffff?text=Kookaburra" alt="Kookaburra Sports">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60/1a472a/ffffff?text=Windhoek+City" alt="Windhoek City Council">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60/2d5a3d/ffffff?text=Sports+Science" alt="Sports Science Institute">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://via.placeholder.com/150x60/3e7a52/ffffff?text=Youth+Sports" alt="Youth Sports Foundation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Join Our Cricket Academy?</h2>
+            <p>Take your cricket skills to the next level with professional coaching and world-class facilities.</p>
+            <div style="margin-top: 2rem;">
+                <a href="booking.html" class="btn btn-primary btn-large">Book Your Trial Session</a>
+                <a href="contacts.html" class="btn btn-secondary btn-large">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-baseball-ball"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">RUN WHISPERERS</span>
+                            <span class="logo-sub">Cricket • Academy • Community</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Upcoming Events</a></li>
+                        <li><a href="booking.html">Book Training</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Our Programs</h3>
+                    <ul>
+                        <li><a href="booking.html">Junior Cricket (8-16)</a></li>
+                        <li><a href="booking.html">Senior Academy</a></li>
+                        <li><a href="events.html">Competitive Teams</a></li>
+                        <li><a href="booking.html">Individual Coaching</a></li>
+                        <li><a href="events.html">International Tours</a></li>
+                        <li><a href="booking.html">Summer Camps</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Windhoek Sports Fields, Namibia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+264 81 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@runwhispererscricket.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Tue & Thu: 5pm-8pm | Sat: 9am-1pm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <h4>Subscribe to Our Newsletter</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Run Whisperers Cricket Academy. All Rights Reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const spans = navToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+        
+        // Animated Counter for Stats
+        const counters = document.querySelectorAll('.stat-number-large');
+        const speed = 200;
+        
+        const animateCounter = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => animateCounter(), 10);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        };
+        
+        // Start counter when scrolled into view
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const statsSection = document.querySelector('.section-dark');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+            }
+        });
+        
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive cricket updates and event information.`);
+                this.reset();
+            });
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make sure all content is visible immediately
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '1';
+                section.style.visibility = 'visible';
+                section.style.transform = 'none';
+            });
+            
+            // Ensure body is visible
+            document.body.style.opacity = '1';
+            document.body.style.visibility = 'visible';
+        });
+    </script>
+</body>
+</html>

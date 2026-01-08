@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Run Whisperers Cricket Academy</title>
+    <meta name="description" content="Contact Run Whisperers Cricket Academy for inquiries, bookings, and information about cricket training, events, and camping in Namibia.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-cricket-green: #1a472a;
+            --color-dark-green: #2d5a3d;
+            --color-medium-green: #3e7a52;
+            --color-light-green: #5a9c73;
+            --color-cricket-gold: #d4af37;
+            --color-beige: #f5f1e8;
+            --color-off-white: #f9f7f3;
+            --color-black: #1a1a1a;
+            --color-white: #ffffff;
+            --color-gray: #6c757d;
+            --color-light-gray: #e9ecef;
+            --color-red: #dc3545;
+            --color-blue: #0d6efd;
+            --color-success: #28a745;
+            --color-warning: #ffc107;
+            
+            --font-heading: 'Montserrat', 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            
+            --border-radius: 8px;
+            --border-radius-large: 16px;
+            
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-black);
+            background-color: var(--color-off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-black);
+        }
+
+        .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-light-green));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-dark-green);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-large);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #25D366;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float i {
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-cricket-green);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
+            color: var(--color-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-black);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .nav-menu a.active {
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-cricket-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-cricket-green);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
+                        url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            color: var(--color-white);
+        }
+
+        .page-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .page-hero-title .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--color-cricket-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Info Cards */
+        .contact-info-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-card {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            border-top: 4px solid var(--color-cricket-gold);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            margin-top: 1.5rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--color-gray);
+            text-align: left;
+        }
+
+        .contact-detail i {
+            margin-right: 10px;
+            color: var(--color-cricket-green);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            background: var(--color-white);
+            border-radius: var(--border-radius-large);
+            padding: 4rem;
+            box-shadow: var(--shadow-large);
+            margin: 4rem 0;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-cricket-green);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-cricket-green);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-error {
+            color: var(--color-red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        .form-success {
+            background: var(--color-success);
+            color: var(--color-white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: none;
+            text-align: center;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        .form-error-message {
+            background: var(--color-red);
+            color: var(--color-white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: none;
+            text-align: center;
+        }
+
+        .form-error-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Departments Grid */
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .department-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .department-icon {
+            font-size: 2rem;
+            color: var(--color-cricket-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            height: 400px;
+            background: var(--color-light-gray);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-large);
+            max-width: 300px;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-small);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Business Hours */
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .hours-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-small);
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Social Media */
+        .social-media-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .social-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--color-white);
+            margin: 0 auto 1.5rem;
+        }
+
+        .social-card.facebook .social-icon {
+            background-color: #1877F2;
+        }
+
+        .social-card.instagram .social-icon {
+            background: linear-gradient(45deg, #405DE6, #E4405F);
+        }
+
+        .social-card.youtube .social-icon {
+            background-color: #CD201F;
+        }
+
+        .social-card.twitter .social-icon {
+            background-color: #1DA1F2;
+        }
+
+        /* Emergency Contact */
+        .emergency-contact {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            padding: 3rem;
+            border-radius: var(--border-radius-large);
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .emergency-contact h2 {
+            color: var(--color-white);
+        }
+
+        .emergency-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-cricket-gold);
+            margin: 1rem 0;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background-color: var(--color-off-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background-color: var(--color-white);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social .social-link:hover {
+            background-color: var(--color-cricket-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-cricket-gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--color-cricket-gold);
+            width: 20px;
+        }
+
+        .newsletter {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter h4 {
+            color: var(--color-white);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-white);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .contact-info-cards,
+            .departments-grid,
+            .social-media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--color-white);
+                padding: 2rem;
+                box-shadow: var(--shadow-medium);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin-bottom: 1rem;
+            }
+            
+            /* Form */
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .contact-form-section {
+                padding: 2rem;
+            }
+            
+            /* Grids */
+            .contact-info-cards,
+            .departments-grid,
+            .social-media-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            /* WhatsApp Button */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Footer */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-form-section {
+                padding: 1.5rem;
+            }
+            
+            .map-overlay {
+                position: relative;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .emergency-number {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .page-hero {
+                height: 40vh;
+                min-height: 300px;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--color-white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Form Validation Styles */
+        .form-control.error {
+            border-color: var(--color-red);
+        }
+
+        .form-control.success {
+            border-color: var(--color-success);
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/264811234567" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">RUN WHISPERERS</span>
+                        <span class="logo-sub">Cricket • Academy • Community</span>
+                    </div>
+                </a>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Upcoming Events</a></li>
+                    <li><a href="booking.html">Book Training</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contacts.html" class="active">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-background"></div>
+        
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">Contact <span class="highlight">Us</span></h1>
+                <p class="page-hero-subtitle">Get in touch with Run Whisperers Cricket Academy for inquiries, bookings, and information about our programs and events.</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Contacts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Multiple ways to reach us</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="contact-info-cards">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Our Academy</h3>
+                    <p>Come visit our world-class cricket facilities</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Windhoek Sports Fields<br>123 Cricket Avenue<br>Windhoek, Namibia</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 4:00 PM<br>Sun: 10:00 AM - 2:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Speak directly with our team</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <span>General Inquiries:<br><strong>+264 81 123 4567</strong></span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Bookings Office:<br><strong>+264 81 987 6543</strong></span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-fax"></i>
+                            <span>Fax:<br><strong>+264 61 234 567</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>Send us an email for detailed inquiries</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span>General Inquiries:<br><strong>info@runwhispererscricket.com</strong></span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Bookings:<br><strong>bookings@runwhispererscricket.com</strong></span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Partnerships:<br><strong>partners@runwhispererscricket.com</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="contact-form-section">
+                <div class="form-header">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you within 24 hours</p>
+                </div>
+                
+                <!-- Success Message -->
+                <div class="form-success" id="formSuccess">
+                    <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Message Sent Successfully!</h3>
+                    <p>Thank you for contacting Run Whisperers Cricket Academy. We'll get back to you within 24 hours.</p>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="form-error-message" id="formError">
+                    <i class="fas fa-exclamation-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3>Error Sending Message</h3>
+                    <p id="errorMessage">There was an error sending your message. Please try again or contact us directly.</p>
+                </div>
+                
+                <form id="contactForm" action="submit_contact.php" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" required>
+                            <div class="form-error" id="fullNameError">Please enter your full name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                            <div class="form-error" id="emailError">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                            <div class="form-error" id="phoneError">Please enter a valid phone number</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                            <div class="form-error" id="subjectError">Please enter a subject</div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label">Inquiry Type *</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="inquiryType1" name="inquiryType" value="general" checked>
+                                    <label for="inquiryType1">General Inquiry</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="inquiryType2" name="inquiryType" value="booking">
+                                    <label for="inquiryType2">Booking Request</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="inquiryType3" name="inquiryType" value="partnership">
+                                    <label for="inquiryType3">Partnership</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="inquiryType4" name="inquiryType" value="feedback">
+                                    <label for="inquiryType4">Feedback</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="inquiryType5" name="inquiryType" value="complaint">
+                                    <label for="inquiryType5">Complaint</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="message" class="form-label">Your Message *</label>
+                            <textarea id="message" name="message" class="form-control" rows="6" required></textarea>
+                            <div class="form-error" id="messageError">Please enter your message</div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                Subscribe to our newsletter for updates, events, and offers
+                            </label>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
+                                I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms of Service</a> *
+                            </label>
+                            <div class="form-error" id="privacyError">You must agree to the privacy policy</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large btn-full" id="submitBtn">
+                        <span id="submitText">Send Message</span>
+                        <span id="submitSpinner" class="spinner" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact by Department</h2>
+                <p class="section-subtitle">Get in touch with the right team</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="departments-grid">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <h3>Training & Coaching</h3>
+                    <p>For training inquiries and coaching programs</p>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>training@runwhispererscricket.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+264 81 111 2222</span>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Events & Bookings</h3>
+                    <p>For event registration and booking inquiries</p>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>events@runwhispererscricket.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+264 81 333 4444</span>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-campground"></i>
+                    </div>
+                    <h3>Camping & Tours</h3>
+                    <p>For holiday camping and tour packages</p>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>camping@runwhispererscricket.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+264 81 555 6666</span>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnerships</h3>
+                    <p>For sponsorships and partnership opportunities</p>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>partners@runwhispererscricket.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+264 81 777 8888</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map & Location -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Our Location</h2>
+                <p class="section-subtitle">Visit us at our academy in Windhoek</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="map-section">
+                <div class="map-overlay">
+                    <h3>Run Whisperers Cricket Academy</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Windhoek Sports Fields, Namibia</p>
+                    <p><i class="fas fa-phone"></i> +264 81 123 4567</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 8am-6pm</p>
+                    <button class="btn btn-small btn-primary" onclick="getDirections()">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </button>
+                </div>
+                <!-- Map would be integrated here -->
+                <div style="width: 100%; height: 100%; background: var(--color-light-gray); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--color-gray); margin-bottom: 1rem;"></i>
+                        <p style="color: var(--color-gray);">Interactive map would be integrated here</p>
+                        <button class="btn btn-small btn-secondary" onclick="openGoogleMaps()">
+                            Open in Google Maps
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Hours -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Business Hours</h2>
+                <p class="section-subtitle">When you can visit or contact us</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="hours-grid">
+                <div class="hours-card">
+                    <h3>Academy Hours</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>Monday - Friday</span>
+                            <span>8:00 AM - 6:00 PM</span>
+                        </li>
+                        <li>
+                            <span>Saturday</span>
+                            <span>9:00 AM - 4:00 PM</span>
+                        </li>
+                        <li>
+                            <span>Sunday</span>
+                            <span>10:00 AM - 2:00 PM</span>
+                        </li>
+                        <li>
+                            <span>Public Holidays</span>
+                            <span>10:00 AM - 3:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="hours-card">
+                    <h3>Contact Center Hours</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span>Monday - Friday</span>
+                            <span>7:00 AM - 7:00 PM</span>
+                        </li>
+                        <li>
+                            <span>Saturday</span>
+                            <span>8:00 AM - 5:00 PM</span>
+                        </li>
+                        <li>
+                            <span>Sunday</span>
+                            <span>9:00 AM - 3:00 PM</span>
+                        </li>
+                        <li>
+                            <span>Emergency</span>
+                            <span>24/7 Available</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="emergency-contact">
+                <h2>Emergency Contact</h2>
+                <p>For urgent matters outside business hours</p>
+                <div class="emergency-number">+264 81 999 0000</div>
+                <p>Available 24/7 for emergency situations</p>
+                <button class="btn btn-secondary" onclick="callEmergency()">
+                    <i class="fas fa-phone"></i> Call Emergency Line
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Connect on Social Media</h2>
+                <p class="section-subtitle">Follow us for updates and news</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="social-media-grid">
+                <div class="social-card facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Join our community for updates</p>
+                    <a href="#" class="btn btn-small" style="margin-top: 1rem;">Follow Us</a>
+                </div>
+                
+                <div class="social-card instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>See photos and behind-the-scenes</p>
+                    <a href="#" class="btn btn-small" style="margin-top: 1rem;">Follow Us</a>
+                </div>
+                
+                <div class="social-card youtube">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p>Watch training videos and matches</p>
+                    <a href="#" class="btn btn-small" style="margin-top: 1rem;">Subscribe</a>
+                </div>
+                
+                <div class="social-card twitter">
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter</h3>
+                    <p>Get real-time updates and news</p>
+                    <a href="#" class="btn btn-small" style="margin-top: 1rem;">Follow Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Quick answers to common questions</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the best way to contact the academy?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For quick responses, use our contact form above or call us at +264 81 123 4567 during business hours. For specific inquiries, email the appropriate department directly.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take to get a response?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please call our emergency line at +264 81 999 0000.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I visit without an appointment?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can visit our academy during business hours. However, we recommend scheduling an appointment for tours or meetings with specific staff members.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you have parking available?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we have ample free parking available for visitors at our Windhoek Sports Fields location.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Cricket Journey?</h2>
+            <p>Contact us today to learn more about our programs, book training sessions, or schedule a visit to our academy.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#contactForm" class="btn btn-primary btn-large">Send Us a Message</a>
+                <a href="tel:+264811234567" class="btn btn-secondary btn-large">Call Us Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-baseball-ball"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">RUN WHISPERERS</span>
+                            <span class="logo-sub">Cricket • Academy • Community</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Upcoming Events</a></li>
+                        <li><a href="booking.html">Book Training</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Contact Departments</h3>
+                    <ul>
+                        <li><a href="mailto:training@runwhispererscricket.com">Training & Coaching</a></li>
+                        <li><a href="mailto:events@runwhispererscricket.com">Events & Bookings</a></li>
+                        <li><a href="mailto:camping@runwhispererscricket.com">Camping & Tours</a></li>
+                        <li><a href="mailto:partners@runwhispererscricket.com">Partnerships</a></li>
+                        <li><a href="mailto:info@runwhispererscricket.com">General Inquiries</a></li>
+                        <li><a href="tel:+264819990000">Emergency Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Windhoek Sports Fields, Namibia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+264 81 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@runwhispererscricket.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8am-6pm | Sat: 9am-4pm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <h4>Stay Updated</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Run Whisperers Cricket Academy. All Rights Reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact-policy.html">Contact Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            const spans = navToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // Form Validation and Submission
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        const formError = document.getElementById('formError');
+        const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+
+        // Form validation function
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.form-error').forEach(error => {
+                error.classList.remove('show');
+            });
+            
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.classList.remove('error', 'success');
+            });
+            
+            // Validate full name
+            const fullName = document.getElementById('fullName');
+            if (!fullName.value.trim()) {
+                document.getElementById('fullNameError').classList.add('show');
+                fullName.classList.add('error');
+                isValid = false;
+            } else {
+                fullName.classList.add('success');
+            }
+            
+            // Validate email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim() || !emailRegex.test(email.value)) {
+                document.getElementById('emailError').classList.add('show');
+                email.classList.add('error');
+                isValid = false;
+            } else {
+                email.classList.add('success');
+            }
+            
+            // Validate phone
+            const phone = document.getElementById('phone');
+            const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+            if (!phone.value.trim() || !phoneRegex.test(phone.value)) {
+                document.getElementById('phoneError').classList.add('show');
+                phone.classList.add('error');
+                isValid = false;
+            } else {
+                phone.classList.add('success');
+            }
+            
+            // Validate subject
+            const subject = document.getElementById('subject');
+            if (!subject.value.trim()) {
+                document.getElementById('subjectError').classList.add('show');
+                subject.classList.add('error');
+                isValid = false;
+            } else {
+                subject.classList.add('success');
+            }
+            
+            // Validate message
+            const message = document.getElementById('message');
+            if (!message.value.trim()) {
+                document.getElementById('messageError').classList.add('show');
+                message.classList.add('error');
+                isValid = false;
+            } else {
+                message.classList.add('success');
+            }
+            
+            // Validate privacy policy
+            const privacyPolicy = document.getElementById('privacyPolicy');
+            if (!privacyPolicy.checked) {
+                document.getElementById('privacyError').classList.add('show');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        // Form submission handler
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide previous messages
+            formSuccess.classList.remove('show');
+            formError.classList.remove('show');
+            
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+            
+            // Show loading state
+            submitText.style.display = 'none';
+            submitSpinner.style.display = 'inline-block';
+            submitBtn.disabled = true;
+            
+            try {
+                // Create FormData object
+                const formData = new FormData(contactForm);
+                
+                // Add timestamp
+                formData.append('timestamp', new Date().toISOString());
+                
+                // Send form data using fetch API
+                const response = await fetch('submit_contact.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    formSuccess.classList.add('show');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Scroll to success message
+                    formSuccess.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Send confirmation email (in real implementation)
+                    // await sendConfirmationEmail(formData);
+                    
+                } else {
+                    // Show error message
+                    errorMessage.textContent = result.message || 'There was an error submitting your form. Please try again.';
+                    formError.classList.add('show');
+                    formError.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                errorMessage.textContent = 'Network error. Please check your connection and try again.';
+                formError.classList.add('show');
+                formError.scrollIntoView({ behavior: 'smooth' });
+                
+            } finally {
+                // Reset button state
+                submitText.style.display = 'inline';
+                submitSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Real-time form validation
+        const formInputs = contactForm.querySelectorAll('input, textarea, select');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if (input.value.trim()) {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                } else {
+                    input.classList.remove('success');
+                }
+            });
+            
+            input.addEventListener('input', () => {
+                if (input.value.trim()) {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                }
+            });
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Map Functions
+        function getDirections() {
+            const address = "Windhoek Sports Fields, Namibia";
+            const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+            window.open(googleMapsUrl, '_blank');
+        }
+        
+        function openGoogleMaps() {
+            const address = "Windhoek Sports Fields, Namibia";
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            window.open(googleMapsUrl, '_blank');
+        }
+        
+        function callEmergency() {
+            if (confirm('Call emergency line at +264 81 999 0000?')) {
+                window.location.href = 'tel:+264819990000';
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+            }
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive updates and news from our academy.`);
+                this.reset();
+            });
+        }
+
+        // Phone number formatting
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                value = '+264 ' + value;
+            }
+            
+            e.target.value = value;
+        });
+
+        // Auto-scroll to form if URL has hash
+        if (window.location.hash === '#contactForm') {
+            setTimeout(() => {
+                document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        // Initialize form validation on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add input masks if needed
+            // Initialize any additional form plugins here
+        });
+    </script>
+</body>
+</html>

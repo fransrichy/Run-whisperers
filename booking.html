@@ -1,0 +1,2630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Training & Camping | Run Whisperers Cricket Academy</title>
+    <meta name="description" content="Book cricket training sessions, holiday camping packages, and academy programs at Run Whisperers Cricket Academy in Namibia.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-cricket-green: #1a472a;
+            --color-dark-green: #2d5a3d;
+            --color-medium-green: #3e7a52;
+            --color-light-green: #5a9c73;
+            --color-cricket-gold: #d4af37;
+            --color-camping-brown: #8b4513;
+            --color-beige: #f5f1e8;
+            --color-off-white: #f9f7f3;
+            --color-black: #1a1a1a;
+            --color-white: #ffffff;
+            --color-gray: #6c757d;
+            --color-light-gray: #e9ecef;
+            --color-red: #dc3545;
+            --color-blue: #0d6efd;
+            --color-purple: #6f42c1;
+            
+            --font-heading: 'Montserrat', 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            
+            --border-radius: 8px;
+            --border-radius-large: 16px;
+            
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-black);
+            background-color: var(--color-off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-black);
+        }
+
+        .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .highlight-camping {
+            color: var(--color-camping-brown);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        .divider-camping {
+            background: linear-gradient(to right, var(--color-camping-brown), var(--color-cricket-gold));
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-light-green));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-camping {
+            background: linear-gradient(135deg, var(--color-camping-brown), #a0522d);
+            color: var(--color-white);
+        }
+
+        .btn-camping:hover {
+            background: linear-gradient(135deg, #a0522d, #d2691e);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-dark-green);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-large);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #25D366;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float i {
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-cricket-green);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
+            color: var(--color-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-black);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .nav-menu a.active {
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-cricket-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-cricket-green);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            color: var(--color-white);
+        }
+
+        .page-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .page-hero-title .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--color-cricket-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Booking Navigation Tabs */
+        .booking-tabs {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-small);
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .tab-nav {
+            display: flex;
+            border-bottom: 2px solid var(--color-light-gray);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--color-cricket-green);
+            background: var(--color-off-white);
+        }
+
+        .tab-btn.active {
+            color: var(--color-cricket-green);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+        }
+
+        .tab-btn.camping.active::after {
+            background: linear-gradient(to right, var(--color-camping-brown), var(--color-cricket-gold));
+        }
+
+        .tab-content {
+            display: none;
+            padding: 3rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Booking Wizard */
+        .booking-wizard {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wizard-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .wizard-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: var(--color-light-gray);
+            z-index: 1;
+        }
+
+        .wizard-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--color-light-gray);
+            color: var(--color-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 0.5rem;
+            transition: var(--transition);
+        }
+
+        .wizard-step.active .step-number {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: scale(1.1);
+        }
+
+        .wizard-step.completed .step-number {
+            background: var(--color-cricket-gold);
+            color: var(--color-white);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            font-weight: 500;
+        }
+
+        .wizard-content {
+            background: var(--color-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 2rem;
+        }
+
+        .wizard-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Program Cards */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .program-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .program-card.popular {
+            border: 3px solid var(--color-cricket-gold);
+            transform: scale(1.05);
+        }
+
+        .program-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-cricket-gold);
+            color: var(--color-cricket-green);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .program-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .program-header h3 {
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .program-period {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .program-content {
+            padding: 2rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .program-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .program-features li i {
+            color: var(--color-cricket-green);
+        }
+
+        /* Camping Packages */
+        .camping-packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .camping-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            border-top: 4px solid var(--color-camping-brown);
+        }
+
+        .camping-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .camping-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .camping-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .camping-card:hover .camping-image img {
+            transform: scale(1.1);
+        }
+
+        .camping-content {
+            padding: 2rem;
+        }
+
+        .camping-duration {
+            display: inline-block;
+            background: var(--color-camping-brown);
+            color: var(--color-white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .camping-features {
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .feature-item i {
+            color: var(--color-camping-brown);
+            width: 20px;
+        }
+
+        /* Calendar Booking */
+        .booking-calendar {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-medium);
+            margin: 3rem 0;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-cricket-green);
+            padding: 10px;
+            background: var(--color-off-white);
+            border-radius: var(--border-radius);
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: var(--color-off-white);
+            border-color: var(--color-cricket-green);
+        }
+
+        .calendar-day.selected {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            border-color: var(--color-cricket-green);
+        }
+
+        .calendar-day.booked {
+            background: var(--color-light-gray);
+            color: var(--color-gray);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .calendar-day.booked:hover {
+            background: var(--color-light-gray);
+            border-color: transparent;
+        }
+
+        .day-number {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .day-slots {
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+
+        /* Time Slots */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 2rem 0;
+        }
+
+        .time-slot {
+            padding: 15px;
+            background: var(--color-off-white);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .time-slot:hover {
+            background: var(--color-white);
+            border-color: var(--color-cricket-green);
+            transform: translateY(-3px);
+        }
+
+        .time-slot.selected {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            border-color: var(--color-cricket-green);
+        }
+
+        .time-slot.booked {
+            background: var(--color-light-gray);
+            color: var(--color-gray);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .slot-time {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .slot-availability {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        /* Coach Selection */
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .coach-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .coach-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .coach-card.selected {
+            border-color: var(--color-cricket-green);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        .coach-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .coach-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .coach-content {
+            padding: 1.5rem;
+        }
+
+        .coach-specialty {
+            color: var(--color-cricket-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .coach-rating {
+            color: var(--color-cricket-gold);
+            margin: 0.5rem 0;
+        }
+
+        /* Booking Summary */
+        .booking-summary {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-medium);
+            margin: 2rem 0;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-cricket-green);
+            padding-top: 1rem;
+            border-top: 2px solid var(--color-cricket-green);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            padding: 1.5rem;
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .payment-method:hover {
+            border-color: var(--color-cricket-green);
+            transform: translateY(-3px);
+        }
+
+        .payment-method.selected {
+            border-color: var(--color-cricket-green);
+            background: var(--color-off-white);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-cricket-green);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-cricket-green);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-small);
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--color-light-gray);
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background-color: var(--color-off-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background-color: var(--color-white);
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-small);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social .social-link:hover {
+            background-color: var(--color-cricket-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-cricket-gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--color-cricket-gold);
+            width: 20px;
+        }
+
+        .newsletter {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter h4 {
+            color: var(--color-white);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-white);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .programs-grid,
+            .camping-packages,
+            .coaches-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--color-white);
+                padding: 2rem;
+                box-shadow: var(--shadow-medium);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin-bottom: 1rem;
+            }
+            
+            /* Tabs */
+            .tab-nav {
+                flex-direction: column;
+            }
+            
+            .tab-content {
+                padding: 2rem 1rem;
+            }
+            
+            /* Wizard */
+            .wizard-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .wizard-steps::before {
+                display: none;
+            }
+            
+            .wizard-content {
+                padding: 2rem;
+            }
+            
+            /* Grids */
+            .programs-grid,
+            .camping-packages,
+            .coaches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+            }
+            
+            /* WhatsApp Button */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Footer */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-grid {
+                gap: 2px;
+            }
+            
+            .calendar-day {
+                padding: 8px 2px;
+                font-size: 0.8rem;
+            }
+            
+            .day-number {
+                margin-bottom: 2px;
+            }
+            
+            .day-slots {
+                display: none;
+            }
+            
+            .wizard-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .page-hero {
+                height: 40vh;
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/264811234567" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Booking Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div style="text-align: center; padding: 3rem;">
+                <div style="font-size: 4rem; color: var(--color-cricket-green); margin-bottom: 1rem;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 style="color: var(--color-cricket-green); margin-bottom: 1rem;">Booking Confirmed!</h2>
+                <p style="margin-bottom: 2rem;">Your booking has been successfully submitted. We'll send you a confirmation email shortly.</p>
+                <div id="bookingDetails" style="text-align: left; background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 2rem;">
+                    <!-- Booking details will be inserted here -->
+                </div>
+                <button class="btn btn-primary btn-large" id="closeSuccessModal">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">RUN WHISPERERS</span>
+                        <span class="logo-sub">Cricket • Academy • Community</span>
+                    </div>
+                </a>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Upcoming Events</a></li>
+                    <li><a href="booking.html" class="active">Book Training</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-background"></div>
+        
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">Book <span class="highlight">Training</span> & <span class="highlight-camping">Camping</span></h1>
+                <p class="page-hero-subtitle">Reserve your spot for cricket training sessions or book exciting holiday camping packages at Namibia's premier cricket academy.</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Book Training & Camping</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Navigation Tabs -->
+    <section class="section">
+        <div class="container">
+            <div class="booking-tabs">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="training">Cricket Training</button>
+                    <button class="tab-btn" data-tab="camping">Holiday Camping</button>
+                    <button class="tab-btn" data-tab="packages">Academy Packages</button>
+                </div>
+                
+                <!-- Training Tab -->
+                <div class="tab-content active" id="training-tab">
+                    <div class="booking-wizard">
+                        <div class="wizard-steps">
+                            <div class="wizard-step active" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Select Program</div>
+                            </div>
+                            <div class="wizard-step" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Choose Schedule</div>
+                            </div>
+                            <div class="wizard-step" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Select Coach</div>
+                            </div>
+                            <div class="wizard-step" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Personal Details</div>
+                            </div>
+                            <div class="wizard-step" data-step="5">
+                                <div class="step-number">5</div>
+                                <div class="step-label">Payment</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 1: Select Program -->
+                        <div class="wizard-content active" data-step="1">
+                            <h3>Select Training Program</h3>
+                            <p>Choose the cricket training program that best fits your needs and skill level.</p>
+                            
+                            <div class="programs-grid">
+                                <div class="program-card">
+                                    <div class="program-header">
+                                        <h3>Beginner</h3>
+                                        <div class="program-price">N$ 800</div>
+                                        <div class="program-period">per month</div>
+                                    </div>
+                                    <div class="program-content">
+                                        <ul class="program-features">
+                                            <li><i class="fas fa-check"></i> 8 Sessions per month</li>
+                                            <li><i class="fas fa-check"></i> Basic skill development</li>
+                                            <li><i class="fas fa-check"></i> Group training sessions</li>
+                                            <li><i class="fas fa-check"></i> Equipment provided</li>
+                                            <li><i class="fas fa-check"></i> Progress assessment</li>
+                                        </ul>
+                                        <button class="btn btn-primary btn-full select-program" data-program="beginner">Select Program</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="program-card popular">
+                                    <div class="program-badge">MOST POPULAR</div>
+                                    <div class="program-header">
+                                        <h3>Intermediate</h3>
+                                        <div class="program-price">N$ 1,200</div>
+                                        <div class="program-period">per month</div>
+                                    </div>
+                                    <div class="program-content">
+                                        <ul class="program-features">
+                                            <li><i class="fas fa-check"></i> 12 Sessions per month</li>
+                                            <li><i class="fas fa-check"></i> Advanced skill training</li>
+                                            <li><i class="fas fa-check"></i> Individual coaching</li>
+                                            <li><i class="fas fa-check"></i> Video analysis</li>
+                                            <li><i class="fas fa-check"></i> Match simulation</li>
+                                            <li><i class="fas fa-check"></i> Fitness training</li>
+                                        </ul>
+                                        <button class="btn btn-primary btn-full select-program" data-program="intermediate">Select Program</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="program-card">
+                                    <div class="program-header">
+                                        <h3>Advanced</h3>
+                                        <div class="program-price">N$ 1,800</div>
+                                        <div class="program-period">per month</div>
+                                    </div>
+                                    <div class="program-content">
+                                        <ul class="program-features">
+                                            <li><i class="fas fa-check"></i> 16 Sessions per month</li>
+                                            <li><i class="fas fa-check"></i> Professional coaching</li>
+                                            <li><i class="fas fa-check"></i> One-on-one sessions</li>
+                                            <li><i class="fas fa-check"></i> Competition preparation</li>
+                                            <li><i class="fas fa-check"></i> Performance analytics</li>
+                                            <li><i class="fas fa-check"></i> Tournament entry</li>
+                                            <li><i class="fas fa-check"></i> Nutrition guidance</li>
+                                        </ul>
+                                        <button class="btn btn-primary btn-full select-program" data-program="advanced">Select Program</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="wizard-actions">
+                                <button class="btn btn-secondary" disabled>Previous</button>
+                                <button class="btn btn-primary next-step" data-next="2">Next: Choose Schedule</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Choose Schedule -->
+                        <div class="wizard-content" data-step="2">
+                            <h3>Select Training Schedule</h3>
+                            <p>Choose your preferred training dates and time slots.</p>
+                            
+                            <div class="booking-calendar">
+                                <div class="calendar-header">
+                                    <button class="btn btn-small" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                                    <h3 id="currentMonth">June 2025</h3>
+                                    <button class="btn btn-small" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-grid" id="calendar">
+                                    <!-- Calendar will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <h4 style="margin-top: 3rem;">Available Time Slots for <span id="selectedDateDisplay">June 15, 2025</span></h4>
+                            <div class="time-slots" id="timeSlots">
+                                <div class="time-slot" data-time="08:00">
+                                    <div class="slot-time">08:00 AM</div>
+                                    <div class="slot-availability">4 slots left</div>
+                                </div>
+                                <div class="time-slot" data-time="10:00">
+                                    <div class="slot-time">10:00 AM</div>
+                                    <div class="slot-availability">6 slots left</div>
+                                </div>
+                                <div class="time-slot" data-time="14:00">
+                                    <div class="slot-time">02:00 PM</div>
+                                    <div class="slot-availability">3 slots left</div>
+                                </div>
+                                <div class="time-slot" data-time="16:00">
+                                    <div class="slot-time">04:00 PM</div>
+                                    <div class="slot-availability">8 slots left</div>
+                                </div>
+                            </div>
+                            
+                            <div class="wizard-actions">
+                                <button class="btn btn-secondary prev-step" data-prev="1">Previous</button>
+                                <button class="btn btn-primary next-step" data-next="3">Next: Select Coach</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Select Coach -->
+                        <div class="wizard-content" data-step="3">
+                            <h3>Choose Your Coach</h3>
+                            <p>Select a professional coach based on your training needs and preferences.</p>
+                            
+                            <div class="coaches-grid">
+                                <div class="coach-card" data-coach="david">
+                                    <div class="coach-image">
+                                        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="David Muller">
+                                    </div>
+                                    <div class="coach-content">
+                                        <h4>David Muller</h4>
+                                        <div class="coach-specialty">Batting Specialist</div>
+                                        <div class="coach-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>4.5/5</span>
+                                        </div>
+                                        <p>Former national team captain with 15 years coaching experience. Specializes in batting techniques.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="coach-card" data-coach="sarah">
+                                    <div class="coach-image">
+                                        <img src="https://images.unsplash.com/photo-1584467735871-8db9ac8b0216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Sarah van der Merwe">
+                                    </div>
+                                    <div class="coach-content">
+                                        <h4>Sarah van der Merwe</h4>
+                                        <div class="coach-specialty">All-Round Coach</div>
+                                        <div class="coach-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>5/5</span>
+                                        </div>
+                                        <p>Former SA domestic player with Level 3 coaching certification. Expert in all aspects of cricket.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="coach-card" data-coach="james">
+                                    <div class="coach-image">
+                                        <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="James Petersen">
+                                    </div>
+                                    <div class="coach-content">
+                                        <h4>James Petersen</h4>
+                                        <div class="coach-specialty">Bowling Coach</div>
+                                        <div class="coach-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>5/5</span>
+                                        </div>
+                                        <p>Former professional fast bowler with expertise in biomechanics and bowling techniques.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="wizard-actions">
+                                <button class="btn btn-secondary prev-step" data-prev="2">Previous</button>
+                                <button class="btn btn-primary next-step" data-next="4">Next: Personal Details</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Personal Details -->
+                        <div class="wizard-content" data-step="4">
+                            <h3>Personal Information</h3>
+                            <p>Please provide your details to complete the booking.</p>
+                            
+                            <form id="personalDetailsForm">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label">Full Name *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number *</label>
+                                        <input type="tel" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Date of Birth *</label>
+                                        <input type="date" class="form-control" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label class="form-label">Address</label>
+                                        <textarea class="form-control" rows="2"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Emergency Contact Name *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Emergency Contact Phone *</label>
+                                        <input type="tel" class="form-control" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label class="form-label">Medical Conditions or Special Requirements</label>
+                                        <textarea class="form-control" rows="3" placeholder="Please list any medical conditions, allergies, or special requirements we should be aware of"></textarea>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label class="form-label">Cricket Experience Level *</label>
+                                        <select class="form-control" required>
+                                            <option value="">Select Experience Level</option>
+                                            <option value="beginner">Beginner (0-1 year)</option>
+                                            <option value="novice">Novice (1-2 years)</option>
+                                            <option value="intermediate">Intermediate (2-5 years)</option>
+                                            <option value="advanced">Advanced (5+ years)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label class="form-label">Training Goals</label>
+                                        <textarea class="form-control" rows="3" placeholder="What specific skills or areas would you like to focus on?"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div class="wizard-actions">
+                                <button class="btn btn-secondary prev-step" data-prev="3">Previous</button>
+                                <button class="btn btn-primary next-step" data-next="5">Next: Payment</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 5: Payment -->
+                        <div class="wizard-content" data-step="5">
+                            <h3>Payment Information</h3>
+                            <p>Complete your booking by providing payment details.</p>
+                            
+                            <div class="booking-summary">
+                                <h4>Booking Summary</h4>
+                                <div class="summary-item">
+                                    <span>Program:</span>
+                                    <span id="summaryProgram">Intermediate</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Schedule:</span>
+                                    <span id="summarySchedule">June 15, 2025 - 10:00 AM</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Coach:</span>
+                                    <span id="summaryCoach">David Muller</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Duration:</span>
+                                    <span>1 Month</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Base Price:</span>
+                                    <span>N$ 1,200</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Registration Fee:</span>
+                                    <span>N$ 200</span>
+                                </div>
+                                <div class="summary-item summary-total">
+                                    <span>Total Amount:</span>
+                                    <span>N$ 1,400</span>
+                                </div>
+                            </div>
+                            
+                            <h4 style="margin-top: 3rem;">Select Payment Method</h4>
+                            <div class="payment-methods">
+                                <div class="payment-method" data-method="card">
+                                    <div class="payment-icon">
+                                        <i class="far fa-credit-card"></i>
+                                    </div>
+                                    <div>Credit/Debit Card</div>
+                                </div>
+                                <div class="payment-method" data-method="bank">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div>Bank Transfer</div>
+                                </div>
+                                <div class="payment-method" data-method="cash">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div>Cash Payment</div>
+                                </div>
+                                <div class="payment-method" data-method="eft">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <div>EFT</div>
+                                </div>
+                            </div>
+                            
+                            <div id="paymentDetails" style="margin-top: 2rem;">
+                                <!-- Payment details will be shown based on selection -->
+                            </div>
+                            
+                            <div class="form-group" style="margin-top: 2rem;">
+                                <label class="form-label">
+                                    <input type="checkbox" required> I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> *
+                                </label>
+                            </div>
+                            
+                            <div class="wizard-actions">
+                                <button class="btn btn-secondary prev-step" data-prev="4">Previous</button>
+                                <button class="btn btn-primary" id="completeBooking">Complete Booking</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Camping Tab -->
+                <div class="tab-content" id="camping-tab">
+                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                        <h2>Holiday Camping Packages</h2>
+                        <p>Experience cricket and outdoor adventure with our holiday camping packages.</p>
+                        <div class="divider divider-camping" style="margin: 1rem 0;"></div>
+                    </div>
+                    
+                    <div class="camping-packages">
+                        <div class="camping-card">
+                            <div class="camping-image">
+                                <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Weekend Camp">
+                            </div>
+                            <div class="camping-content">
+                                <div class="camping-duration">3 Days / 2 Nights</div>
+                                <h3>Weekend Cricket Camp</h3>
+                                <p>Perfect for beginners and intermediate players looking for a short cricket getaway.</p>
+                                <div class="camping-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Group size: 15-20 players</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>All meals included</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-campground"></i>
+                                        <span>Tented accommodation</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-baseball-ball"></i>
+                                        <span>Daily training sessions</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+                                    <div>
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-camping-brown);">N$ 1,500</div>
+                                        <div style="font-size: 0.9rem; color: var(--color-gray);">per person</div>
+                                    </div>
+                                    <button class="btn btn-camping book-camping" data-package="weekend">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="camping-card">
+                            <div class="camping-image">
+                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Weekly Camp">
+                            </div>
+                            <div class="camping-content">
+                                <div class="camping-duration">7 Days / 6 Nights</div>
+                                <h3>Weekly Intensive Camp</h3>
+                                <p>Comprehensive cricket development program with intensive training and matches.</p>
+                                <div class="camping-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Group size: 10-15 players</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>All meals + snacks</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-bed"></i>
+                                        <span>Chalet accommodation</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>Tournament matches</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-video"></i>
+                                        <span>Video analysis sessions</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+                                    <div>
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-camping-brown);">N$ 3,500</div>
+                                        <div style="font-size: 0.9rem; color: var(--color-gray);">per person</div>
+                                    </div>
+                                    <button class="btn btn-camping book-camping" data-package="weekly">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="camping-card">
+                            <div class="camping-image">
+                                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Family Camp">
+                            </div>
+                            <div class="camping-content">
+                                <div class="camping-duration">4 Days / 3 Nights</div>
+                                <h3>Family Cricket Camp</h3>
+                                <p>Perfect for families wanting to enjoy cricket together in a beautiful outdoor setting.</p>
+                                <div class="camping-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-home"></i>
+                                        <span>Family chalets available</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-child"></i>
+                                        <span>Kids' activities included</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-fire"></i>
+                                        <span>Campfire evenings</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-swimming-pool"></i>
+                                        <span>Swimming pool access</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+                                    <div>
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-camping-brown);">N$ 2,500</div>
+                                        <div style="font-size: 0.9rem; color: var(--color-gray);">per family (2 adults, 2 kids)</div>
+                                    </div>
+                                    <button class="btn btn-camping book-camping" data-package="family">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-tracker">
+                        <h4>Camping Availability - June 2025</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
+                            <span>Available: 35 slots</span>
+                            <span>Booked: 65 slots</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Packages Tab -->
+                <div class="tab-content" id="packages-tab">
+                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                        <h2>Academy Membership Packages</h2>
+                        <p>Join our academy with comprehensive packages designed for all skill levels.</p>
+                        <div class="divider" style="margin: 1rem 0;"></div>
+                    </div>
+                    
+                    <div class="programs-grid">
+                        <div class="program-card">
+                            <div class="program-badge">NEW PLAYERS</div>
+                            <div class="program-header">
+                                <h3>Starter Package</h3>
+                                <div class="program-price">N$ 2,500</div>
+                                <div class="program-period">3 months</div>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li><i class="fas fa-check"></i> 36 Training sessions</li>
+                                    <li><i class="fas fa-check"></i> Basic equipment kit</li>
+                                    <li><i class="fas fa-check"></i> Academy jersey</li>
+                                    <li><i class="fas fa-check"></i> Skill assessment</li>
+                                    <li><i class="fas fa-check"></i> Monthly progress report</li>
+                                    <li><i class="fas fa-check"></i> Access to facilities</li>
+                                </ul>
+                                <button class="btn btn-primary btn-full book-package" data-package="starter">Book Package</button>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card popular">
+                            <div class="program-badge">BEST VALUE</div>
+                            <div class="program-header">
+                                <h3>Pro Package</h3>
+                                <div class="program-price">N$ 4,500</div>
+                                <div class="program-period">6 months</div>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li><i class="fas fa-check"></i> 72 Training sessions</li>
+                                    <li><i class="fas fa-check"></i> Full equipment kit</li>
+                                    <li><i class="fas fa-check"></i> Home & away jerseys</li>
+                                    <li><i class="fas fa-check"></i> Bi-weekly video analysis</li>
+                                    <li><i class="fas fa-check"></i> Fitness program</li>
+                                    <li><i class="fas fa-check"></i> Tournament entry fees</li>
+                                    <li><i class="fas fa-check"></i> Nutrition consultation</li>
+                                </ul>
+                                <button class="btn btn-primary btn-full book-package" data-package="pro">Book Package</button>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-badge">ELITE</div>
+                            <div class="program-header">
+                                <h3>Elite Package</h3>
+                                <div class="program-price">N$ 8,000</div>
+                                <div class="program-period">12 months</div>
+                            </div>
+                            <div class="program-content">
+                                <ul class="program-features">
+                                    <li><i class="fas fa-check"></i> 144 Training sessions</li>
+                                    <li><i class="fas fa-check"></i> Professional equipment</li>
+                                    <li><i class="fas fa-check"></i> Full kit + training gear</li>
+                                    <li><i class="fas fa-check"></i> Weekly video analysis</li>
+                                    <li><i class="fas fa-check"></i> Personal fitness coach</li>
+                                    <li><i class="fas fa-check"></i> All tournament entries</li>
+                                    <li><i class="fas fa-check"></i> International tour discount</li>
+                                    <li><i class="fas fa-check"></i> Priority booking</li>
+                                </ul>
+                                <button class="btn btn-primary btn-full book-package" data-package="elite">Book Package</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Booking FAQs</h2>
+                <p class="section-subtitle">Common questions about training and camping bookings</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the cancellation policy?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Training sessions can be cancelled up to 48 hours before the scheduled time for a full refund. Camping bookings require 7 days notice for full refunds. Academy packages have a 30-day money-back guarantee.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What equipment do I need?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For beginners, we provide all necessary equipment. Intermediate and advanced players should bring their own cricket gear. All camping equipment is provided for camping packages.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I upgrade my package?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade your package at any time. The remaining value of your current package will be applied to the upgrade cost.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are there discounts for siblings?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer a 15% discount for the second sibling and 25% for the third sibling when booking training sessions or academy packages together.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is included in camping packages?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All camping packages include accommodation, meals, training sessions, equipment, and activities. Family packages include additional family activities and accommodation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I reschedule a session?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reschedule sessions through your online account or by contacting our booking office at least 24 hours before the scheduled session.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Cricket Journey?</h2>
+            <p>Book your training session or camping adventure today and join Namibia's premier cricket academy.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#training-tab" class="btn btn-primary btn-large">Book Training Now</a>
+                <a href="contacts.html" class="btn btn-secondary btn-large">Contact Booking Office</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-baseball-ball"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">RUN WHISPERERS</span>
+                            <span class="logo-sub">Cricket • Academy • Community</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Upcoming Events</a></li>
+                        <li><a href="booking.html">Book Training</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Booking Categories</h3>
+                    <ul>
+                        <li><a href="#training-tab">Cricket Training</a></li>
+                        <li><a href="#camping-tab">Holiday Camping</a></li>
+                        <li><a href="#packages-tab">Academy Packages</a></li>
+                        <li><a href="events.html">Event Registration</a></li>
+                        <li><a href="#faq">Booking FAQs</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Booking Office</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Windhoek Sports Fields, Namibia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+264 81 123 4567 (Booking)</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>bookings@runwhispererscricket.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8am-6pm | Sat: 9am-4pm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <h4>Get Booking Updates</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Run Whisperers Cricket Academy. All Rights Reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Booking Terms</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            const spans = navToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // Tab Navigation
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Update active tab button
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show corresponding tab content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-tab`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Booking Wizard Navigation
+        const wizardSteps = document.querySelectorAll('.wizard-step');
+        const wizardContents = document.querySelectorAll('.wizard-content');
+        let currentStep = 1;
+        
+        function updateWizard(step) {
+            // Update wizard steps
+            wizardSteps.forEach(wStep => {
+                const stepNum = parseInt(wStep.dataset.step);
+                wStep.classList.remove('active', 'completed');
+                
+                if (stepNum === step) {
+                    wStep.classList.add('active');
+                } else if (stepNum < step) {
+                    wStep.classList.add('completed');
+                }
+            });
+            
+            // Update wizard content
+            wizardContents.forEach(content => {
+                const contentStep = parseInt(content.dataset.step);
+                content.classList.remove('active');
+                if (contentStep === step) {
+                    content.classList.add('active');
+                }
+            });
+            
+            currentStep = step;
+        }
+        
+        // Next step buttons
+        document.querySelectorAll('.next-step').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const nextStep = parseInt(btn.dataset.next);
+                updateWizard(nextStep);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        
+        // Previous step buttons
+        document.querySelectorAll('.prev-step').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const prevStep = parseInt(btn.dataset.prev);
+                updateWizard(prevStep);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        
+        // Program selection
+        document.querySelectorAll('.select-program').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const program = btn.dataset.program;
+                document.getElementById('summaryProgram').textContent = 
+                    program.charAt(0).toUpperCase() + program.slice(1);
+                updateWizard(2);
+            });
+        });
+
+        // Calendar functionality
+        const currentMonthElement = document.getElementById('currentMonth');
+        const calendarElement = document.getElementById('calendar');
+        let currentDate = new Date();
+        
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            // Update month display
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                               'July', 'August', 'September', 'October', 'November', 'December'];
+            currentMonthElement.textContent = `${monthNames[month]} ${year}`;
+            
+            // Clear calendar
+            calendarElement.innerHTML = '';
+            
+            // Add day headers
+            const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayHeaders.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day-header';
+                dayElement.textContent = day;
+                calendarElement.appendChild(dayElement);
+            });
+            
+            // Get first day of month
+            const firstDay = new Date(year, month, 1);
+            const startingDay = firstDay.getDay();
+            
+            // Get days in month
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Add empty cells for days before first day
+            for (let i = 0; i < startingDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'calendar-day';
+                calendarElement.appendChild(emptyCell);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.innerHTML = `
+                    <div class="day-number">${day}</div>
+                    <div class="day-slots">${Math.floor(Math.random() * 8)} slots</div>
+                `;
+                
+                // Mark booked days (random for demo)
+                if (Math.random() < 0.2) {
+                    dayElement.classList.add('booked');
+                }
+                
+                // Add click event
+                dayElement.addEventListener('click', () => {
+                    if (!dayElement.classList.contains('booked')) {
+                        document.querySelectorAll('.calendar-day').forEach(d => {
+                            d.classList.remove('selected');
+                        });
+                        dayElement.classList.add('selected');
+                        
+                        // Update selected date display
+                        const selectedDate = new Date(year, month, day);
+                        document.getElementById('selectedDateDisplay').textContent = 
+                            selectedDate.toLocaleDateString('en-US', { 
+                                weekday: 'long', 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            });
+                    }
+                });
+                
+                calendarElement.appendChild(dayElement);
+            }
+        }
+        
+        // Initialize calendar
+        renderCalendar();
+        
+        // Month navigation
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+        
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // Time slot selection
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', () => {
+                if (!slot.classList.contains('booked')) {
+                    document.querySelectorAll('.time-slot').forEach(s => {
+                        s.classList.remove('selected');
+                    });
+                    slot.classList.add('selected');
+                    
+                    // Update booking summary
+                    const time = slot.dataset.time;
+                    const selectedDate = document.getElementById('selectedDateDisplay').textContent;
+                    document.getElementById('summarySchedule').textContent = 
+                        `${selectedDate.split(',')[1].trim()} - ${time}`;
+                }
+            });
+        });
+
+        // Coach selection
+        document.querySelectorAll('.coach-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.coach-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                card.classList.add('selected');
+                
+                // Update booking summary
+                const coachName = card.querySelector('h4').textContent;
+                document.getElementById('summaryCoach').textContent = coachName;
+            });
+        });
+
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', () => {
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                method.classList.add('selected');
+                
+                // Show payment details
+                const paymentType = method.dataset.method;
+                const detailsDiv = document.getElementById('paymentDetails');
+                
+                let detailsHTML = '';
+                switch(paymentType) {
+                    case 'card':
+                        detailsHTML = `
+                            <h4>Card Payment Details</h4>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Card Number *</label>
+                                    <input type="text" class="form-control" placeholder="1234 5678 9012 3456" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Card Holder Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Expiry Date *</label>
+                                    <input type="text" class="form-control" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">CVV *</label>
+                                    <input type="text" class="form-control" placeholder="123" required>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'bank':
+                        detailsHTML = `
+                            <h4>Bank Transfer Details</h4>
+                            <div style="background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius);">
+                                <p><strong>Bank:</strong> Standard Bank Namibia</p>
+                                <p><strong>Account Name:</strong> Run Whisperers Cricket Academy</p>
+                                <p><strong>Account Number:</strong> 1234567890</p>
+                                <p><strong>Branch Code:</strong> 123456</p>
+                                <p><strong>Reference:</strong> Use your name and booking ID</p>
+                            </div>
+                        `;
+                        break;
+                    case 'cash':
+                        detailsHTML = `
+                            <h4>Cash Payment</h4>
+                            <div style="background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius);">
+                                <p>Please visit our office to complete cash payment:</p>
+                                <p><strong>Address:</strong> Windhoek Sports Fields, Namibia</p>
+                                <p><strong>Hours:</strong> Mon-Fri 8am-6pm, Sat 9am-4pm</p>
+                                <p>Your booking will be confirmed once payment is received.</p>
+                            </div>
+                        `;
+                        break;
+                    case 'eft':
+                        detailsHTML = `
+                            <h4>Electronic Funds Transfer</h4>
+                            <div style="background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius);">
+                                <p><strong>Bank:</strong> Bank Windhoek</p>
+                                <p><strong>Account Name:</strong> Run Whisperers CC</p>
+                                <p><strong>Account Number:</strong> 9876543210</p>
+                                <p><strong>Branch Code:</strong> 987654</p>
+                                <p><strong>SWIFT Code:</strong> BWLINANX</p>
+                                <p>Email proof of payment to: payments@runwhispererscricket.com</p>
+                            </div>
+                        `;
+                        break;
+                }
+                
+                detailsDiv.innerHTML = detailsHTML;
+            });
+        });
+
+        // Camping booking
+        document.querySelectorAll('.book-camping').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const packageType = btn.dataset.package;
+                alert(`Booking ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} camping package. Please contact our booking office for details.`);
+            });
+        });
+
+        // Package booking
+        document.querySelectorAll('.book-package').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const packageType = btn.dataset.package;
+                alert(`Booking ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} academy package. Redirecting to booking form...`);
+                // In real implementation, this would redirect to booking form
+            });
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Complete Booking
+        document.getElementById('completeBooking').addEventListener('click', () => {
+            // Validate form
+            const form = document.getElementById('personalDetailsForm');
+            if (!form.checkValidity()) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Show success modal
+            const successModal = document.getElementById('successModal');
+            const bookingDetails = document.getElementById('bookingDetails');
+            
+            // Populate booking details
+            bookingDetails.innerHTML = `
+                <p><strong>Program:</strong> ${document.getElementById('summaryProgram').textContent}</p>
+                <p><strong>Schedule:</strong> ${document.getElementById('summarySchedule').textContent}</p>
+                <p><strong>Coach:</strong> ${document.getElementById('summaryCoach').textContent}</p>
+                <p><strong>Total Amount:</strong> N$ 1,400</p>
+                <p><strong>Booking ID:</strong> RW${Date.now().toString().slice(-6)}</p>
+                <p>Confirmation email will be sent shortly.</p>
+            `;
+            
+            successModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close success modal
+        document.getElementById('closeSuccessModal').addEventListener('click', () => {
+            document.getElementById('successModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Reset wizard
+            updateWizard(1);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('successModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('successModal')) {
+                document.getElementById('successModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                updateWizard(1);
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+            }
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive booking updates and special offers.`);
+                this.reset();
+            });
+        }
+
+        // Initialize modal display
+        document.getElementById('successModal').style.display = 'none';
+    </script>
+</body>
+</html>

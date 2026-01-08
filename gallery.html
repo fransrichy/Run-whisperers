@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Run Whisperers Cricket Academy</title>
+    <meta name="description" content="Photo gallery showcasing cricket training, matches, events, and camping adventures at Run Whisperers Cricket Academy.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-cricket-green: #1a472a;
+            --color-dark-green: #2d5a3d;
+            --color-medium-green: #3e7a52;
+            --color-light-green: #5a9c73;
+            --color-cricket-gold: #d4af37;
+            --color-beige: #f5f1e8;
+            --color-off-white: #f9f7f3;
+            --color-black: #1a1a1a;
+            --color-white: #ffffff;
+            --color-gray: #6c757d;
+            --color-light-gray: #e9ecef;
+            
+            --font-heading: 'Montserrat', 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            
+            --border-radius: 8px;
+            --border-radius-large: 16px;
+            
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-black);
+            background-color: var(--color-off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--color-black);
+        }
+
+        .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-light-green));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-cricket-green);
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-dark-green);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-large);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #25D366;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float i {
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-cricket-green);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
+            color: var(--color-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-black);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .nav-menu a.active {
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-cricket-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-cricket-green);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
+                        url('https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .page-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .page-hero-title .highlight {
+            color: var(--color-cricket-gold);
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--color-cricket-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Gallery Filters */
+        .gallery-filters {
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-small);
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: sticky;
+            top: 100px;
+            z-index: 100;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: var(--color-light-gray);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: var(--font-body);
+        }
+
+        .filter-btn.active {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-small);
+        }
+
+        .filter-btn:hover {
+            background: var(--color-medium-green);
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-cricket-green);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        /* Gallery Sections */
+        .section {
+            padding: 5rem 0;
+            background-color: var(--color-off-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background-color: var(--color-white);
+        }
+
+        /* Gallery Grid with Animation */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            height: 300px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition-slow);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .gallery-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+            filter: brightness(0.9);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-text {
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-text {
+            transform: translateY(0);
+        }
+
+        .gallery-text h3 {
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .gallery-text p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .gallery-date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 71, 42, 0.9);
+            color: var(--color-white);
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-date {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Masonry Gallery */
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: var(--transition-slow);
+        }
+
+        .masonry-item.animated {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .masonry-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-large);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Fullscreen Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-cricket-gold);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            background: rgba(26, 71, 42, 0.8);
+            color: var(--color-white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: var(--color-cricket-green);
+            transform: scale(1.1);
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        /* Video Gallery */
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 250px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: var(--transition-slow);
+        }
+
+        .video-item.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .video-item:nth-child(even) {
+            transform: translateX(50px);
+        }
+
+        .video-item:nth-child(even).animated {
+            transform: translateX(0);
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 70px;
+            height: 70px;
+            background: rgba(26, 71, 42, 0.9);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .video-item:hover .video-play-btn {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .video-play-btn:hover {
+            background: var(--color-cricket-green);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Statistics Banner */
+        .stats-banner {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            padding: 4rem 0;
+            color: var(--color-white);
+            text-align: center;
+            margin: 4rem 0;
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stats-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--color-cricket-gold);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Featured Gallery */
+        .featured-gallery {
+            position: relative;
+            height: 500px;
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            margin: 4rem 0;
+        }
+
+        .featured-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .featured-slide.active {
+            opacity: 1;
+        }
+
+        .featured-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--color-white);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .featured-slide.active .featured-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .featured-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+
+        .featured-prev,
+        .featured-next {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--color-white);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .featured-prev:hover,
+        .featured-next:hover {
+            background: var(--color-cricket-green);
+            transform: scale(1.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            color: var(--color-white);
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social .social-link:hover {
+            background-color: var(--color-cricket-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-cricket-gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--color-cricket-gold);
+            width: 20px;
+        }
+
+        .newsletter {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter h4 {
+            color: var(--color-white);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            font-family: var(--font-body);
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-white);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .gallery-grid,
+            .masonry-grid {
+                column-count: 2;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--color-white);
+                padding: 2rem;
+                box-shadow: var(--shadow-medium);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin-bottom: 1rem;
+            }
+            
+            /* Gallery */
+            .gallery-grid,
+            .masonry-grid,
+            .video-gallery {
+                grid-template-columns: 1fr;
+                column-count: 1;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            /* WhatsApp Button */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Footer */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .video-item {
+                height: 200px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-gallery {
+                height: 300px;
+            }
+            
+            .featured-content {
+                padding: 1.5rem;
+            }
+            
+            .featured-nav {
+                padding: 0 1rem;
+            }
+            
+            .featured-prev,
+            .featured-next {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .page-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition-slow);
+        }
+
+        .fade-in-up.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: var(--transition-slow);
+        }
+
+        .fade-in-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: var(--transition-slow);
+        }
+
+        .fade-in-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: var(--transition-slow);
+        }
+
+        .scale-in.animated {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .rotate-in {
+            opacity: 0;
+            transform: rotate(-10deg);
+            transition: var(--transition-slow);
+        }
+
+        .rotate-in.animated {
+            opacity: 1;
+            transform: rotate(0);
+        }
+
+        /* Staggered Animation Delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+        .delay-7 { transition-delay: 0.7s; }
+        .delay-8 { transition-delay: 0.8s; }
+        .delay-9 { transition-delay: 0.9s; }
+        .delay-10 { transition-delay: 1s; }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/264811234567" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img class="lightbox-img" id="lightboxImage" src="" alt="">
+            <div class="lightbox-nav">
+                <button class="lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">RUN WHISPERERS</span>
+                        <span class="logo-sub">Cricket • Academy • Community</span>
+                    </div>
+                </a>
+                
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Upcoming Events</a></li>
+                    <li><a href="booking.html">Book Training</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-background"></div>
+        
+        <div class="container">
+            <div class="page-hero-content fade-in-up">
+                <h1 class="page-hero-title">Cricket <span class="highlight">Gallery</span></h1>
+                <p class="page-hero-subtitle">Experience the journey through our collection of training sessions, matches, events, and camping adventures.</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Gallery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="section">
+        <div class="container">
+            <div class="gallery-filters fade-in-up">
+                <div class="filter-group">
+                    <div class="search-box">
+                        <input type="text" id="gallerySearch" placeholder="Search photos...">
+                    </div>
+                    <button class="filter-btn active" data-filter="all">All Photos</button>
+                    <button class="filter-btn" data-filter="training">Training</button>
+                    <button class="filter-btn" data-filter="matches">Matches</button>
+                    <button class="filter-btn" data-filter="events">Events</button>
+                    <button class="filter-btn" data-filter="camping">Camping</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Gallery Slider -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">Featured Moments</h2>
+                <p class="section-subtitle fade-in-up delay-1">Highlights from our cricket journey</p>
+                <div class="divider fade-in-up delay-2"></div>
+            </div>
+            
+            <div class="featured-gallery">
+                <div class="featured-slide active">
+                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Cricket Match Action">
+                    <div class="featured-content">
+                        <h3>National Championship Win</h3>
+                        <p>Celebrating our victory in the Namibia National Cricket Championship 2024</p>
+                    </div>
+                </div>
+                <div class="featured-slide">
+                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Training Session">
+                    <div class="featured-content">
+                        <h3>Intensive Training Session</h3>
+                        <p>Professional coaching sessions at our academy facilities</p>
+                    </div>
+                </div>
+                <div class="featured-slide">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Team Celebration">
+                    <div class="featured-content">
+                        <h3>Team Celebration</h3>
+                        <p>Celebrating our success in international tournaments</p>
+                    </div>
+                </div>
+                <div class="featured-nav">
+                    <button class="featured-prev" id="featuredPrev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="featured-next" id="featuredNext"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Gallery -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">Training Sessions</h2>
+                <p class="section-subtitle fade-in-up delay-1">Professional coaching and skill development</p>
+                <div class="divider fade-in-up delay-2"></div>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Training Image 1 -->
+                <div class="gallery-item fade-in-up delay-1" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Batting Practice">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Batting Techniques</h3>
+                            <p>Mastering proper batting form and technique</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">June 2025</div>
+                </div>
+                
+                <!-- Training Image 2 -->
+                <div class="gallery-item fade-in-up delay-2" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Bowling Practice">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Bowling Sessions</h3>
+                            <p>Perfecting bowling techniques and accuracy</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">May 2025</div>
+                </div>
+                
+                <!-- Training Image 3 -->
+                <div class="gallery-item fade-in-up delay-3" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fielding Practice">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Fielding Drills</h3>
+                            <p>Sharpening fielding skills and reflexes</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">April 2025</div>
+                </div>
+                
+                <!-- Training Image 4 -->
+                <div class="gallery-item fade-in-up delay-4" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1571019614248-c5c2d0f6bc78?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fitness Training">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Fitness Training</h3>
+                            <p>Cricket-specific fitness and conditioning</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">March 2025</div>
+                </div>
+                
+                <!-- Training Image 5 -->
+                <div class="gallery-item fade-in-up delay-5" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Video Analysis">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Video Analysis</h3>
+                            <p>Technical analysis and performance review</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">February 2025</div>
+                </div>
+                
+                <!-- Training Image 6 -->
+                <div class="gallery-item fade-in-up delay-6" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Junior Training">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Junior Development</h3>
+                            <p>Young talent development program</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">January 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matches Gallery -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-left">Match Highlights</h2>
+                <p class="section-subtitle fade-in-left delay-1">Competitive cricket action and victories</p>
+                <div class="divider fade-in-left delay-2"></div>
+            </div>
+            
+            <div class="masonry-grid">
+                <!-- Match Image 1 -->
+                <div class="masonry-item scale-in delay-1" data-category="matches">
+                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="National Tournament">
+                </div>
+                
+                <!-- Match Image 2 -->
+                <div class="masonry-item scale-in delay-2" data-category="matches">
+                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="International Match">
+                </div>
+                
+                <!-- Match Image 3 -->
+                <div class="masonry-item scale-in delay-3" data-category="matches">
+                    <img src="https://images.unsplash.com/photo-1536599018109-73a2d2c7039f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Tournament Final">
+                </div>
+                
+                <!-- Match Image 4 -->
+                <div class="masonry-item scale-in delay-4" data-category="matches">
+                    <img src="https://images.unsplash.com/photo-1594736797933-d1001cda7c0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2128&q=80" alt="Victory Celebration">
+                </div>
+                
+                <!-- Match Image 5 -->
+                <div class="masonry-item scale-in delay-5" data-category="matches">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Team Strategy">
+                </div>
+                
+                <!-- Match Image 6 -->
+                <div class="masonry-item scale-in delay-6" data-category="matches">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Action Shot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Banner -->
+    <section class="stats-banner fade-in-up">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label">Photos Captured</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Matches Documented</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="45">0</div>
+                    <div class="stat-label">Events Covered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="8">0</div>
+                    <div class="stat-label">Years of Memories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Gallery -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-right">Events & Tournaments</h2>
+                <p class="section-subtitle fade-in-right delay-1">Special events and cricket tournaments</p>
+                <div class="divider fade-in-right delay-2"></div>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Event Image 1 -->
+                <div class="gallery-item rotate-in delay-1" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Opening Ceremony">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Tournament Opening</h3>
+                            <p>National tournament opening ceremony</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">December 2024</div>
+                </div>
+                
+                <!-- Event Image 2 -->
+                <div class="gallery-item rotate-in delay-2" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Award Ceremony">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Award Ceremony</h3>
+                            <p>Annual awards and recognition event</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">November 2024</div>
+                </div>
+                
+                <!-- Event Image 3 -->
+                <div class="gallery-item rotate-in delay-3" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Coaching Clinic">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Coaching Clinic</h3>
+                            <p>Special coaching clinic with international coaches</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">October 2024</div>
+                </div>
+                
+                <!-- Event Image 4 -->
+                <div class="gallery-item rotate-in delay-4" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Sponsor Event">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Sponsor Event</h3>
+                            <p>Corporate sponsor appreciation event</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">September 2024</div>
+                </div>
+                
+                <!-- Event Image 5 -->
+                <div class="gallery-item rotate-in delay-5" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Community Day">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Community Day</h3>
+                            <p>Engaging with local community</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">August 2024</div>
+                </div>
+                
+                <!-- Event Image 6 -->
+                <div class="gallery-item rotate-in delay-6" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1536599018109-73a2d2c7039f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Media Day">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Media Day</h3>
+                            <p>Press and media engagement event</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">July 2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camping Gallery -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-left">Holiday Camping</h2>
+                <p class="section-subtitle fade-in-left delay-1">Cricket and outdoor adventures</p>
+                <div class="divider fade-in-left delay-2"></div>
+            </div>
+            
+            <div class="video-gallery">
+                <!-- Camping Image 1 -->
+                <div class="video-item fade-in-left delay-1" data-category="camping">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Cricket Camping">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                
+                <!-- Camping Image 2 -->
+                <div class="video-item fade-in-left delay-2" data-category="camping">
+                    <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Campfire Session">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                
+                <!-- Camping Image 3 -->
+                <div class="video-item fade-in-left delay-3" data-category="camping">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Outdoor Training">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                
+                <!-- Camping Image 4 -->
+                <div class="video-item fade-in-left delay-4" data-category="camping">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2120&q=80" class="video-thumbnail" alt="Team Building">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                
+                <!-- Camping Image 5 -->
+                <div class="video-item fade-in-left delay-5" data-category="camping">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Nature Cricket">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                
+                <!-- Camping Image 6 -->
+                <div class="video-item fade-in-left delay-6" data-category="camping">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Adventure Camp">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section fade-in-up">
+        <div class="container">
+            <h2>Share Your Cricket Moments</h2>
+            <p>Join our community and share your cricket experiences. Tag us in your photos!</p>
+            <div style="margin-top: 2rem;">
+                <a href="contacts.html" class="btn btn-primary btn-large">Share Your Photos</a>
+                <a href="booking.html" class="btn btn-secondary btn-large">Book Photo Session</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-baseball-ball"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">RUN WHISPERERS</span>
+                            <span class="logo-sub">Cricket • Academy • Community</span>
+                        </div>
+                    </a>
+                    <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Upcoming Events</a></li>
+                        <li><a href="booking.html">Book Training</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Gallery Categories</h3>
+                    <ul>
+                        <li><a href="#training">Training Sessions</a></li>
+                        <li><a href="#matches">Match Highlights</a></li>
+                        <li><a href="#events">Events & Tournaments</a></li>
+                        <li><a href="#camping">Holiday Camping</a></li>
+                        <li><a href="#featured">Featured Moments</a></li>
+                        <li><a href="#videos">Video Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Windhoek Sports Fields, Namibia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+264 81 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>gallery@runwhispererscricket.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-camera"></i>
+                            <span>Photo Sessions Available</span>
+                        </div>
+                    </div>
+                    
+                    <div class="newsletter">
+                        <h4>Get Gallery Updates</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Run Whisperers Cricket Academy. All Rights Reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Photo Usage Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            const spans = navToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+        
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = navToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .rotate-in, .gallery-item, .masonry-item, .video-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Gallery Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item, .masonry-item, .video-item');
+        const searchInput = document.getElementById('gallerySearch');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                        // Re-trigger animation
+                        setTimeout(() => {
+                            item.classList.add('animated');
+                        }, 100);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            galleryItems.forEach(item => {
+                const altText = item.querySelector('img')?.alt.toLowerCase() || '';
+                if (altText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.classList.add('animated');
+                    }, 100);
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Featured Gallery Slider
+        const featuredSlides = document.querySelectorAll('.featured-slide');
+        const featuredPrev = document.getElementById('featuredPrev');
+        const featuredNext = document.getElementById('featuredNext');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            featuredSlides.forEach(slide => slide.classList.remove('active'));
+            featuredSlides[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        featuredPrev.addEventListener('click', () => {
+            let newIndex = currentSlide - 1;
+            if (newIndex < 0) newIndex = featuredSlides.length - 1;
+            showSlide(newIndex);
+        });
+        
+        featuredNext.addEventListener('click', () => {
+            let newIndex = currentSlide + 1;
+            if (newIndex >= featuredSlides.length) newIndex = 0;
+            showSlide(newIndex);
+        });
+        
+        // Auto-rotate featured slides
+        setInterval(() => {
+            let newIndex = currentSlide + 1;
+            if (newIndex >= featuredSlides.length) newIndex = 0;
+            showSlide(newIndex);
+        }, 5000);
+
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDescription = document.getElementById('lightboxDescription');
+        
+        let currentLightboxIndex = 0;
+        const lightboxImages = [];
+        
+        // Collect all gallery images
+        galleryItems.forEach((item, index) => {
+            const img = item.querySelector('img');
+            if (img) {
+                lightboxImages.push({
+                    src: img.src,
+                    alt: img.alt,
+                    title: item.querySelector('.gallery-text h3')?.textContent || 'Cricket Moment',
+                    description: item.querySelector('.gallery-text p')?.textContent || 'Run Whisperers Cricket Academy'
+                });
+                
+                img.addEventListener('click', () => {
+                    openLightbox(index);
+                });
+            }
+        });
+        
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            const image = lightboxImages[index];
+            lightboxImage.src = image.src;
+            lightboxTitle.textContent = image.title;
+            lightboxDescription.textContent = image.description;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function navigateLightbox(direction) {
+            currentLightboxIndex += direction;
+            if (currentLightboxIndex < 0) currentLightboxIndex = lightboxImages.length - 1;
+            if (currentLightboxIndex >= lightboxImages.length) currentLightboxIndex = 0;
+            
+            const image = lightboxImages[currentLightboxIndex];
+            lightboxImage.src = image.src;
+            lightboxTitle.textContent = image.title;
+            lightboxDescription.textContent = image.description;
+        }
+        
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+        lightboxNext.addEventListener('click', () => navigateLightbox(1));
+        
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+            if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+                navigateLightbox(-1);
+            }
+            if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+                navigateLightbox(1);
+            }
+        });
+        
+        // Close lightbox when clicking outside
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Video Play Button
+        document.querySelectorAll('.video-play-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const videoItem = btn.closest('.video-item');
+                const img = videoItem.querySelector('img');
+                alert(`Video player would open for: ${img.alt}\n\nIn a real implementation, this would play a video.`);
+            });
+        });
+
+        // Animated Counter for Stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 100;
+        
+        const animateCounter = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => animateCounter(), 20);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        };
+        
+        // Start counter when scrolled into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const statsBanner = document.querySelector('.stats-banner');
+        if (statsBanner) {
+            statsObserver.observe(statsBanner);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+            }
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive gallery updates and photo highlights.`);
+                this.reset();
+            });
+        }
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger initial animations for elements in view
+            document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .rotate-in').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('animated');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
