@@ -234,17 +234,13 @@
             color: var(--color-cricket-green);
         }
 
-        .logo-icon {
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
-            color: var(--color-white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 12px;
+        /* Logo Image Styling */
+        .logo-image {
+            height: 60px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            transition: var(--transition);
         }
 
         .logo-text {
@@ -864,6 +860,13 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Footer Logo Image */
+        .footer-logo .logo-image {
+            height: 50px;
+            max-width: 160px;
+            filter: brightness(0) invert(1);
+        }
+
         .footer-description {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1.5rem;
@@ -1060,6 +1063,17 @@
                 margin-bottom: 1rem;
             }
             
+            /* Logo */
+            .logo-image {
+                height: 50px;
+                max-width: 150px;
+            }
+            
+            .footer-logo .logo-image {
+                height: 45px;
+                max-width: 140px;
+            }
+            
             /* Hero */
             .hero {
                 min-height: 600px;
@@ -1119,6 +1133,18 @@
         }
 
         @media (max-width: 480px) {
+            /* Logo */
+            .logo-image {
+                height: 45px;
+                max-width: 130px;
+            }
+            
+            .footer-logo .logo-image {
+                height: 40px;
+                max-width: 120px;
+            }
+            
+            /* Hero */
             .hero-stats {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -1135,6 +1161,16 @@
                 text-align: center;
             }
             
+            /* Sections */
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            /* CTA */
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -1145,20 +1181,58 @@
                 max-width: 300px;
             }
             
+            /* Social */
             .social-grid {
                 grid-template-columns: 1fr;
             }
             
+            /* Gallery */
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
             
+            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
             }
             
             .newsletter-form {
                 flex-direction: column;
+            }
+            
+            /* Benefits */
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .benefit-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            /* Features */
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .logo-main {
+                font-size: 1.1rem;
+            }
+            
+            .logo-sub {
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -1174,9 +1248,9 @@
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-baseball-ball"></i>
-                    </div>
+                    <!-- REAL LOGO - Replace the image URL with your actual logo -->
+                    <img src="https://via.placeholder.com/180x60/1a472a/ffffff?text=Run+Whisperers+Logo" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
+                    <!-- Fallback text logo (shown if image fails to load) -->
                     <div class="logo-text">
                         <span class="logo-main">RUN WHISPERERS</span>
                         <span class="logo-sub">Cricket • Academy • Community</span>
@@ -1572,9 +1646,8 @@
             <div class="footer-content">
                 <div class="footer-logo-section">
                     <a href="index.html" class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-baseball-ball"></i>
-                        </div>
+                        <!-- REAL LOGO - Same logo as header but white version -->
+                        <img src="https://via.placeholder.com/160x50/ffffff/1a472a?text=Run+Whisperers" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
                         <div class="logo-text">
                             <span class="logo-main">RUN WHISPERERS</span>
                             <span class="logo-sub">Cricket • Academy • Community</span>

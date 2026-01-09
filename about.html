@@ -103,7 +103,7 @@
         .section-subtitle {
             text-align: center;
             color: var(--color-gray);
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             margin-bottom: 2rem;
         }
 
@@ -235,17 +235,13 @@
             color: var(--color-cricket-green);
         }
 
-        .logo-icon {
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
-            color: var(--color-white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 12px;
+        /* Logo Image Styling */
+        .logo-image {
+            height: 60px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            transition: var(--transition);
         }
 
         .logo-text {
@@ -688,7 +684,7 @@
         }
 
         .stat-number-large {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
             font-weight: 900;
             color: var(--color-cricket-gold);
             margin-bottom: 0.5rem;
@@ -696,7 +692,7 @@
         }
 
         .stat-label-large {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             color: rgba(255, 255, 255, 0.9);
         }
 
@@ -818,12 +814,14 @@
         .cta-section h2 {
             color: var(--color-white);
             margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
         }
 
         .cta-section p {
             color: rgba(255, 255, 255, 0.9);
             max-width: 600px;
             margin: 0 auto 2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
         }
 
         /* Footer */
@@ -851,6 +849,13 @@
             text-decoration: none;
             color: var(--color-white);
             margin-bottom: 1.5rem;
+        }
+
+        /* Footer Logo Image */
+        .footer-logo .logo-image {
+            height: 50px;
+            max-width: 160px;
+            filter: brightness(0) invert(1);
         }
 
         .footer-description {
@@ -1052,10 +1057,44 @@
                 margin-bottom: 1rem;
             }
             
+            /* Logo */
+            .logo-image {
+                height: 50px;
+                max-width: 150px;
+            }
+            
+            .footer-logo .logo-image {
+                height: 45px;
+                max-width: 140px;
+            }
+            
+            /* Page Hero */
+            .page-hero {
+                height: 50vh;
+                min-height: 400px;
+                text-align: center;
+            }
+            
+            .page-hero-title {
+                text-align: center;
+            }
+            
+            .page-hero-subtitle {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            /* Sections */
+            .section {
+                padding: 3rem 0;
+            }
+            
             /* About Intro */
             .about-intro {
                 grid-template-columns: 1fr;
                 gap: 3rem;
+                text-align: center;
             }
             
             .about-intro-text {
@@ -1071,18 +1110,28 @@
                 width: 100%;
                 left: 0 !important;
                 padding-left: 70px;
-                padding-right: 0;
+                padding-right: 20px;
             }
             
             .timeline-year {
                 left: 0 !important;
-                right: auto;
+                right: auto !important;
+                top: -20px;
             }
             
             .timeline-item:nth-child(odd) .timeline-content::after,
             .timeline-item:nth-child(even) .timeline-content::after {
                 left: -10px;
                 right: auto;
+            }
+            
+            /* Mission & Values */
+            .mission-values {
+                gap: 1.5rem;
+            }
+            
+            .value-card {
+                padding: 1.5rem;
             }
             
             /* WhatsApp Button */
@@ -1107,30 +1156,76 @@
         }
 
         @media (max-width: 480px) {
+            /* Logo */
+            .logo-image {
+                height: 45px;
+                max-width: 130px;
+            }
+            
+            .footer-logo .logo-image {
+                height: 40px;
+                max-width: 120px;
+            }
+            
+            /* Page Hero */
+            .page-hero {
+                height: 45vh;
+                min-height: 350px;
+                margin-top: 70px;
+            }
+            
+            .page-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .page-hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            /* Sections */
+            .section {
+                padding: 2.5rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            /* Mission & Values */
             .mission-values {
                 grid-template-columns: 1fr;
             }
             
+            /* Team */
             .team-grid {
                 grid-template-columns: 1fr;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
+            /* Facilities */
             .facilities-grid {
                 grid-template-columns: 1fr;
             }
             
+            /* Achievements */
             .achievements-grid {
                 grid-template-columns: 1fr;
             }
             
+            /* Partners */
             .partners-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            /* Stats */
             .stats-counter {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
+            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -1139,9 +1234,72 @@
                 flex-direction: column;
             }
             
-            .page-hero {
-                height: 50vh;
-                min-height: 400px;
+            /* CTA Buttons */
+            .cta-section .btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 1rem;
+            }
+            
+            /* Timeline Mobile Fix */
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-year {
+                padding: 0.3rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Testimonials */
+            .testimonial-card {
+                padding: 2rem;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
+            }
+            
+            /* Breadcrumb */
+            .breadcrumb {
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .logo-main {
+                font-size: 1.1rem;
+            }
+            
+            .logo-sub {
+                font-size: 0.65rem;
+            }
+            
+            .page-hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .value-card, .achievement-card, .team-content, .facility-content {
+                padding: 1rem;
+            }
+            
+            .team-image, .facility-image {
+                height: 180px;
+            }
+            
+            .partner-logo {
+                height: 80px;
+                padding: 1rem;
             }
         }
     </style>
@@ -1157,9 +1315,9 @@
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-baseball-ball"></i>
-                    </div>
+                    <!-- REAL LOGO - Replace the image URL with your actual logo -->
+                    <img src="https://via.placeholder.com/180x60/1a472a/ffffff?text=Run+Whisperers+Logo" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
+                    <!-- Fallback text logo (shown if image fails to load) -->
                     <div class="logo-text">
                         <span class="logo-main">RUN WHISPERERS</span>
                         <span class="logo-sub">Cricket • Academy • Community</span>
@@ -1560,7 +1718,7 @@
         <div class="container">
             <h2>Ready to Join Our Cricket Academy?</h2>
             <p>Take your cricket skills to the next level with professional coaching and world-class facilities.</p>
-            <div style="margin-top: 2rem;">
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="booking.html" class="btn btn-primary btn-large">Book Your Trial Session</a>
                 <a href="contacts.html" class="btn btn-secondary btn-large">Contact Us</a>
             </div>
@@ -1573,9 +1731,8 @@
             <div class="footer-content">
                 <div class="footer-logo-section">
                     <a href="index.html" class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-baseball-ball"></i>
-                        </div>
+                        <!-- REAL LOGO - Same logo as header but white version -->
+                        <img src="https://via.placeholder.com/160x50/ffffff/1a472a?text=Run+Whisperers" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
                         <div class="logo-text">
                             <span class="logo-main">RUN WHISPERERS</span>
                             <span class="logo-sub">Cricket • Academy • Community</span>
