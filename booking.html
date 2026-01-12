@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <style>
         /* CSS Reset & Base Styles */
         * {
@@ -33,6 +38,8 @@
             --color-red: #dc3545;
             --color-blue: #0d6efd;
             --color-purple: #6f42c1;
+            --color-whatsapp: #25D366;
+            --color-sms: #0088cc;
             
             --font-heading: 'Montserrat', 'Poppins', sans-serif;
             --font-body: 'Poppins', sans-serif;
@@ -40,11 +47,14 @@
             --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
             --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-extra-large: 0 12px 40px rgba(0, 0, 0, 0.2);
             
             --border-radius: 8px;
             --border-radius-large: 16px;
+            --border-radius-extra-large: 24px;
             
             --transition: all 0.3s ease;
+            --transition-slow: all 0.8s ease;
         }
 
         html {
@@ -57,6 +67,7 @@
             background-color: var(--color-off-white);
             line-height: 1.6;
             overflow-x: hidden;
+            opacity: 1 !important; /* FIXED: Make body visible immediately */
         }
 
         .container {
@@ -128,7 +139,10 @@
 
         /* Buttons */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 12px 28px;
             border-radius: var(--border-radius);
             text-decoration: none;
@@ -138,6 +152,7 @@
             cursor: pointer;
             border: none;
             font-family: var(--font-body);
+            text-align: center;
         }
 
         .btn-primary {
@@ -171,6 +186,28 @@
 
         .btn-camping:hover {
             background: linear-gradient(135deg, #a0522d, #d2691e);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--color-whatsapp), #128C7E);
+            color: var(--color-white);
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(135deg, #128C7E, #075E54);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-sms {
+            background: linear-gradient(135deg, var(--color-sms), #0077b5);
+            color: var(--color-white);
+        }
+
+        .btn-sms:hover {
+            background: linear-gradient(135deg, #0077b5, #005582);
             transform: translateY(-3px);
             box-shadow: var(--shadow-medium);
         }
@@ -210,7 +247,7 @@
         }
 
         .whatsapp-float:hover {
-            background-color: #25D366;
+            background-color: var(--color-whatsapp);
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
@@ -223,6 +260,38 @@
             transform: scale(1.2);
         }
 
+        /* Scrolling Marquee */
+        .scrolling-marquee {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 0.8rem 0;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            padding: 0 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-cricket-gold);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
         /* Header & Navigation */
         .header {
             position: fixed;
@@ -230,9 +299,9 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
         }
 
@@ -250,22 +319,17 @@
             color: var(--color-cricket-green);
         }
 
-        .logo-icon {
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
-            color: var(--color-white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 12px;
+        .logo-image {
+            height: 60px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
         }
 
         .logo-text {
             display: flex;
             flex-direction: column;
+            margin-left: 10px;
         }
 
         .logo-main {
@@ -273,46 +337,49 @@
             font-weight: 900;
             font-size: 1.4rem;
             line-height: 1.2;
+            color: var(--color-cricket-green);
         }
 
-        .logo-sub {
-            font-size: 0.75rem;
-            color: var(--color-gray);
-            letter-spacing: 0.5px;
-        }
-
+        /* Navigation Menu */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .nav-menu a {
             text-decoration: none;
             color: var(--color-black);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: var(--transition);
             position: relative;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 110px;
+            text-align: center;
+            box-shadow: var(--shadow-small);
         }
 
         .nav-menu a:hover {
-            color: var(--color-cricket-green);
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--color-cricket-green);
         }
 
         .nav-menu a.active {
-            color: var(--color-cricket-green);
-            font-weight: 600;
-        }
-
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
             background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            font-weight: 600;
+            border-color: var(--color-cricket-green);
+            box-shadow: var(--shadow-medium);
         }
 
         .nav-toggle {
@@ -320,6 +387,10 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         .nav-toggle span {
@@ -338,7 +409,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 80px;
+            padding-top: 80px;
         }
 
         .page-hero-background {
@@ -357,6 +428,7 @@
         .page-hero-content {
             max-width: 800px;
             color: var(--color-white);
+            width: 100%;
         }
 
         .page-hero-title {
@@ -364,10 +436,6 @@
             color: var(--color-white);
             margin-bottom: 1.5rem;
             line-height: 1.1;
-        }
-
-        .page-hero-title .highlight {
-            color: var(--color-cricket-gold);
         }
 
         .page-hero-subtitle {
@@ -396,18 +464,72 @@
             text-decoration: underline;
         }
 
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-extra-large);
+            padding: 1.5rem;
+            max-width: 400px;
+            z-index: 9999;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            border-left: 5px solid var(--color-cricket-green);
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .toast-icon {
+            font-size: 1.5rem;
+            color: var(--color-cricket-green);
+        }
+
+        .toast-message h4 {
+            margin-bottom: 0.5rem;
+            color: var(--color-cricket-green);
+        }
+
+        .toast-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--color-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toast-close:hover {
+            color: var(--color-black);
+        }
+
         /* Booking Navigation Tabs */
         .booking-tabs {
             background: var(--color-white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-small);
-            margin: 2rem auto;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-large);
+            margin: 3rem auto;
             max-width: 1200px;
+            overflow: hidden;
         }
 
         .tab-nav {
             display: flex;
             border-bottom: 2px solid var(--color-light-gray);
+            background: var(--color-off-white);
         }
 
         .tab-btn {
@@ -422,15 +544,20 @@
             cursor: pointer;
             transition: var(--transition);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .tab-btn:hover {
             color: var(--color-cricket-green);
-            background: var(--color-off-white);
+            background: var(--color-white);
         }
 
         .tab-btn.active {
             color: var(--color-cricket-green);
+            background: var(--color-white);
         }
 
         .tab-btn.active::after {
@@ -456,10 +583,15 @@
             display: block;
         }
 
-        /* Booking Wizard */
+        /* Enhanced Booking Wizard */
         .booking-wizard {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .wizard-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
         .wizard-steps {
@@ -500,17 +632,21 @@
             font-size: 1.2rem;
             margin: 0 auto 0.5rem;
             transition: var(--transition);
+            border: 3px solid var(--color-white);
+            box-shadow: var(--shadow-small);
         }
 
         .wizard-step.active .step-number {
             background: var(--color-cricket-green);
             color: var(--color-white);
             transform: scale(1.1);
+            box-shadow: var(--shadow-medium);
         }
 
         .wizard-step.completed .step-number {
             background: var(--color-cricket-gold);
             color: var(--color-white);
+            box-shadow: var(--shadow-medium);
         }
 
         .step-label {
@@ -519,21 +655,34 @@
             font-weight: 500;
         }
 
+        .wizard-step.active .step-label {
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
         .wizard-content {
             background: var(--color-white);
             padding: 3rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             box-shadow: var(--shadow-medium);
             margin-bottom: 2rem;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: none;
+        }
+
+        .wizard-content.active {
+            display: block;
         }
 
         .wizard-actions {
             display: flex;
             justify-content: space-between;
-            margin-top: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-light-gray);
         }
 
-        /* Program Cards */
+        /* Enhanced Program Cards */
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -543,21 +692,27 @@
 
         .program-card {
             background: var(--color-white);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             overflow: hidden;
             box-shadow: var(--shadow-medium);
             transition: var(--transition);
             position: relative;
+            border: 2px solid transparent;
         }
 
         .program-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .program-card.popular {
             border: 3px solid var(--color-cricket-gold);
             transform: scale(1.05);
+        }
+
+        .program-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
         }
 
         .program-badge {
@@ -566,34 +721,55 @@
             right: 15px;
             background: var(--color-cricket-gold);
             color: var(--color-cricket-green);
-            padding: 5px 15px;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.8rem;
             z-index: 2;
+            box-shadow: var(--shadow-small);
         }
 
         .program-header {
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
             color: var(--color-white);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.1;
         }
 
         .program-header h3 {
             color: var(--color-white);
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .program-price {
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 900;
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .program-period {
             font-size: 0.9rem;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .program-content {
@@ -606,321 +782,129 @@
         }
 
         .program-features li {
-            padding: 0.5rem 0;
+            padding: 0.8rem 0;
             border-bottom: 1px solid var(--color-light-gray);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .program-features li:last-child {
+            border-bottom: none;
         }
 
         .program-features li i {
             color: var(--color-cricket-green);
-        }
-
-        /* Camping Packages */
-        .camping-packages {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .camping-card {
-            background: var(--color-white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-medium);
-            transition: var(--transition);
-            border-top: 4px solid var(--color-camping-brown);
-        }
-
-        .camping-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
-        }
-
-        .camping-image {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .camping-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .camping-card:hover .camping-image img {
-            transform: scale(1.1);
-        }
-
-        .camping-content {
-            padding: 2rem;
-        }
-
-        .camping-duration {
-            display: inline-block;
-            background: var(--color-camping-brown);
-            color: var(--color-white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .camping-features {
-            margin: 1.5rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-        }
-
-        .feature-item i {
-            color: var(--color-camping-brown);
+            font-size: 1.1rem;
             width: 20px;
         }
 
-        /* Calendar Booking */
-        .booking-calendar {
+        /* Communication Options */
+        .communication-options {
             background: var(--color-white);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             padding: 2rem;
             box-shadow: var(--shadow-medium);
-            margin: 3rem 0;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            font-weight: 600;
-            color: var(--color-cricket-green);
-            padding: 10px;
-            background: var(--color-off-white);
-            border-radius: var(--border-radius);
-        }
-
-        .calendar-day {
-            text-align: center;
-            padding: 15px 10px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            position: relative;
-        }
-
-        .calendar-day:hover {
-            background: var(--color-off-white);
-            border-color: var(--color-cricket-green);
-        }
-
-        .calendar-day.selected {
-            background: var(--color-cricket-green);
-            color: var(--color-white);
-            border-color: var(--color-cricket-green);
-        }
-
-        .calendar-day.booked {
-            background: var(--color-light-gray);
-            color: var(--color-gray);
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .calendar-day.booked:hover {
-            background: var(--color-light-gray);
-            border-color: transparent;
-        }
-
-        .day-number {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .day-slots {
-            font-size: 0.7rem;
-            opacity: 0.8;
-        }
-
-        /* Time Slots */
-        .time-slots {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
             margin: 2rem 0;
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
-        .time-slot {
-            padding: 15px;
-            background: var(--color-off-white);
-            border-radius: var(--border-radius);
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .time-slot:hover {
-            background: var(--color-white);
-            border-color: var(--color-cricket-green);
-            transform: translateY(-3px);
-        }
-
-        .time-slot.selected {
-            background: var(--color-cricket-green);
-            color: var(--color-white);
-            border-color: var(--color-cricket-green);
-        }
-
-        .time-slot.booked {
-            background: var(--color-light-gray);
-            color: var(--color-gray);
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .slot-time {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .slot-availability {
-            font-size: 0.8rem;
-            margin-top: 5px;
-        }
-
-        /* Coach Selection */
-        .coaches-grid {
+        .options-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .coach-card {
-            background: var(--color-white);
+        .option-card {
+            background: var(--color-off-white);
             border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-small);
-            transition: var(--transition);
+            padding: 2rem;
+            text-align: center;
             cursor: pointer;
+            transition: var(--transition);
             border: 2px solid transparent;
         }
 
-        .coach-card:hover {
+        .option-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--color-cricket-green);
+        }
+
+        .option-card.selected {
+            border-color: var(--color-cricket-green);
+            background: var(--color-white);
             box-shadow: var(--shadow-medium);
         }
 
-        .coach-card.selected {
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        .option-card.whatsapp .option-icon {
+            color: var(--color-whatsapp);
+        }
+
+        .option-card.sms .option-icon {
+            color: var(--color-sms);
+        }
+
+        .option-card.email .option-icon {
+            color: var(--color-cricket-gold);
+        }
+
+        /* SMS Verification */
+        .sms-verification {
+            background: var(--color-off-white);
+            border-radius: var(--border-radius-large);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: none;
+        }
+
+        .sms-verification.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .verification-code {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .code-input {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            background: var(--color-white);
+            transition: var(--transition);
+        }
+
+        .code-input:focus {
             border-color: var(--color-cricket-green);
+            outline: none;
             box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
         }
 
-        .coach-image {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .coach-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .coach-content {
-            padding: 1.5rem;
-        }
-
-        .coach-specialty {
-            color: var(--color-cricket-gold);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .coach-rating {
-            color: var(--color-cricket-gold);
-            margin: 0.5rem 0;
-        }
-
-        /* Booking Summary */
-        .booking-summary {
-            background: var(--color-white);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-medium);
-            margin: 2rem 0;
-            position: sticky;
-            top: 100px;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--color-light-gray);
-        }
-
-        .summary-total {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--color-cricket-green);
-            padding-top: 1rem;
-            border-top: 2px solid var(--color-cricket-green);
-        }
-
-        /* Payment Methods */
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .payment-method {
-            padding: 1.5rem;
-            background: var(--color-white);
-            border-radius: var(--border-radius);
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .payment-method:hover {
-            border-color: var(--color-cricket-green);
-            transform: translateY(-3px);
-        }
-
-        .payment-method.selected {
+        .code-input.filled {
             border-color: var(--color-cricket-green);
             background: var(--color-off-white);
-        }
-
-        .payment-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--color-cricket-green);
         }
 
         /* Form Styles */
@@ -942,18 +926,28 @@
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--color-cricket-green);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-label.required::after {
+            content: '*';
+            color: var(--color-red);
+            margin-left: 4px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 16px;
             border: 2px solid var(--color-light-gray);
             border-radius: var(--border-radius);
             font-family: var(--font-body);
             font-size: 1rem;
             transition: var(--transition);
+            background: var(--color-white);
         }
 
         .form-control:focus {
@@ -962,33 +956,354 @@
             box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
         }
 
+        .form-control.error {
+            border-color: var(--color-red);
+        }
+
+        .form-control.success {
+            border-color: var(--color-cricket-green);
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            margin-top: 0.5rem;
+        }
+
         textarea.form-control {
             min-height: 120px;
             resize: vertical;
         }
 
-        /* Progress Tracker */
-        .progress-tracker {
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231a472a' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        /* Calendar Styles - FIXED: Added missing styles */
+        .booking-calendar {
+            margin-bottom: 2rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+            color: var(--color-cricket-green);
+            background: var(--color-light-gray);
+            border-radius: var(--border-radius);
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 15px 5px;
             background: var(--color-white);
             border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-small);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .calendar-day:hover {
+            border-color: var(--color-light-green);
+            transform: translateY(-2px);
+        }
+
+        .calendar-day.selected {
+            border-color: var(--color-cricket-green);
+            background: var(--color-off-white);
+            font-weight: 600;
+        }
+
+        .calendar-day.booked {
+            background: var(--color-light-gray);
+            color: var(--color-gray);
+            cursor: not-allowed;
+        }
+
+        .day-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .day-slots {
+            font-size: 0.8rem;
+            color: var(--color-cricket-green);
+        }
+
+        /* Time Slots - FIXED: Added missing styles */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .time-slot {
+            background: var(--color-white);
+            border: 2px solid var(--color-light-gray);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .time-slot:hover {
+            border-color: var(--color-light-green);
+            transform: translateY(-2px);
+        }
+
+        .time-slot.selected {
+            border-color: var(--color-cricket-green);
+            background: var(--color-off-white);
+            font-weight: 600;
+        }
+
+        .slot-time {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .slot-availability {
+            font-size: 0.8rem;
+            color: var(--color-cricket-green);
+        }
+
+        /* Coaches Grid - FIXED: Added missing styles */
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
             margin: 2rem 0;
         }
 
-        .progress-bar {
-            height: 10px;
-            background: var(--color-light-gray);
-            border-radius: 5px;
-            margin-bottom: 1rem;
+        .coach-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .coach-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-light-green);
+        }
+
+        .coach-card.selected {
+            border-color: var(--color-cricket-green);
+            background: var(--color-off-white);
+        }
+
+        .coach-image {
+            height: 200px;
             overflow: hidden;
         }
 
-        .progress-fill {
+        .coach-image img {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to right, var(--color-cricket-green), var(--color-cricket-gold));
-            border-radius: 5px;
-            transition: width 0.5s ease;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .coach-card:hover .coach-image img {
+            transform: scale(1.05);
+        }
+
+        .coach-content {
+            padding: 1.5rem;
+        }
+
+        .coach-specialty {
+            color: var(--color-cricket-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .coach-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-gold);
+        }
+
+        /* Booking Summary */
+        .booking-summary {
+            background: var(--color-white);
+            border-radius: var(--border-radius-large);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-medium);
+            margin: 2rem 0;
+            position: sticky;
+            top: 100px;
+            border: 2px solid var(--color-cricket-green);
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-light-gray);
+        }
+
+        .summary-title {
+            color: var(--color-cricket-green);
+            margin-bottom: 0;
+        }
+
+        .summary-refresh {
+            background: none;
+            border: none;
+            color: var(--color-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .summary-refresh:hover {
+            color: var(--color-cricket-green);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--color-cricket-green);
+            padding-top: 1rem;
+            border-top: 2px solid var(--color-cricket-green);
+            margin-top: 1rem;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            padding: 2rem 1.5rem;
+            background: var(--color-white);
+            border-radius: var(--border-radius-large);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-small);
+        }
+
+        .payment-method:hover {
+            border-color: var(--color-cricket-green);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .payment-method.selected {
+            border-color: var(--color-cricket-green);
+            background: var(--color-off-white);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-cricket-green);
+        }
+
+        /* WhatsApp Booking Preview */
+        .whatsapp-preview {
+            background: var(--color-off-white);
+            border-radius: var(--border-radius-large);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: none;
+        }
+
+        .whatsapp-preview.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .whatsapp-icon {
+            font-size: 2rem;
+            color: var(--color-whatsapp);
+        }
+
+        .whatsapp-message {
+            background: #e5f7ed;
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom-left-radius: 4px;
+            position: relative;
+            max-width: 80%;
+        }
+
+        .whatsapp-message::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 10px 10px 0;
+            border-color: transparent #e5f7ed transparent transparent;
+        }
+
+        .whatsapp-message p {
+            margin-bottom: 0.5rem;
         }
 
         /* Sections */
@@ -1013,56 +1328,93 @@
 
         .faq-item {
             background: var(--color-white);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             overflow: hidden;
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         .faq-question {
             padding: 1.5rem;
-            background: var(--color-cricket-green);
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
             color: var(--color-white);
             font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-medium-green));
         }
 
         .faq-answer {
             padding: 1.5rem;
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
 
         .faq-item.active .faq-answer {
-            display: block;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
 
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            padding: 5rem 0;
+            background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(43, 90, 61, 0.9)), 
+                        url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--color-white);
             margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-section h2 {
             color: var(--color-white);
             margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .cta-section p {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             max-width: 600px;
             margin: 0 auto 2rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* Footer */
+        /* Footer - Matching Index Page */
         .footer {
-            background-color: var(--color-cricket-green);
+            background: linear-gradient(rgba(29, 90, 61, 0.9), rgba(26, 71, 42, 0.95)), 
+                        url('https://images.unsplash.com/photo-1626248801379-51a0748e9e2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: var(--color-white);
             padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
         }
 
         .footer-content {
@@ -1070,6 +1422,8 @@
             grid-template-columns: 2fr 1fr 1fr 2fr;
             gap: 3rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-logo-section {
@@ -1085,8 +1439,14 @@
             margin-bottom: 1.5rem;
         }
 
+        .footer-logo .logo-image {
+            height: 50px;
+            max-width: 160px;
+            filter: brightness(0) invert(1);
+        }
+
         .footer-description {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
@@ -1100,18 +1460,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             color: var(--color-white);
             text-decoration: none;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-social .social-link:hover {
             background-color: var(--color-cricket-gold);
             transform: translateY(-3px);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-title {
@@ -1128,8 +1490,9 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
+            height: 3px;
             background-color: var(--color-cricket-gold);
+            border-radius: 2px;
         }
 
         .footer-links ul {
@@ -1141,15 +1504,18 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.95rem;
+            display: inline-block;
+            padding: 3px 0;
         }
 
         .footer-links a:hover {
             color: var(--color-white);
-            padding-left: 5px;
+            padding-left: 8px;
+            transform: translateX(5px);
         }
 
         .contact-info {
@@ -1161,13 +1527,14 @@
             align-items: flex-start;
             margin-bottom: 1rem;
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-item i {
             margin-right: 10px;
             color: var(--color-cricket-gold);
             width: 20px;
+            font-size: 1.1rem;
         }
 
         .newsletter {
@@ -1187,16 +1554,23 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: none;
             border-radius: var(--border-radius);
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             color: var(--color-white);
             font-family: var(--font-body);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .newsletter-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-bottom {
@@ -1204,10 +1578,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-legal {
@@ -1216,7 +1592,7 @@
         }
 
         .footer-legal a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -1225,25 +1601,106 @@
             color: var(--color-white);
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--color-white);
+            border-radius: var(--border-radius-extra-large);
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-extra-large);
+            border: 3px solid var(--color-cricket-gold);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        /* Loader */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .loader.active {
+            display: flex;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--color-light-gray);
+            border-top: 5px solid var(--color-cricket-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-size: 1.2rem;
+            color: var(--color-cricket-green);
+            font-weight: 600;
+        }
+
         /* Mobile Responsive Styles */
         @media (max-width: 1024px) {
             .programs-grid,
-            .camping-packages,
-            .coaches-grid {
+            .payment-methods,
+            .options-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .payment-methods {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .time-slots {
-                grid-template-columns: repeat(3, 1fr);
+            .faq-grid {
+                grid-template-columns: 1fr;
             }
             
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
+            }
+            
+            .booking-summary {
+                position: static;
             }
         }
 
@@ -1257,13 +1714,17 @@
                 position: fixed;
                 top: 80px;
                 left: -100%;
-                width: 100%;
+                width: 90%;
+                max-width: 400px;
                 flex-direction: column;
                 background-color: var(--color-white);
                 padding: 2rem;
-                box-shadow: var(--shadow-medium);
+                box-shadow: var(--shadow-extra-large);
                 transition: var(--transition);
                 z-index: 999;
+                border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+                border: 2px solid var(--color-cricket-green);
+                border-top: none;
             }
             
             .nav-menu.active {
@@ -1271,7 +1732,32 @@
             }
             
             .nav-menu li {
-                margin-bottom: 1rem;
+                width: 100%;
+                margin-bottom: 0.8rem;
+            }
+            
+            .nav-menu a {
+                width: 100%;
+                min-width: auto;
+                padding: 14px 20px;
+                font-size: 1rem;
+                justify-content: flex-start;
+                border-radius: var(--border-radius);
+                background-color: var(--color-off-white);
+                border: 2px solid rgba(26, 71, 42, 0.15);
+            }
+            
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background-color: var(--color-cricket-green);
+                color: var(--color-white);
+                transform: translateX(5px);
+                border-color: var(--color-cricket-green);
+                padding-left: 25px;
+            }
+            
+            .logo-text {
+                display: none;
             }
             
             /* Tabs */
@@ -1300,9 +1786,14 @@
             
             /* Grids */
             .programs-grid,
-            .camping-packages,
+            .payment-methods,
+            .options-grid,
             .coaches-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .form-grid {
@@ -1313,24 +1804,11 @@
                 grid-column: span 1;
             }
             
-            .faq-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .time-slots {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .calendar-grid {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 5px;
-            }
-            
             /* WhatsApp Button */
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
                 bottom: 20px;
                 right: 20px;
             }
@@ -1348,11 +1826,9 @@
         }
 
         @media (max-width: 480px) {
-            .time-slots {
-                grid-template-columns: 1fr;
-            }
-            
-            .payment-methods {
+            .time-slots,
+            .payment-methods,
+            .options-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1390,6 +1866,16 @@
                 height: 40vh;
                 min-height: 300px;
             }
+            
+            .verification-code {
+                gap: 5px;
+            }
+            
+            .code-input {
+                width: 40px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -1399,34 +1885,84 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Booking Success Modal -->
-    <div class="modal-overlay" id="successModal">
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Processing your booking...</div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast">
+        <button class="toast-close" id="toastClose">&times;</button>
+        <div class="toast-content">
+            <div class="toast-icon" id="toastIcon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="toast-message">
+                <h4 id="toastTitle">Success!</h4>
+                <p id="toastMessage">Your booking has been submitted successfully.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div class="modal-overlay" id="confirmationModal">
         <div class="modal">
-            <div style="text-align: center; padding: 3rem;">
+            <div style="text-align: center;">
                 <div style="font-size: 4rem; color: var(--color-cricket-green); margin-bottom: 1rem;">
                     <i class="fas fa-check-circle"></i>
                 </div>
                 <h2 style="color: var(--color-cricket-green); margin-bottom: 1rem;">Booking Confirmed!</h2>
-                <p style="margin-bottom: 2rem;">Your booking has been successfully submitted. We'll send you a confirmation email shortly.</p>
-                <div id="bookingDetails" style="text-align: left; background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 2rem;">
+                <p style="margin-bottom: 2rem; color: var(--color-gray);">Your booking has been successfully submitted. You'll receive confirmation through your selected communication method.</p>
+                <div id="bookingDetails" style="text-align: left; background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius-large); margin-bottom: 2rem; border: 1px solid rgba(26, 71, 42, 0.1);">
                     <!-- Booking details will be inserted here -->
                 </div>
-                <button class="btn btn-primary btn-large" id="closeSuccessModal">Continue</button>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="btn btn-primary" id="closeConfirmationModal">Continue</button>
+                    <a href="index.html" class="btn btn-secondary">Return Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SMS Verification Modal -->
+    <div class="modal-overlay" id="smsModal">
+        <div class="modal">
+            <div style="text-align: center;">
+                <div style="font-size: 3rem; color: var(--color-sms); margin-bottom: 1rem;">
+                    <i class="fas fa-sms"></i>
+                </div>
+                <h2 style="color: var(--color-sms); margin-bottom: 1rem;">SMS Verification</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--color-gray);">We've sent a 6-digit verification code to your phone number. Please enter it below:</p>
+                
+                <div class="sms-verification active">
+                    <div class="verification-code">
+                        <input type="text" class="code-input" maxlength="1" data-index="1">
+                        <input type="text" class="code-input" maxlength="1" data-index="2">
+                        <input type="text" class="code-input" maxlength="1" data-index="3">
+                        <input type="text" class="code-input" maxlength="1" data-index="4">
+                        <input type="text" class="code-input" maxlength="1" data-index="5">
+                        <input type="text" class="code-input" maxlength="1" data-index="6">
+                    </div>
+                    <p class="form-help" style="text-align: center;">Enter the 6-digit code sent to your phone</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <button class="btn btn-sms btn-full" id="verifySmsCode">Verify Code</button>
+                        <button class="btn btn-secondary btn-full" id="resendSmsCode" style="margin-top: 1rem;">Resend Code</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Header Section -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-baseball-ball"></i>
-                    </div>
+                    <!-- Logo image removed for testing -->
                     <div class="logo-text">
                         <span class="logo-main">RUN WHISPERERS</span>
-                        <span class="logo-sub">Cricket • Academy • Community</span>
                     </div>
                 </a>
                 
@@ -1448,6 +1984,14 @@
         </div>
     </header>
 
+    <!-- Scrolling Marquee -->
+    <div class="scrolling-marquee">
+        <div class="marquee-content">
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+        </div>
+    </div>
+
     <!-- Page Hero -->
     <section class="page-hero">
         <div class="page-hero-background"></div>
@@ -1468,46 +2012,60 @@
     <!-- Booking Navigation Tabs -->
     <section class="section">
         <div class="container">
-            <div class="booking-tabs">
+            <div class="booking-tabs" id="bookingTabs">
                 <div class="tab-nav">
-                    <button class="tab-btn active" data-tab="training">Cricket Training</button>
-                    <button class="tab-btn" data-tab="camping">Holiday Camping</button>
-                    <button class="tab-btn" data-tab="packages">Academy Packages</button>
+                    <button class="tab-btn active" data-tab="training">
+                        <i class="fas fa-baseball-ball"></i>
+                        Cricket Training
+                    </button>
+                    <button class="tab-btn camping" data-tab="camping">
+                        <i class="fas fa-campground"></i>
+                        Holiday Camping
+                    </button>
+                    <button class="tab-btn" data-tab="packages">
+                        <i class="fas fa-trophy"></i>
+                        Academy Packages
+                    </button>
                 </div>
                 
                 <!-- Training Tab -->
                 <div class="tab-content active" id="training-tab">
                     <div class="booking-wizard">
-                        <div class="wizard-steps">
-                            <div class="wizard-step active" data-step="1">
+                        <div class="wizard-header">
+                            <h3>Cricket Training Booking</h3>
+                            <p>Follow these simple steps to book your cricket training sessions</p>
+                        </div>
+                        
+                        <div class="wizard-steps" id="wizardSteps">
+                            <div class="wizard-step active" data-step="1" id="step1">
                                 <div class="step-number">1</div>
                                 <div class="step-label">Select Program</div>
                             </div>
-                            <div class="wizard-step" data-step="2">
+                            <div class="wizard-step" data-step="2" id="step2">
                                 <div class="step-number">2</div>
                                 <div class="step-label">Choose Schedule</div>
                             </div>
-                            <div class="wizard-step" data-step="3">
+                            <div class="wizard-step" data-step="3" id="step3">
                                 <div class="step-number">3</div>
                                 <div class="step-label">Select Coach</div>
                             </div>
-                            <div class="wizard-step" data-step="4">
+                            <div class="wizard-step" data-step="4" id="step4">
                                 <div class="step-number">4</div>
                                 <div class="step-label">Personal Details</div>
                             </div>
-                            <div class="wizard-step" data-step="5">
+                            <div class="wizard-step" data-step="5" id="step5">
                                 <div class="step-number">5</div>
-                                <div class="step-label">Payment</div>
+                                <div class="step-label">Confirmation</div>
                             </div>
                         </div>
                         
                         <!-- Step 1: Select Program -->
-                        <div class="wizard-content active" data-step="1">
+                        <div class="wizard-content active" data-step="1" id="wizardStep1">
                             <h3>Select Training Program</h3>
                             <p>Choose the cricket training program that best fits your needs and skill level.</p>
                             
-                            <div class="programs-grid">
-                                <div class="program-card">
+                            <div class="programs-grid" id="programsGrid">
+                                <div class="program-card" id="programCard1">
                                     <div class="program-header">
                                         <h3>Beginner</h3>
                                         <div class="program-price">N$ 800</div>
@@ -1521,11 +2079,11 @@
                                             <li><i class="fas fa-check"></i> Equipment provided</li>
                                             <li><i class="fas fa-check"></i> Progress assessment</li>
                                         </ul>
-                                        <button class="btn btn-primary btn-full select-program" data-program="beginner">Select Program</button>
+                                        <button class="btn btn-primary btn-full select-program" data-program="beginner" data-price="800">Select Program</button>
                                     </div>
                                 </div>
                                 
-                                <div class="program-card popular">
+                                <div class="program-card popular" id="programCard2">
                                     <div class="program-badge">MOST POPULAR</div>
                                     <div class="program-header">
                                         <h3>Intermediate</h3>
@@ -1541,11 +2099,11 @@
                                             <li><i class="fas fa-check"></i> Match simulation</li>
                                             <li><i class="fas fa-check"></i> Fitness training</li>
                                         </ul>
-                                        <button class="btn btn-primary btn-full select-program" data-program="intermediate">Select Program</button>
+                                        <button class="btn btn-primary btn-full select-program" data-program="intermediate" data-price="1200">Select Program</button>
                                     </div>
                                 </div>
                                 
-                                <div class="program-card">
+                                <div class="program-card" id="programCard3">
                                     <div class="program-header">
                                         <h3>Advanced</h3>
                                         <div class="program-price">N$ 1,800</div>
@@ -1561,7 +2119,7 @@
                                             <li><i class="fas fa-check"></i> Tournament entry</li>
                                             <li><i class="fas fa-check"></i> Nutrition guidance</li>
                                         </ul>
-                                        <button class="btn btn-primary btn-full select-program" data-program="advanced">Select Program</button>
+                                        <button class="btn btn-primary btn-full select-program" data-program="advanced" data-price="1800">Select Program</button>
                                     </div>
                                 </div>
                             </div>
@@ -1573,7 +2131,7 @@
                         </div>
                         
                         <!-- Step 2: Choose Schedule -->
-                        <div class="wizard-content" data-step="2">
+                        <div class="wizard-content" data-step="2" id="wizardStep2">
                             <h3>Select Training Schedule</h3>
                             <p>Choose your preferred training dates and time slots.</p>
                             
@@ -1615,7 +2173,7 @@
                         </div>
                         
                         <!-- Step 3: Select Coach -->
-                        <div class="wizard-content" data-step="3">
+                        <div class="wizard-content" data-step="3" id="wizardStep3">
                             <h3>Choose Your Coach</h3>
                             <p>Select a professional coach based on your training needs and preferences.</p>
                             
@@ -1685,47 +2243,50 @@
                         </div>
                         
                         <!-- Step 4: Personal Details -->
-                        <div class="wizard-content" data-step="4">
+                        <div class="wizard-content" data-step="4" id="wizardStep4">
                             <h3>Personal Information</h3>
                             <p>Please provide your details to complete the booking.</p>
                             
                             <form id="personalDetailsForm">
                                 <div class="form-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control" required>
+                                    <div class="form-group" id="formGroup1">
+                                        <label class="form-label required">Full Name</label>
+                                        <input type="text" class="form-control" name="full_name" required>
+                                        <div class="form-help">Enter your full legal name</div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Email Address *</label>
-                                        <input type="email" class="form-control" required>
+                                    <div class="form-group" id="formGroup2">
+                                        <label class="form-label required">Email Address</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                        <div class="form-help">We'll send confirmation to this email</div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Phone Number *</label>
-                                        <input type="tel" class="form-control" required>
+                                    <div class="form-group" id="formGroup3">
+                                        <label class="form-label required">Phone Number</label>
+                                        <input type="tel" class="form-control" name="phone" required>
+                                        <div class="form-help">Include country code (e.g., +264)</div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Date of Birth *</label>
-                                        <input type="date" class="form-control" required>
+                                    <div class="form-group" id="formGroup4">
+                                        <label class="form-label required">Date of Birth</label>
+                                        <input type="date" class="form-control" name="dob" required>
                                     </div>
-                                    <div class="form-group full-width">
+                                    <div class="form-group full-width" id="formGroup5">
                                         <label class="form-label">Address</label>
-                                        <textarea class="form-control" rows="2"></textarea>
+                                        <textarea class="form-control" name="address" rows="2"></textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Emergency Contact Name *</label>
-                                        <input type="text" class="form-control" required>
+                                    <div class="form-group" id="formGroup6">
+                                        <label class="form-label required">Emergency Contact Name</label>
+                                        <input type="text" class="form-control" name="emergency_name" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Emergency Contact Phone *</label>
-                                        <input type="tel" class="form-control" required>
+                                    <div class="form-group" id="formGroup7">
+                                        <label class="form-label required">Emergency Contact Phone</label>
+                                        <input type="tel" class="form-control" name="emergency_phone" required>
                                     </div>
-                                    <div class="form-group full-width">
+                                    <div class="form-group full-width" id="formGroup8">
                                         <label class="form-label">Medical Conditions or Special Requirements</label>
-                                        <textarea class="form-control" rows="3" placeholder="Please list any medical conditions, allergies, or special requirements we should be aware of"></textarea>
+                                        <textarea class="form-control" name="medical_info" rows="3" placeholder="Please list any medical conditions, allergies, or special requirements we should be aware of"></textarea>
                                     </div>
-                                    <div class="form-group full-width">
-                                        <label class="form-label">Cricket Experience Level *</label>
-                                        <select class="form-control" required>
+                                    <div class="form-group full-width" id="formGroup9">
+                                        <label class="form-label required">Cricket Experience Level</label>
+                                        <select class="form-control" name="experience_level" required>
                                             <option value="">Select Experience Level</option>
                                             <option value="beginner">Beginner (0-1 year)</option>
                                             <option value="novice">Novice (1-2 years)</option>
@@ -1733,26 +2294,102 @@
                                             <option value="advanced">Advanced (5+ years)</option>
                                         </select>
                                     </div>
-                                    <div class="form-group full-width">
+                                    <div class="form-group full-width" id="formGroup10">
                                         <label class="form-label">Training Goals</label>
-                                        <textarea class="form-control" rows="3" placeholder="What specific skills or areas would you like to focus on?"></textarea>
+                                        <textarea class="form-control" name="training_goals" rows="3" placeholder="What specific skills or areas would you like to focus on?"></textarea>
                                     </div>
                                 </div>
                             </form>
                             
+                            <!-- Communication Options -->
+                            <div class="communication-options">
+                                <h4>How would you like to receive booking confirmation?</h4>
+                                <p>Select your preferred communication method. You can choose multiple options.</p>
+                                
+                                <div class="options-grid">
+                                    <div class="option-card email" data-option="email">
+                                        <div class="option-icon">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <h5>Email</h5>
+                                        <p>Confirmation email with booking details</p>
+                                    </div>
+                                    <div class="option-card whatsapp" data-option="whatsapp">
+                                        <div class="option-icon">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </div>
+                                        <h5>WhatsApp</h5>
+                                        <p>Instant message with booking details</p>
+                                    </div>
+                                    <div class="option-card sms" data-option="sms">
+                                        <div class="option-icon">
+                                            <i class="fas fa-sms"></i>
+                                        </div>
+                                        <h5>SMS</h5>
+                                        <p>Text message with verification</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- WhatsApp Preview -->
+                            <div class="whatsapp-preview" id="whatsappPreview">
+                                <div class="whatsapp-header">
+                                    <div class="whatsapp-icon">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <h4>WhatsApp Preview</h4>
+                                        <p>This is how your booking confirmation will look</p>
+                                    </div>
+                                </div>
+                                <div class="whatsapp-message">
+                                    <p><strong>Run Whisperers Cricket Academy</strong></p>
+                                    <p>Hello [Name],</p>
+                                    <p>Your cricket training booking has been confirmed!</p>
+                                    <p><strong>Booking ID:</strong> RW2025001</p>
+                                    <p><strong>Program:</strong> Intermediate Training</p>
+                                    <p><strong>Date:</strong> June 15, 2025</p>
+                                    <p><strong>Time:</strong> 10:00 AM</p>
+                                    <p><strong>Coach:</strong> David Muller</p>
+                                    <p>We look forward to seeing you at training!</p>
+                                </div>
+                            </div>
+                            
+                            <!-- SMS Verification -->
+                            <div class="sms-verification" id="smsVerification">
+                                <h4>SMS Verification</h4>
+                                <p>We'll send a 6-digit verification code to your phone number to confirm your booking.</p>
+                                <div class="verification-code">
+                                    <input type="text" class="code-input" maxlength="1" data-index="1">
+                                    <input type="text" class="code-input" maxlength="1" data-index="2">
+                                    <input type="text" class="code-input" maxlength="1" data-index="3">
+                                    <input type="text" class="code-input" maxlength="1" data-index="4">
+                                    <input type="text" class="code-input" maxlength="1" data-index="5">
+                                    <input type="text" class="code-input" maxlength="1" data-index="6">
+                                </div>
+                                <p class="form-help" style="text-align: center;">Enter the 6-digit code sent to your phone</p>
+                                <button class="btn btn-sms btn-full" id="verifyCode" style="margin-top: 1rem;">Verify Code</button>
+                                <button class="btn btn-secondary btn-full" id="resendCode" style="margin-top: 0.5rem;">Resend Code</button>
+                            </div>
+                            
                             <div class="wizard-actions">
                                 <button class="btn btn-secondary prev-step" data-prev="3">Previous</button>
-                                <button class="btn btn-primary next-step" data-next="5">Next: Payment</button>
+                                <button class="btn btn-primary" id="proceedToConfirmation">Proceed to Confirmation</button>
                             </div>
                         </div>
                         
-                        <!-- Step 5: Payment -->
-                        <div class="wizard-content" data-step="5">
-                            <h3>Payment Information</h3>
-                            <p>Complete your booking by providing payment details.</p>
+                        <!-- Step 5: Confirmation -->
+                        <div class="wizard-content" data-step="5" id="wizardStep5">
+                            <h3>Booking Confirmation</h3>
+                            <p>Review your booking details and submit your reservation.</p>
                             
-                            <div class="booking-summary">
-                                <h4>Booking Summary</h4>
+                            <div class="booking-summary" id="finalBookingSummary">
+                                <div class="summary-header">
+                                    <h4 class="summary-title">Booking Summary</h4>
+                                    <button class="summary-refresh" id="refreshSummary">
+                                        <i class="fas fa-redo"></i> Refresh
+                                    </button>
+                                </div>
                                 <div class="summary-item">
                                     <span>Program:</span>
                                     <span id="summaryProgram">Intermediate</span>
@@ -1771,7 +2408,7 @@
                                 </div>
                                 <div class="summary-item">
                                     <span>Base Price:</span>
-                                    <span>N$ 1,200</span>
+                                    <span id="summaryBasePrice">N$ 1,200</span>
                                 </div>
                                 <div class="summary-item">
                                     <span>Registration Fee:</span>
@@ -1779,51 +2416,27 @@
                                 </div>
                                 <div class="summary-item summary-total">
                                     <span>Total Amount:</span>
-                                    <span>N$ 1,400</span>
+                                    <span id="summaryTotal">N$ 1,400</span>
                                 </div>
-                            </div>
-                            
-                            <h4 style="margin-top: 3rem;">Select Payment Method</h4>
-                            <div class="payment-methods">
-                                <div class="payment-method" data-method="card">
-                                    <div class="payment-icon">
-                                        <i class="far fa-credit-card"></i>
-                                    </div>
-                                    <div>Credit/Debit Card</div>
-                                </div>
-                                <div class="payment-method" data-method="bank">
-                                    <div class="payment-icon">
-                                        <i class="fas fa-university"></i>
-                                    </div>
-                                    <div>Bank Transfer</div>
-                                </div>
-                                <div class="payment-method" data-method="cash">
-                                    <div class="payment-icon">
-                                        <i class="fas fa-money-bill-wave"></i>
-                                    </div>
-                                    <div>Cash Payment</div>
-                                </div>
-                                <div class="payment-method" data-method="eft">
-                                    <div class="payment-icon">
-                                        <i class="fas fa-exchange-alt"></i>
-                                    </div>
-                                    <div>EFT</div>
-                                </div>
-                            </div>
-                            
-                            <div id="paymentDetails" style="margin-top: 2rem;">
-                                <!-- Payment details will be shown based on selection -->
                             </div>
                             
                             <div class="form-group" style="margin-top: 2rem;">
                                 <label class="form-label">
-                                    <input type="checkbox" required> I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> *
+                                    <input type="checkbox" id="termsCheckbox" required> 
+                                    I agree to the <a href="#" style="color: var(--color-cricket-green);">Terms & Conditions</a> and <a href="#" style="color: var(--color-cricket-green);">Privacy Policy</a> *
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="checkbox" id="newsletterCheckbox"> 
+                                    Subscribe to our newsletter for updates, special offers, and cricket tips
                                 </label>
                             </div>
                             
                             <div class="wizard-actions">
                                 <button class="btn btn-secondary prev-step" data-prev="4">Previous</button>
-                                <button class="btn btn-primary" id="completeBooking">Complete Booking</button>
+                                <button class="btn btn-primary" id="submitBooking">Submit Booking</button>
                             </div>
                         </div>
                     </div>
@@ -1831,208 +2444,28 @@
                 
                 <!-- Camping Tab -->
                 <div class="tab-content" id="camping-tab">
-                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
-                        <h2>Holiday Camping Packages</h2>
-                        <p>Experience cricket and outdoor adventure with our holiday camping packages.</p>
-                        <div class="divider divider-camping" style="margin: 1rem 0;"></div>
-                    </div>
-                    
-                    <div class="camping-packages">
-                        <div class="camping-card">
-                            <div class="camping-image">
-                                <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Weekend Camp">
-                            </div>
-                            <div class="camping-content">
-                                <div class="camping-duration">3 Days / 2 Nights</div>
-                                <h3>Weekend Cricket Camp</h3>
-                                <p>Perfect for beginners and intermediate players looking for a short cricket getaway.</p>
-                                <div class="camping-features">
-                                    <div class="feature-item">
-                                        <i class="fas fa-users"></i>
-                                        <span>Group size: 15-20 players</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-utensils"></i>
-                                        <span>All meals included</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-campground"></i>
-                                        <span>Tented accommodation</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-baseball-ball"></i>
-                                        <span>Daily training sessions</span>
-                                    </div>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
-                                    <div>
-                                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-camping-brown);">N$ 1,500</div>
-                                        <div style="font-size: 0.9rem; color: var(--color-gray);">per person</div>
-                                    </div>
-                                    <button class="btn btn-camping book-camping" data-package="weekend">Book Now</button>
-                                </div>
-                            </div>
+                    <div style="text-align: center; padding: 3rem;">
+                        <div style="font-size: 4rem; color: var(--color-camping-brown); margin-bottom: 1rem;">
+                            <i class="fas fa-campground"></i>
                         </div>
-                        
-                        <div class="camping-card">
-                            <div class="camping-image">
-                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Weekly Camp">
-                            </div>
-                            <div class="camping-content">
-                                <div class="camping-duration">7 Days / 6 Nights</div>
-                                <h3>Weekly Intensive Camp</h3>
-                                <p>Comprehensive cricket development program with intensive training and matches.</p>
-                                <div class="camping-features">
-                                    <div class="feature-item">
-                                        <i class="fas fa-users"></i>
-                                        <span>Group size: 10-15 players</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-utensils"></i>
-                                        <span>All meals + snacks</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-bed"></i>
-                                        <span>Chalet accommodation</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>Tournament matches</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-video"></i>
-                                        <span>Video analysis sessions</span>
-                                    </div>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
-                                    <div>
-                                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-camping-brown);">N$ 3,500</div>
-                                        <div style="font-size: 0.9rem; color: var(--color-gray);">per person</div>
-                                    </div>
-                                    <button class="btn btn-camping book-camping" data-package="weekly">Book Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="camping-card">
-                            <div class="camping-image">
-                                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Family Camp">
-                            </div>
-                            <div class="camping-content">
-                                <div class="camping-duration">4 Days / 3 Nights</div>
-                                <h3>Family Cricket Camp</h3>
-                                <p>Perfect for families wanting to enjoy cricket together in a beautiful outdoor setting.</p>
-                                <div class="camping-features">
-                                    <div class="feature-item">
-                                        <i class="fas fa-home"></i>
-                                        <span>Family chalets available</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-child"></i>
-                                        <span>Kids' activities included</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-fire"></i>
-                                        <span>Campfire evenings</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-swimming-pool"></i>
-                                        <span>Swimming pool access</span>
-                                    </div>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
-                                    <div>
-                                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-camping-brown);">N$ 2,500</div>
-                                        <div style="font-size: 0.9rem; color: var(--color-gray);">per family (2 adults, 2 kids)</div>
-                                    </div>
-                                    <button class="btn btn-camping book-camping" data-package="family">Book Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="progress-tracker">
-                        <h4>Camping Availability - June 2025</h4>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 65%;"></div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--color-gray);">
-                            <span>Available: 35 slots</span>
-                            <span>Booked: 65 slots</span>
+                        <h3>Holiday Camping Packages</h3>
+                        <p>Our camping packages are currently being updated. Please check back soon or contact us directly for booking information.</p>
+                        <div style="margin-top: 2rem;">
+                            <a href="contacts.html" class="btn btn-camping">Contact Us for Camping Info</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Packages Tab -->
                 <div class="tab-content" id="packages-tab">
-                    <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
-                        <h2>Academy Membership Packages</h2>
-                        <p>Join our academy with comprehensive packages designed for all skill levels.</p>
-                        <div class="divider" style="margin: 1rem 0;"></div>
-                    </div>
-                    
-                    <div class="programs-grid">
-                        <div class="program-card">
-                            <div class="program-badge">NEW PLAYERS</div>
-                            <div class="program-header">
-                                <h3>Starter Package</h3>
-                                <div class="program-price">N$ 2,500</div>
-                                <div class="program-period">3 months</div>
-                            </div>
-                            <div class="program-content">
-                                <ul class="program-features">
-                                    <li><i class="fas fa-check"></i> 36 Training sessions</li>
-                                    <li><i class="fas fa-check"></i> Basic equipment kit</li>
-                                    <li><i class="fas fa-check"></i> Academy jersey</li>
-                                    <li><i class="fas fa-check"></i> Skill assessment</li>
-                                    <li><i class="fas fa-check"></i> Monthly progress report</li>
-                                    <li><i class="fas fa-check"></i> Access to facilities</li>
-                                </ul>
-                                <button class="btn btn-primary btn-full book-package" data-package="starter">Book Package</button>
-                            </div>
+                    <div style="text-align: center; padding: 3rem;">
+                        <div style="font-size: 4rem; color: var(--color-cricket-gold); margin-bottom: 1rem;">
+                            <i class="fas fa-trophy"></i>
                         </div>
-                        
-                        <div class="program-card popular">
-                            <div class="program-badge">BEST VALUE</div>
-                            <div class="program-header">
-                                <h3>Pro Package</h3>
-                                <div class="program-price">N$ 4,500</div>
-                                <div class="program-period">6 months</div>
-                            </div>
-                            <div class="program-content">
-                                <ul class="program-features">
-                                    <li><i class="fas fa-check"></i> 72 Training sessions</li>
-                                    <li><i class="fas fa-check"></i> Full equipment kit</li>
-                                    <li><i class="fas fa-check"></i> Home & away jerseys</li>
-                                    <li><i class="fas fa-check"></i> Bi-weekly video analysis</li>
-                                    <li><i class="fas fa-check"></i> Fitness program</li>
-                                    <li><i class="fas fa-check"></i> Tournament entry fees</li>
-                                    <li><i class="fas fa-check"></i> Nutrition consultation</li>
-                                </ul>
-                                <button class="btn btn-primary btn-full book-package" data-package="pro">Book Package</button>
-                            </div>
-                        </div>
-                        
-                        <div class="program-card">
-                            <div class="program-badge">ELITE</div>
-                            <div class="program-header">
-                                <h3>Elite Package</h3>
-                                <div class="program-price">N$ 8,000</div>
-                                <div class="program-period">12 months</div>
-                            </div>
-                            <div class="program-content">
-                                <ul class="program-features">
-                                    <li><i class="fas fa-check"></i> 144 Training sessions</li>
-                                    <li><i class="fas fa-check"></i> Professional equipment</li>
-                                    <li><i class="fas fa-check"></i> Full kit + training gear</li>
-                                    <li><i class="fas fa-check"></i> Weekly video analysis</li>
-                                    <li><i class="fas fa-check"></i> Personal fitness coach</li>
-                                    <li><i class="fas fa-check"></i> All tournament entries</li>
-                                    <li><i class="fas fa-check"></i> International tour discount</li>
-                                    <li><i class="fas fa-check"></i> Priority booking</li>
-                                </ul>
-                                <button class="btn btn-primary btn-full book-package" data-package="elite">Book Package</button>
-                            </div>
+                        <h3>Academy Membership Packages</h3>
+                        <p>Our academy packages are currently being updated. Please check back soon or contact us directly for package information.</p>
+                        <div style="margin-top: 2rem;">
+                            <a href="contacts.html" class="btn btn-primary">Contact Us for Package Info</a>
                         </div>
                     </div>
                 </div>
@@ -2041,7 +2474,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="section-alt">
+    <section class="section-alt" id="faqSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Booking FAQs</h2>
@@ -2050,7 +2483,7 @@
             </div>
             
             <div class="faq-grid">
-                <div class="faq-item">
+                <div class="faq-item" id="faq1">
                     <div class="faq-question">
                         What is the cancellation policy?
                         <i class="fas fa-chevron-down"></i>
@@ -2060,7 +2493,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq2">
                     <div class="faq-question">
                         What equipment do I need?
                         <i class="fas fa-chevron-down"></i>
@@ -2070,7 +2503,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq3">
                     <div class="faq-question">
                         Can I upgrade my package?
                         <i class="fas fa-chevron-down"></i>
@@ -2080,7 +2513,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq4">
                     <div class="faq-question">
                         Are there discounts for siblings?
                         <i class="fas fa-chevron-down"></i>
@@ -2090,7 +2523,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq5">
                     <div class="faq-question">
                         What is included in camping packages?
                         <i class="fas fa-chevron-down"></i>
@@ -2100,7 +2533,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq6">
                     <div class="faq-question">
                         How do I reschedule a session?
                         <i class="fas fa-chevron-down"></i>
@@ -2114,13 +2547,19 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="ctaSection">
         <div class="container">
             <h2>Ready to Start Your Cricket Journey?</h2>
             <p>Book your training session or camping adventure today and join Namibia's premier cricket academy.</p>
-            <div style="margin-top: 2rem;">
-                <a href="#training-tab" class="btn btn-primary btn-large">Book Training Now</a>
-                <a href="contacts.html" class="btn btn-secondary btn-large">Contact Booking Office</a>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#training-tab" class="btn btn-primary btn-large">
+                    <i class="fas fa-baseball-ball"></i>
+                    Book Training Now
+                </a>
+                <a href="contacts.html" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone-alt"></i>
+                    Contact Booking Office
+                </a>
             </div>
         </div>
     </section>
@@ -2131,12 +2570,8 @@
             <div class="footer-content">
                 <div class="footer-logo-section">
                     <a href="index.html" class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-baseball-ball"></i>
-                        </div>
                         <div class="logo-text">
                             <span class="logo-main">RUN WHISPERERS</span>
-                            <span class="logo-sub">Cricket • Academy • Community</span>
                         </div>
                     </a>
                     <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
@@ -2168,7 +2603,7 @@
                         <li><a href="#camping-tab">Holiday Camping</a></li>
                         <li><a href="#packages-tab">Academy Packages</a></li>
                         <li><a href="events.html">Event Registration</a></li>
-                        <li><a href="#faq">Booking FAQs</a></li>
+                        <li><a href="#faqSection">Booking FAQs</a></li>
                         <li><a href="#">Payment Methods</a></li>
                     </ul>
                 </div>
@@ -2196,7 +2631,7 @@
                     
                     <div class="newsletter">
                         <h4>Get Booking Updates</h4>
-                        <form class="newsletter-form">
+                        <form class="newsletter-form" id="footerNewsletter">
                             <input type="email" placeholder="Your email address" required>
                             <button type="submit" class="btn btn-small">Subscribe</button>
                         </form>
@@ -2219,6 +2654,29 @@
 
     <!-- JavaScript -->
     <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Page load animation sequence
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize wizard
+            updateWizard(1);
+            
+            // Initialize calendar
+            renderCalendar();
+            
+            // Set initial date display
+            const today = new Date();
+            const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+            document.getElementById('selectedDateDisplay').textContent = 
+                nextWeek.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+        });
+
         // Mobile Navigation Toggle
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
@@ -2274,6 +2732,14 @@
         const wizardSteps = document.querySelectorAll('.wizard-step');
         const wizardContents = document.querySelectorAll('.wizard-content');
         let currentStep = 1;
+        let selectedOptions = {
+            program: '',
+            programPrice: 0,
+            date: '',
+            time: '',
+            coach: '',
+            communication: []
+        };
         
         function updateWizard(step) {
             // Update wizard steps
@@ -2298,6 +2764,11 @@
             });
             
             currentStep = step;
+            
+            // Update summary if we're on step 5
+            if (step === 5) {
+                updateBookingSummary();
+            }
         }
         
         // Next step buttons
@@ -2305,7 +2776,6 @@
             btn.addEventListener('click', () => {
                 const nextStep = parseInt(btn.dataset.next);
                 updateWizard(nextStep);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
         
@@ -2314,7 +2784,6 @@
             btn.addEventListener('click', () => {
                 const prevStep = parseInt(btn.dataset.prev);
                 updateWizard(prevStep);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
         
@@ -2322,9 +2791,26 @@
         document.querySelectorAll('.select-program').forEach(btn => {
             btn.addEventListener('click', () => {
                 const program = btn.dataset.program;
-                document.getElementById('summaryProgram').textContent = 
-                    program.charAt(0).toUpperCase() + program.slice(1);
-                updateWizard(2);
+                const price = parseInt(btn.dataset.price);
+                
+                selectedOptions.program = program;
+                selectedOptions.programPrice = price;
+                
+                // Update button states
+                document.querySelectorAll('.select-program').forEach(b => {
+                    b.textContent = 'Select Program';
+                    b.classList.remove('btn-secondary');
+                    b.classList.add('btn-primary');
+                });
+                
+                btn.textContent = 'Selected ✓';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                
+                // Proceed to next step after short delay
+                setTimeout(() => {
+                    updateWizard(2);
+                }, 500);
             });
         });
 
@@ -2390,8 +2876,11 @@
                         });
                         dayElement.classList.add('selected');
                         
-                        // Update selected date display
+                        // Update selected date
                         const selectedDate = new Date(year, month, day);
+                        selectedOptions.date = selectedDate.toISOString().split('T')[0];
+                        
+                        // Update selected date display
                         document.getElementById('selectedDateDisplay').textContent = 
                             selectedDate.toLocaleDateString('en-US', { 
                                 weekday: 'long', 
@@ -2429,11 +2918,13 @@
                     });
                     slot.classList.add('selected');
                     
-                    // Update booking summary
-                    const time = slot.dataset.time;
+                    // Update selected time
+                    selectedOptions.time = slot.dataset.time;
+                    
+                    // Update booking summary preview
                     const selectedDate = document.getElementById('selectedDateDisplay').textContent;
                     document.getElementById('summarySchedule').textContent = 
-                        `${selectedDate.split(',')[1].trim()} - ${time}`;
+                        `${selectedDate.split(',')[1].trim()} - ${slot.dataset.time}`;
                 }
             });
         });
@@ -2446,158 +2937,327 @@
                 });
                 card.classList.add('selected');
                 
-                // Update booking summary
+                // Update selected coach
                 const coachName = card.querySelector('h4').textContent;
+                selectedOptions.coach = coachName;
                 document.getElementById('summaryCoach').textContent = coachName;
             });
         });
 
-        // Payment method selection
-        document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', () => {
-                document.querySelectorAll('.payment-method').forEach(m => {
-                    m.classList.remove('selected');
-                });
-                method.classList.add('selected');
+        // Communication options selection
+        const communicationOptions = document.querySelectorAll('.option-card');
+        communicationOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('selected');
+                const optionType = option.dataset.option;
                 
-                // Show payment details
-                const paymentType = method.dataset.method;
-                const detailsDiv = document.getElementById('paymentDetails');
-                
-                let detailsHTML = '';
-                switch(paymentType) {
-                    case 'card':
-                        detailsHTML = `
-                            <h4>Card Payment Details</h4>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label class="form-label">Card Number *</label>
-                                    <input type="text" class="form-control" placeholder="1234 5678 9012 3456" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Card Holder Name *</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Expiry Date *</label>
-                                    <input type="text" class="form-control" placeholder="MM/YY" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">CVV *</label>
-                                    <input type="text" class="form-control" placeholder="123" required>
-                                </div>
-                            </div>
-                        `;
-                        break;
-                    case 'bank':
-                        detailsHTML = `
-                            <h4>Bank Transfer Details</h4>
-                            <div style="background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius);">
-                                <p><strong>Bank:</strong> Standard Bank Namibia</p>
-                                <p><strong>Account Name:</strong> Run Whisperers Cricket Academy</p>
-                                <p><strong>Account Number:</strong> 1234567890</p>
-                                <p><strong>Branch Code:</strong> 123456</p>
-                                <p><strong>Reference:</strong> Use your name and booking ID</p>
-                            </div>
-                        `;
-                        break;
-                    case 'cash':
-                        detailsHTML = `
-                            <h4>Cash Payment</h4>
-                            <div style="background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius);">
-                                <p>Please visit our office to complete cash payment:</p>
-                                <p><strong>Address:</strong> Windhoek Sports Fields, Namibia</p>
-                                <p><strong>Hours:</strong> Mon-Fri 8am-6pm, Sat 9am-4pm</p>
-                                <p>Your booking will be confirmed once payment is received.</p>
-                            </div>
-                        `;
-                        break;
-                    case 'eft':
-                        detailsHTML = `
-                            <h4>Electronic Funds Transfer</h4>
-                            <div style="background: var(--color-off-white); padding: 1.5rem; border-radius: var(--border-radius);">
-                                <p><strong>Bank:</strong> Bank Windhoek</p>
-                                <p><strong>Account Name:</strong> Run Whisperers CC</p>
-                                <p><strong>Account Number:</strong> 9876543210</p>
-                                <p><strong>Branch Code:</strong> 987654</p>
-                                <p><strong>SWIFT Code:</strong> BWLINANX</p>
-                                <p>Email proof of payment to: payments@runwhispererscricket.com</p>
-                            </div>
-                        `;
-                        break;
+                if (option.classList.contains('selected')) {
+                    if (!selectedOptions.communication.includes(optionType)) {
+                        selectedOptions.communication.push(optionType);
+                    }
+                } else {
+                    selectedOptions.communication = selectedOptions.communication.filter(
+                        opt => opt !== optionType
+                    );
                 }
                 
-                detailsDiv.innerHTML = detailsHTML;
+                // Show/hide previews based on selection
+                if (optionType === 'whatsapp') {
+                    document.getElementById('whatsappPreview').classList.toggle('active');
+                }
+                
+                if (optionType === 'sms') {
+                    document.getElementById('smsVerification').classList.toggle('active');
+                }
             });
         });
 
-        // Camping booking
-        document.querySelectorAll('.book-camping').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const packageType = btn.dataset.package;
-                alert(`Booking ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} camping package. Please contact our booking office for details.`);
+        // Code input navigation
+        document.querySelectorAll('.code-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                const index = parseInt(e.target.dataset.index);
+                
+                if (value.length === 1) {
+                    e.target.classList.add('filled');
+                    
+                    // Move to next input
+                    if (index < 6) {
+                        document.querySelector(`.code-input[data-index="${index + 1}"]`).focus();
+                    }
+                } else {
+                    e.target.classList.remove('filled');
+                }
+            });
+            
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '') {
+                    e.target.classList.remove('filled');
+                    
+                    // Move to previous input
+                    const index = parseInt(e.target.dataset.index);
+                    if (index > 1) {
+                        document.querySelector(`.code-input[data-index="${index - 1}"]`).focus();
+                    }
+                }
             });
         });
 
-        // Package booking
-        document.querySelectorAll('.book-package').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const packageType = btn.dataset.package;
-                alert(`Booking ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} academy package. Redirecting to booking form...`);
-                // In real implementation, this would redirect to booking form
+        // Verify SMS code
+        document.getElementById('verifyCode').addEventListener('click', () => {
+            const codeInputs = document.querySelectorAll('.code-input');
+            let code = '';
+            codeInputs.forEach(input => {
+                code += input.value;
             });
+            
+            if (code.length === 6) {
+                showNotification('SMS verified successfully!', 'success');
+                codeInputs.forEach(input => {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                });
+            } else {
+                showNotification('Please enter the complete 6-digit code', 'error');
+                codeInputs.forEach(input => {
+                    input.classList.add('error');
+                });
+            }
         });
 
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('active');
-            });
+        // Resend SMS code
+        document.getElementById('resendCode').addEventListener('click', () => {
+            showNotification('New verification code sent to your phone', 'success');
         });
 
-        // Complete Booking
-        document.getElementById('completeBooking').addEventListener('click', () => {
-            // Validate form
+        // Proceed to confirmation
+        document.getElementById('proceedToConfirmation').addEventListener('click', () => {
             const form = document.getElementById('personalDetailsForm');
-            if (!form.checkValidity()) {
-                alert('Please fill in all required fields.');
+            
+            // Validate form
+            let isValid = true;
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    isValid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+            
+            // Validate communication options
+            if (selectedOptions.communication.length === 0) {
+                showNotification('Please select at least one communication method', 'error');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                updateWizard(5);
+            } else {
+                showNotification('Please fill in all required fields', 'error');
+            }
+        });
+
+        // Update booking summary
+        function updateBookingSummary() {
+            document.getElementById('summaryProgram').textContent = 
+                selectedOptions.program.charAt(0).toUpperCase() + selectedOptions.program.slice(1);
+            
+            document.getElementById('summaryBasePrice').textContent = 
+                `N$ ${selectedOptions.programPrice}`;
+            
+            const total = selectedOptions.programPrice + 200; // Add registration fee
+            document.getElementById('summaryTotal').textContent = `N$ ${total}`;
+        }
+
+        // Refresh summary
+        document.getElementById('refreshSummary').addEventListener('click', () => {
+            updateBookingSummary();
+            showNotification('Booking summary refreshed', 'success');
+        });
+
+        // Submit booking
+        document.getElementById('submitBooking').addEventListener('click', () => {
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            
+            if (!termsCheckbox.checked) {
+                showNotification('Please agree to the Terms & Conditions', 'error');
                 return;
             }
             
-            // Show success modal
-            const successModal = document.getElementById('successModal');
-            const bookingDetails = document.getElementById('bookingDetails');
+            // Show loader
+            document.getElementById('loader').classList.add('active');
             
-            // Populate booking details
-            bookingDetails.innerHTML = `
-                <p><strong>Program:</strong> ${document.getElementById('summaryProgram').textContent}</p>
-                <p><strong>Schedule:</strong> ${document.getElementById('summarySchedule').textContent}</p>
-                <p><strong>Coach:</strong> ${document.getElementById('summaryCoach').textContent}</p>
-                <p><strong>Total Amount:</strong> N$ 1,400</p>
-                <p><strong>Booking ID:</strong> RW${Date.now().toString().slice(-6)}</p>
-                <p>Confirmation email will be sent shortly.</p>
-            `;
-            
-            successModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            // Simulate API call
+            setTimeout(() => {
+                // Hide loader
+                document.getElementById('loader').classList.remove('active');
+                
+                // Generate booking ID
+                const bookingId = 'RW' + Date.now().toString().slice(-6);
+                
+                // Prepare booking details
+                const bookingDetails = `
+                    <p><strong>Booking ID:</strong> ${bookingId}</p>
+                    <p><strong>Program:</strong> ${selectedOptions.program.charAt(0).toUpperCase() + selectedOptions.program.slice(1)} Training</p>
+                    <p><strong>Date & Time:</strong> ${document.getElementById('summarySchedule').textContent}</p>
+                    <p><strong>Coach:</strong> ${selectedOptions.coach}</p>
+                    <p><strong>Total Amount:</strong> ${document.getElementById('summaryTotal').textContent}</p>
+                    <p><strong>Confirmation via:</strong> ${selectedOptions.communication.join(', ')}</p>
+                    <p style="margin-top: 1rem; font-style: italic;">Thank you for your booking! We'll contact you shortly.</p>
+                `;
+                
+                // Update confirmation modal
+                document.getElementById('bookingDetails').innerHTML = bookingDetails;
+                
+                // Show confirmation modal
+                document.getElementById('confirmationModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // If SMS is selected, show SMS verification modal instead
+                if (selectedOptions.communication.includes('sms')) {
+                    setTimeout(() => {
+                        document.getElementById('confirmationModal').classList.remove('active');
+                        document.getElementById('smsModal').classList.add('active');
+                    }, 100);
+                }
+            }, 2000);
         });
 
-        // Close success modal
-        document.getElementById('closeSuccessModal').addEventListener('click', () => {
-            document.getElementById('successModal').style.display = 'none';
+        // Close confirmation modal
+        document.getElementById('closeConfirmationModal').addEventListener('click', () => {
+            document.getElementById('confirmationModal').classList.remove('active');
             document.body.style.overflow = 'auto';
+            
             // Reset wizard
             updateWizard(1);
+            
+            // Reset form
+            document.getElementById('personalDetailsForm').reset();
+            
+            // Reset selections
+            selectedOptions = {
+                program: '',
+                programPrice: 0,
+                date: '',
+                time: '',
+                coach: '',
+                communication: []
+            };
+            
+            // Reset UI
+            document.querySelectorAll('.select-program').forEach(btn => {
+                btn.textContent = 'Select Program';
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-primary');
+            });
+            
+            document.querySelectorAll('.coach-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            document.getElementById('whatsappPreview').classList.remove('active');
+            document.getElementById('smsVerification').classList.remove('active');
         });
 
         // Close modal when clicking outside
-        document.getElementById('successModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('successModal')) {
-                document.getElementById('successModal').style.display = 'none';
+        document.getElementById('confirmationModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('confirmationModal')) {
+                document.getElementById('confirmationModal').classList.remove('active');
                 document.body.style.overflow = 'auto';
-                updateWizard(1);
             }
+        });
+
+        // Verify SMS code in modal
+        document.getElementById('verifySmsCode').addEventListener('click', () => {
+            const codeInputs = document.querySelectorAll('#smsModal .code-input');
+            let code = '';
+            codeInputs.forEach(input => {
+                code += input.value;
+            });
+            
+            if (code.length === 6) {
+                // Close SMS modal and show confirmation
+                document.getElementById('smsModal').classList.remove('active');
+                document.getElementById('confirmationModal').classList.add('active');
+                
+                // Send booking data to server (simulated)
+                sendBookingToServer();
+            } else {
+                showNotification('Please enter the complete 6-digit code', 'error');
+                codeInputs.forEach(input => {
+                    input.classList.add('error');
+                });
+            }
+        });
+
+        // Resend SMS code in modal
+        document.getElementById('resendSmsCode').addEventListener('click', () => {
+            showNotification('New verification code sent to your phone', 'success');
+        });
+
+        // Send booking data to server (simulated)
+        function sendBookingToServer() {
+            // In a real implementation, this would send data to your PHP backend
+            // For now, we'll simulate the process
+            
+            const formData = new FormData(document.getElementById('personalDetailsForm'));
+            const bookingData = {
+                ...selectedOptions,
+                personalDetails: Object.fromEntries(formData),
+                bookingId: 'RW' + Date.now().toString().slice(-6),
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Booking data to send to server:', bookingData);
+            
+            // Show success notification
+            showNotification('Booking confirmed and sent to server!', 'success');
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const toast = document.getElementById('notificationToast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            // Set content based on type
+            switch(type) {
+                case 'success':
+                    toastTitle.textContent = 'Success!';
+                    toastIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                    toast.className = 'notification-toast success';
+                    break;
+                case 'error':
+                    toastTitle.textContent = 'Error!';
+                    toastIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+                    toast.className = 'notification-toast error';
+                    break;
+                case 'warning':
+                    toastTitle.textContent = 'Warning!';
+                    toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+                    toast.className = 'notification-toast warning';
+                    break;
+            }
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+
+        // Close notification
+        document.getElementById('toastClose').addEventListener('click', () => {
+            document.getElementById('notificationToast').classList.remove('show');
         });
 
         // Header scroll effect
@@ -2607,24 +3267,29 @@
                 header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
             }
         });
 
         // Newsletter Form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
+        const footerNewsletter = document.getElementById('footerNewsletter');
+        if (footerNewsletter) {
+            footerNewsletter.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const email = this.querySelector('input[type="email"]').value;
-                alert(`Thank you for subscribing with ${email}! You'll receive booking updates and special offers.`);
+                showNotification(`Thank you for subscribing with ${email}!`, 'success');
                 this.reset();
             });
         }
 
-        // Initialize modal display
-        document.getElementById('successModal').style.display = 'none';
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
     </script>
 </body>
 </html>

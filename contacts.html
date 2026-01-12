@@ -9,8 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <style>
-        /* CSS Reset & Base Styles */
+        /* CSS Reset & Base Styles - MATCHING INDEX.HTML */
         * {
             margin: 0;
             padding: 0;
@@ -23,16 +28,17 @@
             --color-medium-green: #3e7a52;
             --color-light-green: #5a9c73;
             --color-cricket-gold: #d4af37;
+            --color-light-brown: #a67c52;
             --color-beige: #f5f1e8;
             --color-off-white: #f9f7f3;
             --color-black: #1a1a1a;
             --color-white: #ffffff;
             --color-gray: #6c757d;
-            --color-light-gray: #e9ecef;
             --color-red: #dc3545;
             --color-blue: #0d6efd;
             --color-success: #28a745;
             --color-warning: #ffc107;
+            --color-purple: #6f42c1;
             
             --font-heading: 'Montserrat', 'Poppins', sans-serif;
             --font-body: 'Poppins', sans-serif;
@@ -40,11 +46,14 @@
             --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
             --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-extra-large: 0 12px 40px rgba(0, 0, 0, 0.2);
             
             --border-radius: 8px;
             --border-radius-large: 16px;
+            --border-radius-extra-large: 24px;
             
             --transition: all 0.3s ease;
+            --transition-slow: all 0.8s ease;
         }
 
         html {
@@ -57,6 +66,12 @@
             background-color: var(--color-off-white);
             line-height: 1.6;
             overflow-x: hidden;
+            opacity: 0;
+        }
+
+        body.loaded {
+            opacity: 1;
+            transition: opacity 0.8s ease;
         }
 
         .container {
@@ -66,7 +81,7 @@
             padding: 0 20px;
         }
 
-        /* Typography */
+        /* Typography - MATCHING INDEX.HTML */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             font-weight: 800;
@@ -118,7 +133,7 @@
             border-radius: 2px;
         }
 
-        /* Buttons */
+        /* Buttons - MATCHING INDEX.HTML */
         .btn {
             display: inline-block;
             padding: 12px 28px;
@@ -156,6 +171,17 @@
             box-shadow: var(--shadow-medium);
         }
 
+        .btn-blue {
+            background: linear-gradient(135deg, var(--color-blue), #339af0);
+            color: var(--color-white);
+        }
+
+        .btn-blue:hover {
+            background: linear-gradient(135deg, #0b5ed7, #1c7ed6);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
         .btn-small {
             padding: 8px 20px;
             font-size: 0.9rem;
@@ -170,7 +196,7 @@
             width: 100%;
         }
 
-        /* WhatsApp Floating Button */
+        /* WhatsApp Floating Button - MATCHING INDEX.HTML */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -188,6 +214,13 @@
             z-index: 1000;
             transition: var(--transition);
             text-decoration: none;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .whatsapp-float.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .whatsapp-float:hover {
@@ -204,17 +237,54 @@
             transform: scale(1.2);
         }
 
-        /* Header & Navigation */
+        /* Scrolling Marquee - MATCHING INDEX.HTML */
+        .scrolling-marquee {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 0.8rem 0;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px; /* Account for fixed header */
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            padding: 0 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-cricket-gold);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Header & Navigation - MATCHING INDEX.HTML */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            transform: translateY(-100%);
+        }
+
+        .header.visible {
+            transform: translateY(0);
         }
 
         .navbar {
@@ -231,22 +301,26 @@
             color: var(--color-cricket-green);
         }
 
-        .logo-icon {
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
-            color: var(--color-white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 12px;
+        /* Logo Image Styling */
+        .logo-image {
+            height: 60px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .logo-image.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .logo-text {
             display: flex;
             flex-direction: column;
+            margin-left: 10px;
         }
 
         .logo-main {
@@ -254,46 +328,59 @@
             font-weight: 900;
             font-size: 1.4rem;
             line-height: 1.2;
+            color: var(--color-cricket-green);
         }
 
-        .logo-sub {
-            font-size: 0.75rem;
-            color: var(--color-gray);
-            letter-spacing: 0.5px;
-        }
-
+        /* Enhanced Navigation Menu with Boxes - MATCHING INDEX.HTML */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
+        }
+
+        .nav-menu li {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .nav-menu li.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .nav-menu a {
             text-decoration: none;
             color: var(--color-black);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: var(--transition);
             position: relative;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 110px;
+            text-align: center;
+            box-shadow: var(--shadow-small);
         }
 
         .nav-menu a:hover {
-            color: var(--color-cricket-green);
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--color-cricket-green);
         }
 
         .nav-menu a.active {
-            color: var(--color-cricket-green);
-            font-weight: 600;
-        }
-
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
             background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            font-weight: 600;
+            border-color: var(--color-cricket-green);
+            box-shadow: var(--shadow-medium);
         }
 
         .nav-toggle {
@@ -301,6 +388,10 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         .nav-toggle span {
@@ -311,15 +402,15 @@
             transition: var(--transition);
         }
 
-        /* Page Hero */
+        /* Page Hero - Enhanced */
         .page-hero {
             position: relative;
-            height: 50vh;
-            min-height: 400px;
+            height: 60vh;
+            min-height: 500px;
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 0;
         }
 
         .page-hero-background {
@@ -330,14 +421,31 @@
             height: 100%;
             z-index: -1;
             background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
-                        url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+                        url('./images/contact-hero.jpg');
             background-size: cover;
             background-position: center;
+            transform: scale(1.1);
+            opacity: 0;
+            transition: all 1.5s ease;
+        }
+
+        .page-hero-background.animate {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .page-hero-content {
             max-width: 800px;
             color: var(--color-white);
+            opacity: 0;
+            transform: translateY(50px);
+            width: 100%;
+        }
+
+        .page-hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease 0.5s;
         }
 
         .page-hero-title {
@@ -345,17 +453,38 @@
             color: var(--color-white);
             margin-bottom: 1.5rem;
             line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .page-hero-title.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .page-hero-title .highlight {
             color: var(--color-cricket-gold);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .page-hero-title .highlight.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .page-hero-subtitle {
             font-size: clamp(1.1rem, 2vw, 1.3rem);
             margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .page-hero-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .breadcrumb {
@@ -365,6 +494,13 @@
             margin-top: 2rem;
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .breadcrumb.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .breadcrumb a {
@@ -377,7 +513,7 @@
             text-decoration: underline;
         }
 
-        /* Contact Info Cards */
+        /* Contact Info Cards - Enhanced */
         .contact-info-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -388,29 +524,39 @@
         .contact-card {
             background: var(--color-white);
             padding: 2.5rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             text-align: center;
             box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            border: 1px solid rgba(26, 71, 42, 0.1);
             border-top: 4px solid var(--color-cricket-gold);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .contact-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .contact-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .contact-icon {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
             color: var(--color-white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow-medium);
         }
 
         .contact-card h3 {
@@ -436,15 +582,24 @@
             color: var(--color-cricket-green);
             width: 20px;
             flex-shrink: 0;
+            font-size: 1.1rem;
         }
 
-        /* Contact Form */
+        /* Contact Form - Enhanced */
         .contact-form-section {
             background: var(--color-white);
-            border-radius: var(--border-radius-large);
+            border-radius: var(--border-radius-extra-large);
             padding: 4rem;
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
             margin: 4rem 0;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .contact-form-section.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .form-header {
@@ -470,24 +625,26 @@
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--color-cricket-green);
         }
 
         .form-control {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid var(--color-light-gray);
+            border: 2px solid var(--color-off-white);
             border-radius: var(--border-radius);
             font-family: var(--font-body);
             font-size: 1rem;
             transition: var(--transition);
+            background-color: var(--color-off-white);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--color-cricket-green);
             box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+            background-color: var(--color-white);
         }
 
         textarea.form-control {
@@ -507,13 +664,15 @@
         }
 
         .form-success {
-            background: var(--color-success);
+            background: linear-gradient(135deg, var(--color-success), #34ce57);
             color: var(--color-white);
             padding: 1.5rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             margin-bottom: 2rem;
             display: none;
             text-align: center;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(40, 167, 69, 0.2);
         }
 
         .form-success.show {
@@ -522,13 +681,15 @@
         }
 
         .form-error-message {
-            background: var(--color-red);
+            background: linear-gradient(135deg, var(--color-red), #e05260);
             color: var(--color-white);
             padding: 1.5rem;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             margin-bottom: 2rem;
             display: none;
             text-align: center;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(220, 53, 69, 0.2);
         }
 
         .form-error-message.show {
@@ -557,14 +718,24 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            padding: 10px 15px;
+            background: var(--color-off-white);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .radio-option:hover {
+            background: var(--color-light-green);
+            color: var(--color-white);
         }
 
         .radio-option input[type="radio"] {
             width: 18px;
             height: 18px;
+            accent-color: var(--color-cricket-green);
         }
 
-        /* Departments Grid */
+        /* Departments Grid - Enhanced */
         .departments-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -574,46 +745,66 @@
 
         .department-card {
             background: var(--color-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
             text-align: center;
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .department-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .department-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .department-icon {
-            font-size: 2rem;
-            color: var(--color-cricket-green);
-            margin-bottom: 1rem;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-medium-green));
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow-medium);
         }
 
-        /* Map Section */
+        /* Map Section - Enhanced */
         .map-section {
-            height: 400px;
-            background: var(--color-light-gray);
-            border-radius: var(--border-radius-large);
+            height: 500px;
+            background: var(--color-off-white);
+            border-radius: var(--border-radius-extra-large);
             overflow: hidden;
-            margin: 3rem 0;
+            margin: 4rem 0;
             position: relative;
+            box-shadow: var(--shadow-extra-large);
         }
 
         .map-overlay {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 30px;
+            left: 30px;
             background: var(--color-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-large);
-            max-width: 300px;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-extra-large);
+            max-width: 350px;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            z-index: 2;
         }
 
-        /* FAQ Section */
+        /* FAQ Section - Enhanced */
         .faq-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -623,32 +814,52 @@
 
         .faq-item {
             background: var(--color-white);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             overflow: hidden;
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .faq-item.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .faq-question {
             padding: 1.5rem;
-            background: var(--color-cricket-green);
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
             color: var(--color-white);
             font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-medium-green));
         }
 
         .faq-answer {
-            padding: 1.5rem;
-            display: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
 
         .faq-item.active .faq-answer {
-            display: block;
+            max-height: 300px;
+            padding: 1.5rem;
         }
 
-        /* Business Hours */
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Business Hours - Enhanced */
         .hours-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -658,9 +869,17 @@
 
         .hours-card {
             background: var(--color-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-small);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hours-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hours-list {
@@ -671,14 +890,14 @@
             display: flex;
             justify-content: space-between;
             padding: 1rem 0;
-            border-bottom: 1px solid var(--color-light-gray);
+            border-bottom: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         .hours-list li:last-child {
             border-bottom: none;
         }
 
-        /* Social Media */
+        /* Social Media - Enhanced */
         .social-media-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -688,32 +907,41 @@
 
         .social-card {
             background: var(--color-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
             text-align: center;
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .social-card.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .social-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-extra-large);
         }
 
         .social-icon {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--color-white);
             margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow-medium);
         }
 
         .social-card.facebook .social-icon {
-            background-color: #1877F2;
+            background: linear-gradient(135deg, #1877F2, #0d5fd8);
         }
 
         .social-card.instagram .social-icon {
@@ -721,35 +949,70 @@
         }
 
         .social-card.youtube .social-icon {
-            background-color: #CD201F;
+            background: linear-gradient(135deg, #CD201F, #a01815);
         }
 
         .social-card.twitter .social-icon {
-            background-color: #1DA1F2;
+            background: linear-gradient(135deg, #1DA1F2, #0c85d0);
         }
 
-        /* Emergency Contact */
+        /* Emergency Contact - Enhanced */
         .emergency-contact {
             background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
             color: var(--color-white);
-            padding: 3rem;
-            border-radius: var(--border-radius-large);
+            padding: 4rem;
+            border-radius: var(--border-radius-extra-large);
             text-align: center;
-            margin: 3rem 0;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-extra-large);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .emergency-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./images/emergency-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .emergency-contact.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .emergency-contact h2 {
             color: var(--color-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-contact p {
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
         }
 
         .emergency-number {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 900;
             color: var(--color-cricket-gold);
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
-        /* Sections */
+        /* Sections - MATCHING INDEX.HTML */
         .section {
             padding: 5rem 0;
             background-color: var(--color-off-white);
@@ -761,31 +1024,96 @@
             background-color: var(--color-white);
         }
 
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 4rem 0;
+        .gsap-section {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gsap-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+
+        /* CTA Banner - MATCHING INDEX.HTML */
+        .cta-banner {
             background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            padding: 5rem 0;
             color: var(--color-white);
-            margin-top: 4rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta-section h2 {
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./images/cta-background.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .cta-banner.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-title {
             color: var(--color-white);
-            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+        .cta-text {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* Footer */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer - Updated with same background as index.html */
         .footer {
-            background-color: var(--color-cricket-green);
+            background: linear-gradient(rgba(29, 90, 61, 0.9), rgba(26, 71, 42, 0.95)), 
+                        url('./images/footer-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: var(--color-white);
             padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
         }
 
         .footer-content {
@@ -793,6 +1121,8 @@
             grid-template-columns: 2fr 1fr 1fr 2fr;
             gap: 3rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-logo-section {
@@ -808,8 +1138,15 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Footer Logo Image */
+        .footer-logo .logo-image {
+            height: 50px;
+            max-width: 160px;
+            filter: brightness(0) invert(1);
+        }
+
         .footer-description {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
@@ -823,18 +1160,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             color: var(--color-white);
             text-decoration: none;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-social .social-link:hover {
             background-color: var(--color-cricket-gold);
             transform: translateY(-3px);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-title {
@@ -851,8 +1190,9 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
+            height: 3px;
             background-color: var(--color-cricket-gold);
+            border-radius: 2px;
         }
 
         .footer-links ul {
@@ -864,15 +1204,18 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.95rem;
+            display: inline-block;
+            padding: 3px 0;
         }
 
         .footer-links a:hover {
             color: var(--color-white);
-            padding-left: 5px;
+            padding-left: 8px;
+            transform: translateX(5px);
         }
 
         .contact-info {
@@ -884,13 +1227,14 @@
             align-items: flex-start;
             margin-bottom: 1rem;
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-item i {
             margin-right: 10px;
             color: var(--color-cricket-gold);
             width: 20px;
+            font-size: 1.1rem;
         }
 
         .newsletter {
@@ -910,16 +1254,23 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: none;
             border-radius: var(--border-radius);
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             color: var(--color-white);
             font-family: var(--font-body);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .newsletter-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-bottom {
@@ -927,10 +1278,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-legal {
@@ -939,7 +1292,7 @@
         }
 
         .footer-legal a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -948,7 +1301,7 @@
             color: var(--color-white);
         }
 
-        /* Mobile Responsive Styles */
+        /* Mobile Responsive Styles - MATCHING INDEX.HTML */
         @media (max-width: 1024px) {
             .contact-info-cards,
             .departments-grid,
@@ -971,22 +1324,22 @@
         }
 
         @media (max-width: 768px) {
-            /* Navigation */
-            .nav-toggle {
-                display: flex;
-            }
-            
+            /* Navigation - MATCHING INDEX.HTML */
             .nav-menu {
                 position: fixed;
                 top: 80px;
                 left: -100%;
-                width: 100%;
+                width: 90%;
+                max-width: 400px;
                 flex-direction: column;
                 background-color: var(--color-white);
                 padding: 2rem;
-                box-shadow: var(--shadow-medium);
+                box-shadow: var(--shadow-extra-large);
                 transition: var(--transition);
                 z-index: 999;
+                border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+                border: 2px solid var(--color-cricket-green);
+                border-top: none;
             }
             
             .nav-menu.active {
@@ -994,7 +1347,45 @@
             }
             
             .nav-menu li {
-                margin-bottom: 1rem;
+                width: 100%;
+                margin-bottom: 0.8rem;
+                opacity: 1;
+                transform: none;
+            }
+            
+            .nav-menu a {
+                width: 100%;
+                min-width: auto;
+                padding: 14px 20px;
+                font-size: 1rem;
+                justify-content: flex-start;
+                border-radius: var(--border-radius);
+                background-color: var(--color-off-white);
+                border: 2px solid rgba(26, 71, 42, 0.15);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background-color: var(--color-cricket-green);
+                color: var(--color-white);
+                transform: translateX(5px);
+                border-color: var(--color-cricket-green);
+                padding-left: 25px;
+            }
+            
+            .nav-toggle {
+                display: flex;
+            }
+            
+            /* Logo adjustments for mobile */
+            .logo-image {
+                height: 50px;
+                max-width: 150px;
+            }
+            
+            .logo-text {
+                display: none;
             }
             
             /* Form */
@@ -1022,11 +1413,17 @@
                 gap: 1rem;
             }
             
+            /* Page Hero */
+            .page-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
             /* WhatsApp Button */
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
                 bottom: 20px;
                 right: 20px;
             }
@@ -1041,11 +1438,21 @@
             .footer-legal {
                 justify-content: center;
             }
-        }
-
-        @media (max-width: 480px) {
-            .contact-form-section {
-                padding: 1.5rem;
+            
+            /* CTA */
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            /* Map Section */
+            .map-section {
+                height: 400px;
             }
             
             .map-overlay {
@@ -1057,9 +1464,45 @@
             }
             
             .emergency-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Logo */
+            .logo-image {
+                height: 45px;
+                max-width: 130px;
+            }
+            
+            .footer-logo .logo-image {
+                height: 40px;
+                max-width: 120px;
+            }
+            
+            /* Sections */
+            .section {
+                padding: 3.5rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            /* Contact Form */
+            .contact-form-section {
+                padding: 1.5rem;
+            }
+            
+            .emergency-contact {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .emergency-number {
                 font-size: 2rem;
             }
             
+            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -1068,9 +1511,31 @@
                 flex-direction: column;
             }
             
-            .page-hero {
-                height: 40vh;
-                min-height: 300px;
+            .contact-icon,
+            .department-icon,
+            .social-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .page-hero-title {
+                font-size: 2rem;
+            }
+            
+            .page-hero-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .nav-menu a {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .radio-option {
+                padding: 8px 12px;
             }
         }
 
@@ -1097,6 +1562,18 @@
         .form-control.success {
             border-color: var(--color-success);
         }
+
+        /* Animation Classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition-slow);
+        }
+
+        .fade-in-up.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -1105,17 +1582,16 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Header Section -->
-    <header class="header">
+    <!-- Header Section - MATCHING INDEX.HTML -->
+    <header class="header" id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-baseball-ball"></i>
-                    </div>
+                    <!-- REAL LOGO - Same as index.html -->
+                    <img src="./images/logo.png" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
+                    <!-- Fallback text logo -->
                     <div class="logo-text">
                         <span class="logo-main">RUN WHISPERERS</span>
-                        <span class="logo-sub">Cricket • Academy • Community</span>
                     </div>
                 </a>
                 
@@ -1125,6 +1601,7 @@
                     <span></span>
                 </div>
                 
+                <!-- Enhanced Navigation with Boxes - MATCHING INDEX.HTML -->
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
@@ -1137,15 +1614,23 @@
         </div>
     </header>
 
+    <!-- Scrolling Marquee - MATCHING INDEX.HTML -->
+    <div class="scrolling-marquee">
+        <div class="marquee-content">
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+        </div>
+    </div>
+
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="page-hero-background"></div>
+        <div class="page-hero-background" id="pageHeroBackground"></div>
         
         <div class="container">
-            <div class="page-hero-content">
-                <h1 class="page-hero-title">Contact <span class="highlight">Us</span></h1>
-                <p class="page-hero-subtitle">Get in touch with Run Whisperers Cricket Academy for inquiries, bookings, and information about our programs and events.</p>
-                <div class="breadcrumb">
+            <div class="page-hero-content" id="pageHeroContent">
+                <h1 class="page-hero-title" id="pageHeroTitle">Contact <span class="highlight" id="pageHeroHighlight">Us</span></h1>
+                <p class="page-hero-subtitle" id="pageHeroSubtitle">Get in touch with Run Whisperers Cricket Academy for inquiries, bookings, and information about our programs and events.</p>
+                <div class="breadcrumb" id="breadcrumb">
                     <a href="index.html">Home</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Contacts</span>
@@ -1155,7 +1640,7 @@
     </section>
 
     <!-- Contact Information -->
-    <section class="section">
+    <section class="section gsap-section" id="contactInfoSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
@@ -1164,7 +1649,7 @@
             </div>
             
             <div class="contact-info-cards">
-                <div class="contact-card">
+                <div class="contact-card" id="contactCard1">
                     <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
@@ -1182,7 +1667,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-card">
+                <div class="contact-card" id="contactCard2">
                     <div class="contact-icon">
                         <i class="fas fa-phone-alt"></i>
                     </div>
@@ -1204,7 +1689,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-card">
+                <div class="contact-card" id="contactCard3">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -1230,7 +1715,7 @@
     </section>
 
     <!-- Contact Form -->
-    <section class="section-alt">
+    <section class="section-alt gsap-section" id="contactFormSection">
         <div class="container">
             <div class="contact-form-section">
                 <div class="form-header">
@@ -1336,7 +1821,7 @@
     </section>
 
     <!-- Departments -->
-    <section class="section">
+    <section class="section gsap-section" id="departmentsSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Contact by Department</h2>
@@ -1345,7 +1830,7 @@
             </div>
             
             <div class="departments-grid">
-                <div class="department-card">
+                <div class="department-card" id="department1">
                     <div class="department-icon">
                         <i class="fas fa-baseball-ball"></i>
                     </div>
@@ -1361,7 +1846,7 @@
                     </div>
                 </div>
                 
-                <div class="department-card">
+                <div class="department-card" id="department2">
                     <div class="department-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
@@ -1377,7 +1862,7 @@
                     </div>
                 </div>
                 
-                <div class="department-card">
+                <div class="department-card" id="department3">
                     <div class="department-icon">
                         <i class="fas fa-campground"></i>
                     </div>
@@ -1393,7 +1878,7 @@
                     </div>
                 </div>
                 
-                <div class="department-card">
+                <div class="department-card" id="department4">
                     <div class="department-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
@@ -1413,7 +1898,7 @@
     </section>
 
     <!-- Map & Location -->
-    <section class="section-alt">
+    <section class="section-alt gsap-section" id="mapSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Find Our Location</h2>
@@ -1427,17 +1912,18 @@
                     <p><i class="fas fa-map-marker-alt"></i> Windhoek Sports Fields, Namibia</p>
                     <p><i class="fas fa-phone"></i> +264 81 123 4567</p>
                     <p><i class="fas fa-clock"></i> Mon-Fri: 8am-6pm</p>
-                    <button class="btn btn-small btn-primary" onclick="getDirections()">
+                    <button class="btn btn-primary btn-small" onclick="getDirections()">
                         <i class="fas fa-directions"></i> Get Directions
                     </button>
                 </div>
-                <!-- Map would be integrated here -->
-                <div style="width: 100%; height: 100%; background: var(--color-light-gray); display: flex; align-items: center; justify-content: center;">
-                    <div style="text-align: center;">
-                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--color-gray); margin-bottom: 1rem;"></i>
-                        <p style="color: var(--color-gray);">Interactive map would be integrated here</p>
-                        <button class="btn btn-small btn-secondary" onclick="openGoogleMaps()">
-                            Open in Google Maps
+                <!-- Interactive Map Container -->
+                <div id="mapContainer" style="width: 100%; height: 100%; background: var(--color-off-white); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--color-cricket-green); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--color-cricket-green); margin-bottom: 0.5rem;">Our Location</h3>
+                        <p style="color: var(--color-gray); margin-bottom: 1.5rem;">Windhoek Sports Fields, Namibia</p>
+                        <button class="btn btn-secondary btn-small" onclick="openGoogleMaps()">
+                            <i class="fas fa-map-pin"></i> Open in Google Maps
                         </button>
                     </div>
                 </div>
@@ -1446,7 +1932,7 @@
     </section>
 
     <!-- Business Hours -->
-    <section class="section">
+    <section class="section gsap-section" id="hoursSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Business Hours</h2>
@@ -1455,7 +1941,7 @@
             </div>
             
             <div class="hours-grid">
-                <div class="hours-card">
+                <div class="hours-card" id="hoursCard1">
                     <h3>Academy Hours</h3>
                     <ul class="hours-list">
                         <li>
@@ -1477,7 +1963,7 @@
                     </ul>
                 </div>
                 
-                <div class="hours-card">
+                <div class="hours-card" id="hoursCard2">
                     <h3>Contact Center Hours</h3>
                     <ul class="hours-list">
                         <li>
@@ -1503,7 +1989,7 @@
     </section>
 
     <!-- Emergency Contact -->
-    <section class="section-alt">
+    <section class="section-alt gsap-section" id="emergencySection">
         <div class="container">
             <div class="emergency-contact">
                 <h2>Emergency Contact</h2>
@@ -1518,7 +2004,7 @@
     </section>
 
     <!-- Social Media -->
-    <section class="section">
+    <section class="section gsap-section" id="socialSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Connect on Social Media</h2>
@@ -1527,7 +2013,7 @@
             </div>
             
             <div class="social-media-grid">
-                <div class="social-card facebook">
+                <div class="social-card facebook" id="social1">
                     <div class="social-icon">
                         <i class="fab fa-facebook-f"></i>
                     </div>
@@ -1536,7 +2022,7 @@
                     <a href="#" class="btn btn-small" style="margin-top: 1rem;">Follow Us</a>
                 </div>
                 
-                <div class="social-card instagram">
+                <div class="social-card instagram" id="social2">
                     <div class="social-icon">
                         <i class="fab fa-instagram"></i>
                     </div>
@@ -1545,7 +2031,7 @@
                     <a href="#" class="btn btn-small" style="margin-top: 1rem;">Follow Us</a>
                 </div>
                 
-                <div class="social-card youtube">
+                <div class="social-card youtube" id="social3">
                     <div class="social-icon">
                         <i class="fab fa-youtube"></i>
                     </div>
@@ -1554,7 +2040,7 @@
                     <a href="#" class="btn btn-small" style="margin-top: 1rem;">Subscribe</a>
                 </div>
                 
-                <div class="social-card twitter">
+                <div class="social-card twitter" id="social4">
                     <div class="social-icon">
                         <i class="fab fa-twitter"></i>
                     </div>
@@ -1567,7 +2053,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section-alt">
+    <section class="section-alt gsap-section" id="faqSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Frequently Asked Questions</h2>
@@ -1576,7 +2062,7 @@
             </div>
             
             <div class="faq-grid">
-                <div class="faq-item">
+                <div class="faq-item" id="faq1">
                     <div class="faq-question">
                         What is the best way to contact the academy?
                         <i class="fas fa-chevron-down"></i>
@@ -1586,7 +2072,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq2">
                     <div class="faq-question">
                         How long does it take to get a response?
                         <i class="fas fa-chevron-down"></i>
@@ -1596,7 +2082,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq3">
                     <div class="faq-question">
                         Can I visit without an appointment?
                         <i class="fas fa-chevron-down"></i>
@@ -1606,7 +2092,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq4">
                     <div class="faq-question">
                         Do you have parking available?
                         <i class="fas fa-chevron-down"></i>
@@ -1619,30 +2105,30 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Call to Action Banner - MATCHING INDEX.HTML -->
+    <section class="cta-banner gsap-section" id="ctaSection">
         <div class="container">
-            <h2>Ready to Start Your Cricket Journey?</h2>
-            <p>Contact us today to learn more about our programs, book training sessions, or schedule a visit to our academy.</p>
-            <div style="margin-top: 2rem;">
-                <a href="#contactForm" class="btn btn-primary btn-large">Send Us a Message</a>
-                <a href="tel:+264811234567" class="btn btn-secondary btn-large">Call Us Now</a>
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Start Your Cricket Journey?</h2>
+                <p class="cta-text">Contact us today to learn more about our programs, book training sessions, or schedule a visit to our academy.</p>
+                <div class="cta-buttons">
+                    <a href="#contactForm" class="btn btn-primary btn-large">Send Us a Message</a>
+                    <a href="tel:+264811234567" class="btn btn-blue btn-large">Call Us Now</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - MATCHING INDEX.HTML -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-section">
                     <a href="index.html" class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-baseball-ball"></i>
-                        </div>
+                        <!-- REAL LOGO - Same logo as header but white version -->
+                        <img src="./images/logo.png" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
                         <div class="logo-text">
                             <span class="logo-main">RUN WHISPERERS</span>
-                            <span class="logo-sub">Cricket • Academy • Community</span>
                         </div>
                     </a>
                     <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
@@ -1702,7 +2188,7 @@
                     
                     <div class="newsletter">
                         <h4>Stay Updated</h4>
-                        <form class="newsletter-form">
+                        <form class="newsletter-form" id="footerNewsletter">
                             <input type="email" placeholder="Your email address" required>
                             <button type="submit" class="btn btn-small">Subscribe</button>
                         </form>
@@ -1725,13 +2211,61 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile Navigation Toggle
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Page load animation sequence - MATCHING INDEX.HTML
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate header elements individually
+            const logoImage = document.querySelector('.logo-image');
+            const navItems = document.querySelectorAll('.nav-menu li');
+            
+            // Animate logo image
+            setTimeout(() => {
+                logoImage.classList.add('animate');
+            }, 500);
+            
+            // Animate each navigation item with delay
+            navItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animate');
+                }, 700 + (index * 100));
+            });
+            
+            // Show header
+            setTimeout(() => {
+                document.getElementById('header').classList.add('visible');
+            }, 1500);
+            
+            // Animate page hero elements
+            setTimeout(() => {
+                document.getElementById('pageHeroBackground').classList.add('animate');
+                document.getElementById('pageHeroContent').classList.add('animate');
+                document.getElementById('pageHeroTitle').classList.add('animate');
+                document.getElementById('pageHeroHighlight').classList.add('animate');
+                document.getElementById('pageHeroSubtitle').classList.add('animate');
+                document.getElementById('breadcrumb').classList.add('animate');
+            }, 2000);
+            
+            // Show WhatsApp button
+            setTimeout(() => {
+                document.querySelector('.whatsapp-float').classList.add('visible');
+            }, 2800);
+            
+            // Show body
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1000);
+        });
+
+        // Mobile Navigation Toggle - MATCHING INDEX.HTML
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
         
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             
+            // Animate hamburger to X
             const spans = navToggle.querySelectorAll('span');
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -1744,6 +2278,7 @@
             }
         });
         
+        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -1753,7 +2288,7 @@
                 spans[2].style.transform = 'none';
             });
         });
-
+        
         // Form Validation and Submission
         const contactForm = document.getElementById('contactForm');
         const formSuccess = document.getElementById('formSuccess');
@@ -1857,39 +2392,20 @@
             submitBtn.disabled = true;
             
             try {
-                // Create FormData object
-                const formData = new FormData(contactForm);
+                // Simulate form submission (in real implementation, this would be a fetch request)
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 
-                // Add timestamp
-                formData.append('timestamp', new Date().toISOString());
+                // Show success message
+                formSuccess.classList.add('show');
                 
-                // Send form data using fetch API
-                const response = await fetch('submit_contact.php', {
-                    method: 'POST',
-                    body: formData
-                });
+                // Reset form
+                contactForm.reset();
                 
-                const result = await response.json();
+                // Scroll to success message
+                formSuccess.scrollIntoView({ behavior: 'smooth' });
                 
-                if (result.success) {
-                    // Show success message
-                    formSuccess.classList.add('show');
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Scroll to success message
-                    formSuccess.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Send confirmation email (in real implementation)
-                    // await sendConfirmationEmail(formData);
-                    
-                } else {
-                    // Show error message
-                    errorMessage.textContent = result.message || 'There was an error submitting your form. Please try again.';
-                    formError.classList.add('show');
-                    formError.scrollIntoView({ behavior: 'smooth' });
-                }
+                // Send confirmation email (simulated)
+                console.log('Form submitted successfully');
                 
             } catch (error) {
                 console.error('Form submission error:', error);
@@ -1952,22 +2468,22 @@
             }
         }
 
-        // Header scroll effect
+        // Header scroll effect - MATCHING INDEX.HTML
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
                 header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
             }
         });
-
+        
         // Newsletter Form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
+        const footerNewsletter = document.getElementById('footerNewsletter');
+        if (footerNewsletter) {
+            footerNewsletter.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const email = this.querySelector('input[type="email"]').value;
                 alert(`Thank you for subscribing with ${email}! You'll receive updates and news from our academy.`);
@@ -1994,10 +2510,104 @@
             }, 500);
         }
 
-        // Initialize form validation on page load
+        // Section animations with GSAP ScrollTrigger - MATCHING INDEX.HTML
+        const sections = document.querySelectorAll('.gsap-section');
+        
+        sections.forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top 80%',
+                onEnter: () => {
+                    section.classList.add('animated');
+                    
+                    // Animate section-specific elements with delays
+                    if (section.id === 'contactInfoSection') {
+                        const cards = ['contactCard1', 'contactCard2', 'contactCard3'];
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                document.getElementById(card).classList.add('animated');
+                            }, 200 + (index * 200));
+                        });
+                    }
+                    
+                    if (section.id === 'contactFormSection') {
+                        setTimeout(() => {
+                            document.querySelector('.contact-form-section').classList.add('animated');
+                        }, 300);
+                    }
+                    
+                    if (section.id === 'departmentsSection') {
+                        const departments = ['department1', 'department2', 'department3', 'department4'];
+                        departments.forEach((dept, index) => {
+                            setTimeout(() => {
+                                document.getElementById(dept).classList.add('animated');
+                            }, 100 + (index * 150));
+                        });
+                    }
+                    
+                    if (section.id === 'hoursSection') {
+                        const hours = ['hoursCard1', 'hoursCard2'];
+                        hours.forEach((hour, index) => {
+                            setTimeout(() => {
+                                document.getElementById(hour).classList.add('animated');
+                            }, 200 + (index * 200));
+                        });
+                    }
+                    
+                    if (section.id === 'emergencySection') {
+                        setTimeout(() => {
+                            document.getElementById('emergencySection').classList.add('animated');
+                        }, 300);
+                    }
+                    
+                    if (section.id === 'socialSection') {
+                        const socials = ['social1', 'social2', 'social3', 'social4'];
+                        socials.forEach((social, index) => {
+                            setTimeout(() => {
+                                document.getElementById(social).classList.add('animated');
+                            }, 100 + (index * 150));
+                        });
+                    }
+                    
+                    if (section.id === 'faqSection') {
+                        const faqs = ['faq1', 'faq2', 'faq3', 'faq4'];
+                        faqs.forEach((faq, index) => {
+                            setTimeout(() => {
+                                document.getElementById(faq).classList.add('animated');
+                            }, 100 + (index * 150));
+                        });
+                    }
+                    
+                    if (section.id === 'ctaSection') {
+                        setTimeout(() => {
+                            document.getElementById('ctaSection').classList.add('animate');
+                        }, 300);
+                    }
+                },
+                once: true
+            });
+        });
+
+        // Parallax effect for page hero background
+        gsap.to('.page-hero-background', {
+            y: '10%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.page-hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+        
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
-            // Add input masks if needed
-            // Initialize any additional form plugins here
+            // Check for URL hash
+            if (window.location.hash === '#contactForm') {
+                setTimeout(() => {
+                    document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' });
+                }, 1000);
+            }
         });
     </script>
 </body>

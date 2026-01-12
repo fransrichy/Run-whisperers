@@ -9,8 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <style>
-        /* CSS Reset & Base Styles */
+        /* CSS Reset & Base Styles - MATCHING INDEX.HTML */
         * {
             margin: 0;
             padding: 0;
@@ -23,12 +28,15 @@
             --color-medium-green: #3e7a52;
             --color-light-green: #5a9c73;
             --color-cricket-gold: #d4af37;
+            --color-light-brown: #a67c52;
             --color-beige: #f5f1e8;
             --color-off-white: #f9f7f3;
             --color-black: #1a1a1a;
             --color-white: #ffffff;
             --color-gray: #6c757d;
-            --color-light-gray: #e9ecef;
+            --color-blue: #0d6efd;
+            --color-orange: #fd7e14;
+            --color-purple: #6f42c1;
             
             --font-heading: 'Montserrat', 'Poppins', sans-serif;
             --font-body: 'Poppins', sans-serif;
@@ -36,12 +44,14 @@
             --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
             --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-extra-large: 0 12px 40px rgba(0, 0, 0, 0.2);
             
             --border-radius: 8px;
             --border-radius-large: 16px;
+            --border-radius-extra-large: 24px;
             
-            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s ease;
+            --transition-slow: all 0.8s ease;
         }
 
         html {
@@ -54,6 +64,12 @@
             background-color: var(--color-off-white);
             line-height: 1.6;
             overflow-x: hidden;
+            opacity: 0;
+        }
+
+        body.loaded {
+            opacity: 1;
+            transition: opacity 0.8s ease;
         }
 
         .container {
@@ -63,7 +79,7 @@
             padding: 0 20px;
         }
 
-        /* Typography */
+        /* Typography - MATCHING INDEX.HTML */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             font-weight: 800;
@@ -115,7 +131,7 @@
             border-radius: 2px;
         }
 
-        /* Buttons */
+        /* Buttons - MATCHING INDEX.HTML */
         .btn {
             display: inline-block;
             padding: 12px 28px;
@@ -153,6 +169,28 @@
             box-shadow: var(--shadow-medium);
         }
 
+        .btn-orange {
+            background: linear-gradient(135deg, var(--color-orange), #fd9843);
+            color: var(--color-white);
+        }
+
+        .btn-orange:hover {
+            background: linear-gradient(135deg, #e8590c, #fd7e14);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, var(--color-blue), #339af0);
+            color: var(--color-white);
+        }
+
+        .btn-blue:hover {
+            background: linear-gradient(135deg, #0b5ed7, #1c7ed6);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
         .btn-small {
             padding: 8px 20px;
             font-size: 0.9rem;
@@ -163,7 +201,7 @@
             font-size: 1.1rem;
         }
 
-        /* WhatsApp Floating Button */
+        /* WhatsApp Floating Button - MATCHING INDEX.HTML */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -181,6 +219,13 @@
             z-index: 1000;
             transition: var(--transition);
             text-decoration: none;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .whatsapp-float.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .whatsapp-float:hover {
@@ -189,25 +234,54 @@
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
         }
 
-        .whatsapp-float i {
-            transition: var(--transition);
+        /* Scrolling Marquee - MATCHING INDEX.HTML */
+        .scrolling-marquee {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 0.8rem 0;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px; /* Account for fixed header */
         }
 
-        .whatsapp-float:hover i {
-            transform: scale(1.2);
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
         }
 
-        /* Header & Navigation */
+        .marquee-content span {
+            padding: 0 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-cricket-gold);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Header & Navigation - MATCHING INDEX.HTML */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            transform: translateY(-100%);
+        }
+
+        .header.visible {
+            transform: translateY(0);
         }
 
         .navbar {
@@ -224,22 +298,26 @@
             color: var(--color-cricket-green);
         }
 
-        .logo-icon {
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
-            color: var(--color-white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-right: 12px;
+        /* Logo Image Styling */
+        .logo-image {
+            height: 60px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .logo-image.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .logo-text {
             display: flex;
             flex-direction: column;
+            margin-left: 10px;
         }
 
         .logo-main {
@@ -247,46 +325,59 @@
             font-weight: 900;
             font-size: 1.4rem;
             line-height: 1.2;
+            color: var(--color-cricket-green);
         }
 
-        .logo-sub {
-            font-size: 0.75rem;
-            color: var(--color-gray);
-            letter-spacing: 0.5px;
-        }
-
+        /* Enhanced Navigation Menu with Boxes - MATCHING INDEX.HTML */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
+        }
+
+        .nav-menu li {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .nav-menu li.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .nav-menu a {
             text-decoration: none;
             color: var(--color-black);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: var(--transition);
             position: relative;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 110px;
+            text-align: center;
+            box-shadow: var(--shadow-small);
         }
 
         .nav-menu a:hover {
-            color: var(--color-cricket-green);
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--color-cricket-green);
         }
 
         .nav-menu a.active {
-            color: var(--color-cricket-green);
-            font-weight: 600;
-        }
-
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
             background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            font-weight: 600;
+            border-color: var(--color-cricket-green);
+            box-shadow: var(--shadow-medium);
         }
 
         .nav-toggle {
@@ -294,6 +385,10 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         .nav-toggle span {
@@ -304,15 +399,15 @@
             transition: var(--transition);
         }
 
-        /* Page Hero */
+        /* Page Hero - Enhanced */
         .page-hero {
             position: relative;
-            height: 60vh;
+            height: 70vh;
             min-height: 500px;
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 0;
         }
 
         .page-hero-background {
@@ -323,15 +418,33 @@
             height: 100%;
             z-index: -1;
             background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
-                        url('https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+                        url('./images/gallery-hero.jpg');
             background-size: cover;
             background-position: center;
+            transform: scale(1.1);
+            opacity: 0;
+            transition: all 1.5s ease;
+        }
+
+        .page-hero-background.animate {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .page-hero-content {
             max-width: 800px;
             color: var(--color-white);
+            opacity: 0;
+            transform: translateY(50px);
             text-align: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease 0.5s;
         }
 
         .page-hero-title {
@@ -339,19 +452,40 @@
             color: var(--color-white);
             margin-bottom: 1.5rem;
             line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .page-hero-title.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .page-hero-title .highlight {
             color: var(--color-cricket-gold);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .page-hero-title .highlight.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .page-hero-subtitle {
             font-size: clamp(1.1rem, 2vw, 1.3rem);
             margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .page-hero-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .breadcrumb {
@@ -362,6 +496,13 @@
             margin-top: 2rem;
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .breadcrumb.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .breadcrumb a {
@@ -374,36 +515,60 @@
             text-decoration: underline;
         }
 
-        /* Gallery Filters */
+        /* Enhanced Gallery Filters */
         .gallery-filters {
             background-color: var(--color-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-small);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-medium);
             margin: 2rem auto;
             max-width: 1200px;
             position: sticky;
             top: 100px;
             z-index: 100;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .gallery-filters.animated {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
         }
 
         .filter-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
             align-items: center;
-            justify-content: center;
         }
 
         .filter-btn {
             padding: 10px 24px;
-            background: var(--color-light-gray);
-            border: none;
+            background: var(--color-off-white);
+            border: 2px solid rgba(26, 71, 42, 0.1);
             border-radius: var(--border-radius);
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
             font-family: var(--font-body);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-cricket-green);
+        }
+
+        .filter-btn i {
+            font-size: 0.9rem;
         }
 
         .filter-btn.active {
@@ -411,12 +576,29 @@
             color: var(--color-white);
             transform: translateY(-2px);
             box-shadow: var(--shadow-small);
+            border-color: var(--color-cricket-green);
         }
 
-        .filter-btn:hover {
+        .filter-btn:hover:not(.active) {
             background: var(--color-medium-green);
             color: var(--color-white);
             transform: translateY(-2px);
+            border-color: var(--color-medium-green);
+        }
+
+        .filter-btn.training.active { background: var(--color-cricket-green); }
+        .filter-btn.matches.active { background: var(--color-blue); }
+        .filter-btn.events.active { background: var(--color-orange); }
+        .filter-btn.camping.active { background: #8b4513; }
+        .filter-btn.team.active { background: var(--color-purple); }
+        .filter-btn.facilities.active { background: #0dcaf0; }
+        .filter-btn.awards.active { background: var(--color-cricket-gold); color: var(--color-cricket-green); }
+
+        .search-sort-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .search-box {
@@ -427,11 +609,12 @@
         .search-box input {
             width: 100%;
             padding: 12px 20px;
-            border: 2px solid var(--color-light-gray);
+            border: 2px solid var(--color-off-white);
             border-radius: var(--border-radius);
             font-family: var(--font-body);
             font-size: 1rem;
             transition: var(--transition);
+            background-color: var(--color-off-white);
         }
 
         .search-box input:focus {
@@ -440,7 +623,48 @@
             box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
         }
 
-        /* Gallery Sections */
+        .sort-select {
+            padding: 12px 20px;
+            border: 2px solid var(--color-off-white);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--color-white);
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: var(--color-off-white);
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--color-cricket-green);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 5px;
+        }
+
+        .view-btn {
+            padding: 10px;
+            background: var(--color-off-white);
+            border: 2px solid rgba(26, 71, 42, 0.1);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .view-btn.active {
+            background: var(--color-cricket-green);
+            color: var(--color-white);
+            border-color: var(--color-cricket-green);
+        }
+
+        /* Sections - MATCHING INDEX.HTML */
         .section {
             padding: 5rem 0;
             background-color: var(--color-off-white);
@@ -452,12 +676,34 @@
             background-color: var(--color-white);
         }
 
-        /* Gallery Grid with Animation */
+        .gsap-section {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gsap-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+
+        /* Gallery Grid with Enhanced Animation */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin: 3rem 0;
+        }
+
+        .gallery-grid.masonry-view {
+            display: block;
+            column-count: 3;
+            column-gap: 2rem;
+        }
+
+        .gallery-grid.masonry-view .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
         }
 
         .gallery-item {
@@ -469,6 +715,11 @@
             transform: translateY(50px);
             transition: var(--transition-slow);
             box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .gallery-grid.masonry-view .gallery-item {
+            height: auto;
         }
 
         .gallery-item.animated {
@@ -478,7 +729,8 @@
 
         .gallery-item:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .gallery-item img {
@@ -554,46 +806,29 @@
             opacity: 1;
         }
 
-        /* Masonry Gallery */
-        .masonry-grid {
-            column-count: 3;
-            column-gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 2rem;
+        .gallery-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(212, 175, 55, 0.9);
+            color: var(--color-cricket-green);
+            padding: 6px 12px;
             border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-medium);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: translateX(-20px);
             opacity: 0;
-            transform: scale(0.9);
-            transition: var(--transition-slow);
-        }
-
-        .masonry-item.animated {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .masonry-item:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-large);
-        }
-
-        .masonry-item img {
-            width: 100%;
-            height: auto;
-            display: block;
             transition: var(--transition);
         }
 
-        .masonry-item:hover img {
-            transform: scale(1.05);
+        .gallery-item:hover .gallery-category {
+            transform: translateX(0);
+            opacity: 1;
         }
 
-        /* Fullscreen Lightbox */
+        /* Fullscreen Lightbox - Enhanced */
         .lightbox {
             display: none;
             position: fixed;
@@ -631,7 +866,7 @@
             height: auto;
             max-height: 80vh;
             object-fit: contain;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
         }
 
         .lightbox-close {
@@ -692,128 +927,6 @@
             color: var(--color-white);
         }
 
-        /* Video Gallery */
-        .video-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .video-item {
-            position: relative;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            height: 250px;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: var(--transition-slow);
-        }
-
-        .video-item.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .video-item:nth-child(even) {
-            transform: translateX(50px);
-        }
-
-        .video-item:nth-child(even).animated {
-            transform: translateX(0);
-        }
-
-        .video-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
-        }
-
-        .video-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .video-play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 70px;
-            height: 70px;
-            background: rgba(26, 71, 42, 0.9);
-            color: var(--color-white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 0;
-        }
-
-        .video-item:hover .video-play-btn {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .video-play-btn:hover {
-            background: var(--color-cricket-green);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        /* Statistics Banner */
-        .stats-banner {
-            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
-            padding: 4rem 0;
-            color: var(--color-white);
-            text-align: center;
-            margin: 4rem 0;
-            border-radius: var(--border-radius-large);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .stats-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--color-cricket-gold);
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
         /* Featured Gallery */
         .featured-gallery {
             position: relative;
@@ -821,6 +934,7 @@
             border-radius: var(--border-radius-large);
             overflow: hidden;
             margin: 4rem 0;
+            box-shadow: var(--shadow-extra-large);
         }
 
         .featured-slide {
@@ -895,31 +1009,206 @@
             transform: scale(1.1);
         }
 
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 4rem 0;
+        /* Statistics Banner - Enhanced */
+        .stats-banner {
             background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            padding: 5rem 0;
             color: var(--color-white);
-            margin-top: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
-        .cta-section h2 {
-            color: var(--color-white);
+        .stats-banner.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./images/stats-background.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: var(--border-radius-large);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--color-cricket-gold);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Photo Upload Section - Enhanced */
+        .upload-section {
+            background: var(--color-white);
+            border-radius: var(--border-radius-large);
+            padding: 4rem;
+            box-shadow: var(--shadow-medium);
+            margin: 3rem 0;
+            text-align: center;
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .upload-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .upload-area {
+            border: 3px dashed var(--color-off-white);
+            border-radius: var(--border-radius-large);
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--color-off-white);
+        }
+
+        .upload-area:hover {
+            border-color: var(--color-cricket-green);
+            background: var(--color-white);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--color-cricket-green);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-text p {
+            color: var(--color-gray);
             margin-bottom: 1.5rem;
         }
 
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+        .upload-requirements {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            margin-top: 1rem;
         }
 
-        /* Footer */
+        /* CTA Banner - MATCHING INDEX.HTML */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+            padding: 5rem 0;
+            color: var(--color-white);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./images/cta-background.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .cta-banner.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-title {
+            color: var(--color-white);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-text {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer - Updated with same background as index.html */
         .footer {
-            background-color: var(--color-cricket-green);
+            background: linear-gradient(rgba(29, 90, 61, 0.9), rgba(26, 71, 42, 0.95)), 
+                        url('./images/footer-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: var(--color-white);
             padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
         }
 
         .footer-content {
@@ -927,6 +1216,8 @@
             grid-template-columns: 2fr 1fr 1fr 2fr;
             gap: 3rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-logo-section {
@@ -942,8 +1233,15 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Footer Logo Image */
+        .footer-logo .logo-image {
+            height: 50px;
+            max-width: 160px;
+            filter: brightness(0) invert(1);
+        }
+
         .footer-description {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
@@ -957,18 +1255,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             color: var(--color-white);
             text-decoration: none;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-social .social-link:hover {
             background-color: var(--color-cricket-gold);
             transform: translateY(-3px);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-title {
@@ -985,8 +1285,9 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
+            height: 3px;
             background-color: var(--color-cricket-gold);
+            border-radius: 2px;
         }
 
         .footer-links ul {
@@ -998,15 +1299,18 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.95rem;
+            display: inline-block;
+            padding: 3px 0;
         }
 
         .footer-links a:hover {
             color: var(--color-white);
-            padding-left: 5px;
+            padding-left: 8px;
+            transform: translateX(5px);
         }
 
         .contact-info {
@@ -1018,13 +1322,14 @@
             align-items: flex-start;
             margin-bottom: 1rem;
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-item i {
             margin-right: 10px;
             color: var(--color-cricket-gold);
             width: 20px;
+            font-size: 1.1rem;
         }
 
         .newsletter {
@@ -1044,16 +1349,23 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: none;
             border-radius: var(--border-radius);
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             color: var(--color-white);
             font-family: var(--font-body);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .newsletter-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-bottom {
@@ -1061,10 +1373,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-legal {
@@ -1073,7 +1387,7 @@
         }
 
         .footer-legal a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -1082,16 +1396,14 @@
             color: var(--color-white);
         }
 
-        /* Mobile Responsive Styles */
+        /* Mobile Responsive Styles - MATCHING INDEX.HTML */
         @media (max-width: 1024px) {
-            .gallery-grid,
-            .masonry-grid {
-                column-count: 2;
+            .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .video-gallery {
-                grid-template-columns: repeat(2, 1fr);
+            .gallery-grid.masonry-view {
+                column-count: 2;
             }
             
             .stats-grid {
@@ -1105,22 +1417,22 @@
         }
 
         @media (max-width: 768px) {
-            /* Navigation */
-            .nav-toggle {
-                display: flex;
-            }
-            
+            /* Navigation - MATCHING INDEX.HTML */
             .nav-menu {
                 position: fixed;
                 top: 80px;
                 left: -100%;
-                width: 100%;
+                width: 90%;
+                max-width: 400px;
                 flex-direction: column;
                 background-color: var(--color-white);
                 padding: 2rem;
-                box-shadow: var(--shadow-medium);
+                box-shadow: var(--shadow-extra-large);
                 transition: var(--transition);
                 z-index: 999;
+                border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+                border: 2px solid var(--color-cricket-green);
+                border-top: none;
             }
             
             .nav-menu.active {
@@ -1128,13 +1440,50 @@
             }
             
             .nav-menu li {
-                margin-bottom: 1rem;
+                width: 100%;
+                margin-bottom: 0.8rem;
+                opacity: 1;
+                transform: none;
+            }
+            
+            .nav-menu a {
+                width: 100%;
+                min-width: auto;
+                padding: 14px 20px;
+                font-size: 1rem;
+                justify-content: flex-start;
+                border-radius: var(--border-radius);
+                background-color: var(--color-off-white);
+                border: 2px solid rgba(26, 71, 42, 0.15);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background-color: var(--color-cricket-green);
+                color: var(--color-white);
+                transform: translateX(5px);
+                border-color: var(--color-cricket-green);
+                padding-left: 25px;
+            }
+            
+            .nav-toggle {
+                display: flex;
+            }
+            
+            /* Logo adjustments for mobile */
+            .logo-image {
+                height: 50px;
+                max-width: 150px;
+            }
+            
+            .logo-text {
+                display: none;
             }
             
             /* Gallery */
             .gallery-grid,
-            .masonry-grid,
-            .video-gallery {
+            .gallery-grid.masonry-view {
                 grid-template-columns: 1fr;
                 column-count: 1;
             }
@@ -1143,20 +1492,30 @@
                 height: 250px;
             }
             
-            .filter-group {
+            .filter-controls {
                 flex-direction: column;
                 align-items: stretch;
+            }
+            
+            .search-sort-container {
+                width: 100%;
             }
             
             .search-box {
                 max-width: 100%;
             }
             
+            /* Page Hero */
+            .page-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
             /* WhatsApp Button */
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
                 bottom: 20px;
                 right: 20px;
             }
@@ -1171,21 +1530,19 @@
             .footer-legal {
                 justify-content: center;
             }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-item {
-                height: 200px;
+            
+            /* CTA */
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .video-item {
-                height: 200px;
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
             }
             
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
+            /* Featured Gallery */
             .featured-gallery {
                 height: 300px;
             }
@@ -1204,7 +1561,39 @@
                 height: 40px;
                 font-size: 1.2rem;
             }
+        }
+
+        @media (max-width: 480px) {
+            /* Logo */
+            .logo-image {
+                height: 45px;
+                max-width: 130px;
+            }
             
+            .footer-logo .logo-image {
+                height: 40px;
+                max-width: 120px;
+            }
+            
+            /* Gallery */
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Sections */
+            .section {
+                padding: 3.5rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            /* Footer */
             .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -1213,79 +1602,29 @@
                 flex-direction: column;
             }
             
-            .page-hero {
-                height: 50vh;
-                min-height: 400px;
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+            
+            .upload-section {
+                padding: 2rem;
             }
         }
 
-        /* Animation Classes */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: var(--transition-slow);
+        @media (max-width: 360px) {
+            .page-hero-title {
+                font-size: 2rem;
+            }
+            
+            .page-hero-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .nav-menu a {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
         }
-
-        .fade-in-up.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: var(--transition-slow);
-        }
-
-        .fade-in-left.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: var(--transition-slow);
-        }
-
-        .fade-in-right.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: var(--transition-slow);
-        }
-
-        .scale-in.animated {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .rotate-in {
-            opacity: 0;
-            transform: rotate(-10deg);
-            transition: var(--transition-slow);
-        }
-
-        .rotate-in.animated {
-            opacity: 1;
-            transform: rotate(0);
-        }
-
-        /* Staggered Animation Delays */
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
-        .delay-6 { transition-delay: 0.6s; }
-        .delay-7 { transition-delay: 0.7s; }
-        .delay-8 { transition-delay: 0.8s; }
-        .delay-9 { transition-delay: 0.9s; }
-        .delay-10 { transition-delay: 1s; }
     </style>
 </head>
 <body>
@@ -1310,17 +1649,16 @@
         </div>
     </div>
 
-    <!-- Header Section -->
-    <header class="header">
+    <!-- Header Section - MATCHING INDEX.HTML -->
+    <header class="header" id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-baseball-ball"></i>
-                    </div>
+                    <!-- REAL LOGO - Same as index.html -->
+                    <img src="./images/logo.png" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
+                    <!-- Fallback text logo -->
                     <div class="logo-text">
-                        <span class="logo-main">RUN WHISPERERS</span>
-                        <span class="logo-sub">Cricket • Academy • Community</span>
+                        <span class="logo-main"></span>
                     </div>
                 </a>
                 
@@ -1330,6 +1668,7 @@
                     <span></span>
                 </div>
                 
+                <!-- Enhanced Navigation with Boxes - MATCHING INDEX.HTML -->
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
@@ -1342,15 +1681,23 @@
         </div>
     </header>
 
+    <!-- Scrolling Marquee - MATCHING INDEX.HTML -->
+    <div class="scrolling-marquee">
+        <div class="marquee-content">
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+        </div>
+    </div>
+
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="page-hero-background"></div>
+        <div class="page-hero-background" id="pageHeroBackground"></div>
         
         <div class="container">
-            <div class="page-hero-content fade-in-up">
-                <h1 class="page-hero-title">Cricket <span class="highlight">Gallery</span></h1>
-                <p class="page-hero-subtitle">Experience the journey through our collection of training sessions, matches, events, and camping adventures.</p>
-                <div class="breadcrumb">
+            <div class="page-hero-content" id="pageHeroContent">
+                <h1 class="page-hero-title" id="pageHeroTitle">Cricket <span class="highlight" id="pageHeroHighlight">Gallery</span></h1>
+                <p class="page-hero-subtitle" id="pageHeroSubtitle">Explore our collection of cricket moments, training sessions, matches, events, and camping adventures.</p>
+                <div class="breadcrumb" id="breadcrumb">
                     <a href="index.html">Home</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Gallery</span>
@@ -1359,53 +1706,99 @@
         </div>
     </section>
 
-    <!-- Gallery Filters -->
-    <section class="section">
+    <!-- Enhanced Gallery Filters -->
+    <section class="section gsap-section" id="filtersSection">
         <div class="container">
-            <div class="gallery-filters fade-in-up">
-                <div class="filter-group">
-                    <div class="search-box">
-                        <input type="text" id="gallerySearch" placeholder="Search photos...">
+            <div class="gallery-filters" id="galleryFilters">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <button class="filter-btn all active" data-filter="all">
+                            <i class="fas fa-images"></i> All Photos
+                        </button>
+                        <button class="filter-btn training" data-filter="training">
+                            <i class="fas fa-baseball-ball"></i> Training
+                        </button>
+                        <button class="filter-btn matches" data-filter="matches">
+                            <i class="fas fa-trophy"></i> Matches
+                        </button>
+                        <button class="filter-btn events" data-filter="events">
+                            <i class="fas fa-calendar-alt"></i> Events
+                        </button>
+                        <button class="filter-btn camping" data-filter="camping">
+                            <i class="fas fa-campground"></i> Camping
+                        </button>
+                        <button class="filter-btn team" data-filter="team">
+                            <i class="fas fa-users"></i> Team Photos
+                        </button>
+                        <button class="filter-btn facilities" data-filter="facilities">
+                            <i class="fas fa-landmark"></i> Facilities
+                        </button>
+                        <button class="filter-btn awards" data-filter="awards">
+                            <i class="fas fa-award"></i> Awards
+                        </button>
                     </div>
-                    <button class="filter-btn active" data-filter="all">All Photos</button>
-                    <button class="filter-btn" data-filter="training">Training</button>
-                    <button class="filter-btn" data-filter="matches">Matches</button>
-                    <button class="filter-btn" data-filter="events">Events</button>
-                    <button class="filter-btn" data-filter="camping">Camping</button>
+                </div>
+                
+                <div class="search-sort-container">
+                    <div class="search-box">
+                        <input type="text" id="gallerySearch" placeholder="Search photos by keyword...">
+                    </div>
+                    
+                    <select class="sort-select" id="sortSelect">
+                        <option value="date-desc">Sort by: Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="category">By Category</option>
+                    </select>
+                    
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="gridView" title="Grid View">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" id="masonryView" title="Masonry View">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Gallery Slider -->
-    <section class="section">
+    <section class="section gsap-section" id="featuredSection">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title fade-in-up">Featured Moments</h2>
-                <p class="section-subtitle fade-in-up delay-1">Highlights from our cricket journey</p>
-                <div class="divider fade-in-up delay-2"></div>
+                <h2 class="section-title">Featured Moments</h2>
+                <p class="section-subtitle">Highlights from our cricket journey</p>
+                <div class="divider"></div>
             </div>
             
             <div class="featured-gallery">
                 <div class="featured-slide active">
-                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Cricket Match Action">
+                    <img src="./images/featured-1.jpg" alt="Cricket Match Action">
                     <div class="featured-content">
                         <h3>National Championship Win</h3>
                         <p>Celebrating our victory in the Namibia National Cricket Championship 2024</p>
                     </div>
                 </div>
                 <div class="featured-slide">
-                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Training Session">
+                    <img src="./images/featured-2.jpg" alt="Training Session">
                     <div class="featured-content">
                         <h3>Intensive Training Session</h3>
                         <p>Professional coaching sessions at our academy facilities</p>
                     </div>
                 </div>
                 <div class="featured-slide">
-                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Team Celebration">
+                    <img src="./images/featured-3.jpg" alt="Team Celebration">
                     <div class="featured-content">
                         <h3>Team Celebration</h3>
                         <p>Celebrating our success in international tournaments</p>
+                    </div>
+                </div>
+                <div class="featured-slide">
+                    <img src="./images/featured-4.jpg" alt="Junior Training">
+                    <div class="featured-content">
+                        <h3>Junior Development</h3>
+                        <p>Young talent development program in action</p>
                     </div>
                 </div>
                 <div class="featured-nav">
@@ -1416,19 +1809,19 @@
         </div>
     </section>
 
-    <!-- Training Gallery -->
-    <section class="section section-alt">
+    <!-- Main Gallery Grid -->
+    <section class="section section-alt gsap-section" id="mainGallerySection">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title fade-in-up">Training Sessions</h2>
-                <p class="section-subtitle fade-in-up delay-1">Professional coaching and skill development</p>
-                <div class="divider fade-in-up delay-2"></div>
+                <h2 class="section-title">Complete Gallery</h2>
+                <p class="section-subtitle">Browse through all our cricket moments</p>
+                <div class="divider"></div>
             </div>
             
-            <div class="gallery-grid">
-                <!-- Training Image 1 -->
-                <div class="gallery-item fade-in-up delay-1" data-category="training">
-                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Batting Practice">
+            <div class="gallery-grid" id="mainGallery">
+                <!-- Training Images -->
+                <div class="gallery-item" data-category="training" data-date="2025-06-15">
+                    <img src="./images/training-1.jpg" alt="Batting Practice">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Batting Techniques</h3>
@@ -1436,11 +1829,11 @@
                         </div>
                     </div>
                     <div class="gallery-date">June 2025</div>
+                    <div class="gallery-category">Training</div>
                 </div>
                 
-                <!-- Training Image 2 -->
-                <div class="gallery-item fade-in-up delay-2" data-category="training">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Bowling Practice">
+                <div class="gallery-item" data-category="training" data-date="2025-05-20">
+                    <img src="./images/training-2.jpg" alt="Bowling Practice">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Bowling Sessions</h3>
@@ -1448,151 +1841,77 @@
                         </div>
                     </div>
                     <div class="gallery-date">May 2025</div>
+                    <div class="gallery-category">Training</div>
                 </div>
                 
-                <!-- Training Image 3 -->
-                <div class="gallery-item fade-in-up delay-3" data-category="training">
-                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fielding Practice">
+                <!-- Match Images -->
+                <div class="gallery-item" data-category="matches" data-date="2025-04-10">
+                    <img src="./images/match-1.jpg" alt="National Match">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
-                            <h3>Fielding Drills</h3>
-                            <p>Sharpening fielding skills and reflexes</p>
+                            <h3>National Tournament</h3>
+                            <p>Competing in national championship match</p>
                         </div>
                     </div>
                     <div class="gallery-date">April 2025</div>
+                    <div class="gallery-category">Matches</div>
                 </div>
                 
-                <!-- Training Image 4 -->
-                <div class="gallery-item fade-in-up delay-4" data-category="training">
-                    <img src="https://images.unsplash.com/photo-1571019614248-c5c2d0f6bc78?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fitness Training">
-                    <div class="gallery-overlay">
-                        <div class="gallery-text">
-                            <h3>Fitness Training</h3>
-                            <p>Cricket-specific fitness and conditioning</p>
-                        </div>
-                    </div>
-                    <div class="gallery-date">March 2025</div>
-                </div>
-                
-                <!-- Training Image 5 -->
-                <div class="gallery-item fade-in-up delay-5" data-category="training">
-                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Video Analysis">
-                    <div class="gallery-overlay">
-                        <div class="gallery-text">
-                            <h3>Video Analysis</h3>
-                            <p>Technical analysis and performance review</p>
-                        </div>
-                    </div>
-                    <div class="gallery-date">February 2025</div>
-                </div>
-                
-                <!-- Training Image 6 -->
-                <div class="gallery-item fade-in-up delay-6" data-category="training">
-                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Junior Training">
-                    <div class="gallery-overlay">
-                        <div class="gallery-text">
-                            <h3>Junior Development</h3>
-                            <p>Young talent development program</p>
-                        </div>
-                    </div>
-                    <div class="gallery-date">January 2025</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Matches Gallery -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-left">Match Highlights</h2>
-                <p class="section-subtitle fade-in-left delay-1">Competitive cricket action and victories</p>
-                <div class="divider fade-in-left delay-2"></div>
-            </div>
-            
-            <div class="masonry-grid">
-                <!-- Match Image 1 -->
-                <div class="masonry-item scale-in delay-1" data-category="matches">
-                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="National Tournament">
-                </div>
-                
-                <!-- Match Image 2 -->
-                <div class="masonry-item scale-in delay-2" data-category="matches">
-                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="International Match">
-                </div>
-                
-                <!-- Match Image 3 -->
-                <div class="masonry-item scale-in delay-3" data-category="matches">
-                    <img src="https://images.unsplash.com/photo-1536599018109-73a2d2c7039f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Tournament Final">
-                </div>
-                
-                <!-- Match Image 4 -->
-                <div class="masonry-item scale-in delay-4" data-category="matches">
-                    <img src="https://images.unsplash.com/photo-1594736797933-d1001cda7c0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2128&q=80" alt="Victory Celebration">
-                </div>
-                
-                <!-- Match Image 5 -->
-                <div class="masonry-item scale-in delay-5" data-category="matches">
-                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Team Strategy">
-                </div>
-                
-                <!-- Match Image 6 -->
-                <div class="masonry-item scale-in delay-6" data-category="matches">
-                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Action Shot">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Statistics Banner -->
-    <section class="stats-banner fade-in-up">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" data-count="5000">0</div>
-                    <div class="stat-label">Photos Captured</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="150">0</div>
-                    <div class="stat-label">Matches Documented</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="45">0</div>
-                    <div class="stat-label">Events Covered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="8">0</div>
-                    <div class="stat-label">Years of Memories</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Gallery -->
-    <section class="section section-alt">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-right">Events & Tournaments</h2>
-                <p class="section-subtitle fade-in-right delay-1">Special events and cricket tournaments</p>
-                <div class="divider fade-in-right delay-2"></div>
-            </div>
-            
-            <div class="gallery-grid">
-                <!-- Event Image 1 -->
-                <div class="gallery-item rotate-in delay-1" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Opening Ceremony">
+                <!-- Event Images -->
+                <div class="gallery-item" data-category="events" data-date="2025-03-22">
+                    <img src="./images/event-1.jpg" alt="Opening Ceremony">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Tournament Opening</h3>
                             <p>National tournament opening ceremony</p>
                         </div>
                     </div>
-                    <div class="gallery-date">December 2024</div>
+                    <div class="gallery-date">March 2025</div>
+                    <div class="gallery-category">Events</div>
                 </div>
                 
-                <!-- Event Image 2 -->
-                <div class="gallery-item rotate-in delay-2" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Award Ceremony">
+                <!-- Camping Images -->
+                <div class="gallery-item" data-category="camping" data-date="2025-02-15">
+                    <img src="./images/camping-1.jpg" alt="Cricket Camping">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Camping Adventure</h3>
+                            <p>Cricket training in natural surroundings</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">February 2025</div>
+                    <div class="gallery-category">Camping</div>
+                </div>
+                
+                <!-- Team Photos -->
+                <div class="gallery-item" data-category="team" data-date="2025-01-30">
+                    <img src="./images/team-1.jpg" alt="Team Photo">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Senior Team 2025</h3>
+                            <p>Official team photo for the 2025 season</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">January 2025</div>
+                    <div class="gallery-category">Team</div>
+                </div>
+                
+                <!-- Facilities Images -->
+                <div class="gallery-item" data-category="facilities" data-date="2024-12-10">
+                    <img src="./images/facilities-1.jpg" alt="Academy Facilities">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Training Facilities</h3>
+                            <p>State-of-the-art cricket academy facilities</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">December 2024</div>
+                    <div class="gallery-category">Facilities</div>
+                </div>
+                
+                <!-- Awards Images -->
+                <div class="gallery-item" data-category="awards" data-date="2024-11-25">
+                    <img src="./images/awards-1.jpg" alt="Award Ceremony">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Award Ceremony</h3>
@@ -1600,144 +1919,170 @@
                         </div>
                     </div>
                     <div class="gallery-date">November 2024</div>
+                    <div class="gallery-category">Awards</div>
                 </div>
                 
-                <!-- Event Image 3 -->
-                <div class="gallery-item rotate-in delay-3" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Coaching Clinic">
+                <!-- Additional Images -->
+                <div class="gallery-item" data-category="training" data-date="2024-10-18">
+                    <img src="./images/training-3.jpg" alt="Video Analysis">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
-                            <h3>Coaching Clinic</h3>
-                            <p>Special coaching clinic with international coaches</p>
+                            <h3>Video Analysis</h3>
+                            <p>Technical analysis and performance review</p>
                         </div>
                     </div>
                     <div class="gallery-date">October 2024</div>
+                    <div class="gallery-category">Training</div>
                 </div>
                 
-                <!-- Event Image 4 -->
-                <div class="gallery-item rotate-in delay-4" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1593352216925-d1f8c46e2c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Sponsor Event">
+                <div class="gallery-item" data-category="matches" data-date="2024-09-12">
+                    <img src="./images/match-2.jpg" alt="Victory Celebration">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
-                            <h3>Sponsor Event</h3>
-                            <p>Corporate sponsor appreciation event</p>
+                            <h3>Victory Celebration</h3>
+                            <p>Celebrating tournament victory</p>
                         </div>
                     </div>
                     <div class="gallery-date">September 2024</div>
+                    <div class="gallery-category">Matches</div>
                 </div>
                 
-                <!-- Event Image 5 -->
-                <div class="gallery-item rotate-in delay-5" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Community Day">
+                <div class="gallery-item" data-category="team" data-date="2024-08-05">
+                    <img src="./images/team-2.jpg" alt="Junior Team">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h3>Junior Team</h3>
+                            <p>Young talent development squad</p>
+                        </div>
+                    </div>
+                    <div class="gallery-date">August 2024</div>
+                    <div class="gallery-category">Team</div>
+                </div>
+                
+                <div class="gallery-item" data-category="events" data-date="2024-07-20">
+                    <img src="./images/event-2.jpg" alt="Community Event">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Community Day</h3>
                             <p>Engaging with local community</p>
                         </div>
                     </div>
-                    <div class="gallery-date">August 2024</div>
+                    <div class="gallery-date">July 2024</div>
+                    <div class="gallery-category">Events</div>
                 </div>
                 
-                <!-- Event Image 6 -->
-                <div class="gallery-item rotate-in delay-6" data-category="events">
-                    <img src="https://images.unsplash.com/photo-1536599018109-73a2d2c7039f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Media Day">
+                <div class="gallery-item" data-category="facilities" data-date="2024-06-08">
+                    <img src="./images/facilities-2.jpg" alt="Gym Facilities">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
-                            <h3>Media Day</h3>
-                            <p>Press and media engagement event</p>
+                            <h3>Gym Facilities</h3>
+                            <p>Cricket-specific fitness training area</p>
                         </div>
                     </div>
-                    <div class="gallery-date">July 2024</div>
+                    <div class="gallery-date">June 2024</div>
+                    <div class="gallery-category">Facilities</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Camping Gallery -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in-left">Holiday Camping</h2>
-                <p class="section-subtitle fade-in-left delay-1">Cricket and outdoor adventures</p>
-                <div class="divider fade-in-left delay-2"></div>
             </div>
             
-            <div class="video-gallery">
-                <!-- Camping Image 1 -->
-                <div class="video-item fade-in-left delay-1" data-category="camping">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Cricket Camping">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <!-- Camping Image 2 -->
-                <div class="video-item fade-in-left delay-2" data-category="camping">
-                    <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Campfire Session">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <!-- Camping Image 3 -->
-                <div class="video-item fade-in-left delay-3" data-category="camping">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Outdoor Training">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <!-- Camping Image 4 -->
-                <div class="video-item fade-in-left delay-4" data-category="camping">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2120&q=80" class="video-thumbnail" alt="Team Building">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <!-- Camping Image 5 -->
-                <div class="video-item fade-in-left delay-5" data-category="camping">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Nature Cricket">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <!-- Camping Image 6 -->
-                <div class="video-item fade-in-left delay-6" data-category="camping">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="video-thumbnail" alt="Adventure Camp">
-                    <div class="video-play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
+            <div class="text-center" style="margin-top: 3rem;">
+                <button id="loadMore" class="btn btn-primary btn-large">
+                    <i class="fas fa-plus"></i> Load More Photos
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section fade-in-up">
+    <!-- Statistics Banner -->
+    <section class="stats-banner gsap-section" id="statsSection">
         <div class="container">
-            <h2>Share Your Cricket Moments</h2>
-            <p>Join our community and share your cricket experiences. Tag us in your photos!</p>
-            <div style="margin-top: 2rem;">
-                <a href="contacts.html" class="btn btn-primary btn-large">Share Your Photos</a>
-                <a href="booking.html" class="btn btn-secondary btn-large">Book Photo Session</a>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1200">0</div>
+                    <div class="stat-label">Photos in Gallery</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="85">0</div>
+                    <div class="stat-label">Matches Documented</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="45">0</div>
+                    <div class="stat-label">Events Covered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Camping Trips</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Photo Upload Section -->
+    <section class="section gsap-section" id="uploadSection">
+        <div class="container">
+            <div class="upload-section">
+                <div class="section-header">
+                    <h2 class="section-title">Share Your Photos</h2>
+                    <p class="section-subtitle">Have cricket photos you'd like to share with our community?</p>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">
+                        <h3>Drag & Drop Your Photos Here</h3>
+                        <p>or click to browse files</p>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                    <div class="upload-requirements">
+                        <p><i class="fas fa-info-circle"></i> Supported formats: JPG, PNG, GIF | Max size: 5MB per photo</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-primary btn-large" id="uploadBtn">
+                        <i class="fas fa-upload"></i> Upload Photos
+                    </button>
+                    <button class="btn btn-secondary btn-large" id="tagPhotosBtn">
+                        <i class="fas fa-tag"></i> Tag Us on Social Media
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner - MATCHING INDEX.HTML -->
+    <section class="cta-banner gsap-section" id="ctaSection">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Capture Every Cricket Moment</h2>
+                <p class="cta-text">Book a professional photo session during training or matches to preserve your cricket journey.</p>
+                <div class="cta-buttons">
+                    <a href="booking.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-camera"></i> Book Photo Session
+                    </a>
+                    <a href="contacts.html" class="btn btn-orange btn-large">
+                        <i class="fas fa-download"></i> Download Photos
+                    </a>
+                    <a href="#uploadArea" class="btn btn-blue btn-large">
+                        <i class="fas fa-share-alt"></i> Share Your Photos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - MATCHING INDEX.HTML -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-section">
                     <a href="index.html" class="footer-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-baseball-ball"></i>
-                        </div>
+                        <!-- REAL LOGO - Same logo as header but white version -->
+                        <img src="./images/logo.png" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
                         <div class="logo-text">
                             <span class="logo-main">RUN WHISPERERS</span>
-                            <span class="logo-sub">Cricket • Academy • Community</span>
                         </div>
                     </a>
                     <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
@@ -1765,17 +2110,17 @@
                 <div class="footer-links">
                     <h3 class="footer-title">Gallery Categories</h3>
                     <ul>
-                        <li><a href="#training">Training Sessions</a></li>
-                        <li><a href="#matches">Match Highlights</a></li>
-                        <li><a href="#events">Events & Tournaments</a></li>
-                        <li><a href="#camping">Holiday Camping</a></li>
-                        <li><a href="#featured">Featured Moments</a></li>
-                        <li><a href="#videos">Video Gallery</a></li>
+                        <li><a href="#" data-filter="training">Training Sessions</a></li>
+                        <li><a href="#" data-filter="matches">Match Highlights</a></li>
+                        <li><a href="#" data-filter="events">Events & Tournaments</a></li>
+                        <li><a href="#" data-filter="camping">Holiday Camping</a></li>
+                        <li><a href="#" data-filter="team">Team Photos</a></li>
+                        <li><a href="#" data-filter="awards">Awards & Recognition</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-contact">
-                    <h3 class="footer-title">Contact Us</h3>
+                    <h3 class="footer-title">Contact Gallery</h3>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -1797,7 +2142,7 @@
                     
                     <div class="newsletter">
                         <h4>Get Gallery Updates</h4>
-                        <form class="newsletter-form">
+                        <form class="newsletter-form" id="footerNewsletter">
                             <input type="email" placeholder="Your email address" required>
                             <button type="submit" class="btn btn-small">Subscribe</button>
                         </form>
@@ -1820,18 +2165,66 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile Navigation Toggle
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Page load animation sequence - MATCHING INDEX.HTML
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate header elements individually
+            const logoImage = document.querySelector('.logo-image');
+            const navItems = document.querySelectorAll('.nav-menu li');
+            
+            // Animate logo image
+            setTimeout(() => {
+                logoImage.classList.add('animate');
+            }, 500);
+            
+            // Animate each navigation item with delay
+            navItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animate');
+                }, 700 + (index * 100));
+            });
+            
+            // Show header
+            setTimeout(() => {
+                document.getElementById('header').classList.add('visible');
+            }, 1500);
+            
+            // Animate page hero elements
+            setTimeout(() => {
+                document.getElementById('pageHeroBackground').classList.add('animate');
+                document.getElementById('pageHeroContent').classList.add('animate');
+                document.getElementById('pageHeroTitle').classList.add('animate');
+                document.getElementById('pageHeroHighlight').classList.add('animate');
+                document.getElementById('pageHeroSubtitle').classList.add('animate');
+                document.getElementById('breadcrumb').classList.add('animate');
+            }, 2000);
+            
+            // Show WhatsApp button
+            setTimeout(() => {
+                document.querySelector('.whatsapp-float').classList.add('visible');
+            }, 2800);
+            
+            // Show body
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1000);
+        });
+
+        // Mobile Navigation Toggle - MATCHING INDEX.HTML
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
         
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             
+            // Animate hamburger to X
             const spans = navToggle.querySelectorAll('span');
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
-                spans[2].transform = 'rotate(-45deg) translate(7px, -6px)';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
             } else {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
@@ -1839,6 +2232,7 @@
             }
         });
         
+        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -1848,68 +2242,158 @@
                 spans[2].style.transform = 'none';
             });
         });
-
-        // Scroll Animation Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .rotate-in, .gallery-item, .masonry-item, .video-item').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Gallery Filtering
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item, .masonry-item, .video-item');
-        const searchInput = document.getElementById('gallerySearch');
         
+        // Enhanced Gallery Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const searchInput = document.getElementById('gallerySearch');
+        const sortSelect = document.getElementById('sortSelect');
+        const mainGallery = document.getElementById('mainGallery');
+        const loadMoreBtn = document.getElementById('loadMore');
+        const gridViewBtn = document.getElementById('gridView');
+        const masonryViewBtn = document.getElementById('masonryView');
+        
+        let currentFilter = 'all';
+        let currentSort = 'date-desc';
+        let currentView = 'grid';
+        let visibleItems = 12;
+        
+        // Filter functionality
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                const filter = btn.dataset.filter;
+                currentFilter = btn.dataset.filter;
+                filterAndSortGallery();
                 
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        item.style.display = 'block';
-                        // Re-trigger animation
-                        setTimeout(() => {
-                            item.classList.add('animated');
-                        }, 100);
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
+                // Update URL hash for deep linking
+                if (currentFilter !== 'all') {
+                    window.location.hash = currentFilter;
+                }
+            });
+        });
+        
+        // Footer gallery category links
+        document.querySelectorAll('.footer-links a[data-filter]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filter = link.dataset.filter;
+                
+                // Trigger the corresponding filter button
+                document.querySelector(`.filter-btn[data-filter="${filter}"]`).click();
+                
+                // Scroll to gallery
+                document.querySelector('.gallery-filters').scrollIntoView({ behavior: 'smooth' });
             });
         });
         
         // Search functionality
         searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
+            setTimeout(() => {
+                filterAndSortGallery();
+            }, 300);
+        });
+        
+        // Sort functionality
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            filterAndSortGallery();
+        });
+        
+        // View toggle functionality
+        gridViewBtn.addEventListener('click', () => {
+            gridViewBtn.classList.add('active');
+            masonryViewBtn.classList.remove('active');
+            currentView = 'grid';
+            mainGallery.classList.remove('masonry-view');
+        });
+        
+        masonryViewBtn.addEventListener('click', () => {
+            masonryViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+            currentView = 'masonry';
+            mainGallery.classList.add('masonry-view');
+        });
+        
+        // Filter and sort gallery function
+        function filterAndSortGallery() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let filteredItems = Array.from(galleryItems);
             
-            galleryItems.forEach(item => {
-                const altText = item.querySelector('img')?.alt.toLowerCase() || '';
-                if (altText.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    setTimeout(() => {
-                        item.classList.add('animated');
-                    }, 100);
-                } else {
-                    item.style.display = 'none';
+            // Filter by category
+            if (currentFilter !== 'all') {
+                filteredItems = filteredItems.filter(item => item.dataset.category === currentFilter);
+            }
+            
+            // Filter by search term
+            if (searchTerm) {
+                filteredItems = filteredItems.filter(item => {
+                    const altText = item.querySelector('img')?.alt.toLowerCase() || '';
+                    const title = item.querySelector('.gallery-text h3')?.textContent.toLowerCase() || '';
+                    const description = item.querySelector('.gallery-text p')?.textContent.toLowerCase() || '';
+                    
+                    return altText.includes(searchTerm) || 
+                           title.includes(searchTerm) || 
+                           description.includes(searchTerm);
+                });
+            }
+            
+            // Sort items
+            filteredItems.sort((a, b) => {
+                switch(currentSort) {
+                    case 'date-desc':
+                        return new Date(b.dataset.date) - new Date(a.dataset.date);
+                    case 'date-asc':
+                        return new Date(a.dataset.date) - new Date(b.dataset.date);
+                    case 'category':
+                        return a.dataset.category.localeCompare(b.dataset.category);
+                    default:
+                        return 0;
                 }
             });
+            
+            // Hide all items first
+            galleryItems.forEach(item => {
+                item.style.display = 'none';
+                item.classList.remove('animated');
+            });
+            
+            // Show filtered items (up to visibleItems limit)
+            filteredItems.slice(0, visibleItems).forEach((item, index) => {
+                item.style.display = 'block';
+                // Add animation delay
+                setTimeout(() => {
+                    item.classList.add('animated');
+                }, (index % 12) * 100);
+            });
+            
+            // Show/hide load more button
+            loadMoreBtn.style.display = filteredItems.length > visibleItems ? 'block' : 'none';
+        }
+        
+        // Load more functionality
+        loadMoreBtn.addEventListener('click', () => {
+            visibleItems += 12;
+            filterAndSortGallery();
+            
+            // Scroll to newly loaded items
+            const newItems = Array.from(galleryItems).filter(item => item.style.display === 'block');
+            if (newItems.length > 0) {
+                newItems[newItems.length - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
         });
+        
+        // Check URL hash on load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.querySelector(`.filter-btn[data-filter="${hash}"]`)) {
+                document.querySelector(`.filter-btn[data-filter="${hash}"]`).click();
+            }
+        });
+        
+        // Initial filter and sort
+        filterAndSortGallery();
 
         // Featured Gallery Slider
         const featuredSlides = document.querySelectorAll('.featured-slide');
@@ -1936,11 +2420,24 @@
         });
         
         // Auto-rotate featured slides
-        setInterval(() => {
+        let slideInterval = setInterval(() => {
             let newIndex = currentSlide + 1;
             if (newIndex >= featuredSlides.length) newIndex = 0;
             showSlide(newIndex);
         }, 5000);
+        
+        // Pause auto-rotation on hover
+        document.querySelector('.featured-gallery').addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        document.querySelector('.featured-gallery').addEventListener('mouseleave', () => {
+            slideInterval = setInterval(() => {
+                let newIndex = currentSlide + 1;
+                if (newIndex >= featuredSlides.length) newIndex = 0;
+                showSlide(newIndex);
+            }, 5000);
+        });
 
         // Lightbox Functionality
         const lightbox = document.getElementById('lightbox');
@@ -1952,26 +2449,33 @@
         const lightboxDescription = document.getElementById('lightboxDescription');
         
         let currentLightboxIndex = 0;
-        const lightboxImages = [];
+        let lightboxImages = [];
         
-        // Collect all gallery images
-        galleryItems.forEach((item, index) => {
-            const img = item.querySelector('img');
-            if (img) {
-                lightboxImages.push({
-                    src: img.src,
-                    alt: img.alt,
-                    title: item.querySelector('.gallery-text h3')?.textContent || 'Cricket Moment',
-                    description: item.querySelector('.gallery-text p')?.textContent || 'Run Whisperers Cricket Academy'
-                });
-                
-                img.addEventListener('click', () => {
-                    openLightbox(index);
-                });
-            }
-        });
+        // Collect all visible gallery images for lightbox
+        function updateLightboxImages() {
+            lightboxImages = [];
+            document.querySelectorAll('.gallery-item[style*="display: block"]').forEach((item, index) => {
+                const img = item.querySelector('img');
+                if (img) {
+                    lightboxImages.push({
+                        src: img.src,
+                        alt: img.alt,
+                        title: item.querySelector('.gallery-text h3')?.textContent || 'Cricket Moment',
+                        description: item.querySelector('.gallery-text p')?.textContent || 'Run Whisperers Cricket Academy',
+                        date: item.querySelector('.gallery-date')?.textContent || '',
+                        category: item.querySelector('.gallery-category')?.textContent || ''
+                    });
+                    
+                    // Update click event
+                    img.addEventListener('click', () => {
+                        openLightbox(index);
+                    });
+                }
+            });
+        }
         
         function openLightbox(index) {
+            updateLightboxImages();
             currentLightboxIndex = index;
             const image = lightboxImages[index];
             lightboxImage.src = image.src;
@@ -2001,7 +2505,7 @@
         lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
         lightboxNext.addEventListener('click', () => navigateLightbox(1));
         
-        // Close lightbox on escape key
+        // Keyboard navigation for lightbox
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
@@ -2021,14 +2525,99 @@
             }
         });
 
-        // Video Play Button
-        document.querySelectorAll('.video-play-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const videoItem = btn.closest('.video-item');
-                const img = videoItem.querySelector('img');
-                alert(`Video player would open for: ${img.alt}\n\nIn a real implementation, this would play a video.`);
+        // Photo Upload Functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const tagPhotosBtn = document.getElementById('tagPhotosBtn');
+        
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--color-cricket-green)';
+            uploadArea.style.backgroundColor = 'var(--color-white)';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = 'var(--color-off-white)';
+            uploadArea.style.backgroundColor = 'var(--color-off-white)';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--color-off-white)';
+            uploadArea.style.backgroundColor = 'var(--color-off-white)';
+            
+            if (e.dataTransfer.files.length) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFiles(e.target.files);
+            }
+        });
+        
+        function handleFiles(files) {
+            let validFiles = [];
+            let invalidFiles = [];
+            
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('image/') && file.size <= 5 * 1024 * 1024) {
+                    validFiles.push(file);
+                } else {
+                    invalidFiles.push(file.name);
+                }
             });
+            
+            if (validFiles.length > 0) {
+                const uploadText = uploadArea.querySelector('.upload-text');
+                uploadText.innerHTML = `
+                    <h3>${validFiles.length} photo(s) selected</h3>
+                    <p>Ready to upload</p>
+                `;
+                
+                // Show upload button
+                uploadBtn.style.display = 'inline-block';
+            }
+            
+            if (invalidFiles.length > 0) {
+                alert(`The following files were not uploaded:\n${invalidFiles.join('\n')}\n\nPlease ensure files are images and under 5MB each.`);
+            }
+        }
+        
+        uploadBtn.addEventListener('click', () => {
+            alert('In a real implementation, this would upload the selected photos to the server.\n\nFor now, we\'ll simulate a successful upload.');
+            
+            // Reset upload area
+            const uploadText = uploadArea.querySelector('.upload-text');
+            uploadText.innerHTML = `
+                <h3>Drag & Drop Your Photos Here</h3>
+                <p>or click to browse files</p>
+            `;
+            fileInput.value = '';
+            uploadBtn.style.display = 'none';
+            
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.innerHTML = `
+                <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: var(--border-radius); margin-top: 1rem; border: 1px solid #c3e6cb;">
+                    <i class="fas fa-check-circle"></i> Photos uploaded successfully! They will be reviewed and added to the gallery soon.
+                </div>
+            `;
+            uploadArea.parentNode.insertBefore(successMsg, uploadArea.nextSibling);
+            
+            setTimeout(() => {
+                successMsg.remove();
+            }, 5000);
+        });
+        
+        tagPhotosBtn.addEventListener('click', () => {
+            alert('Tag us on social media using @RunWhisperersCricket and #RWCAcademy\n\nShare your cricket moments with our community!');
         });
 
         // Animated Counter for Stats
@@ -2050,37 +2639,32 @@
             });
         };
         
-        // Start counter when scrolled into view
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+        // Animated Number Counter with ScrollTrigger
+        ScrollTrigger.create({
+            trigger: "#statsSection",
+            start: "top 80%",
+            onEnter: () => {
+                animateCounter();
+                document.getElementById('statsSection').classList.add('animated');
+            }
+        });
         
-        const statsBanner = document.querySelector('.stats-banner');
-        if (statsBanner) {
-            statsObserver.observe(statsBanner);
-        }
-
-        // Header scroll effect
+        // Header scroll effect - MATCHING INDEX.HTML
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
                 header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
             }
         });
-
+        
         // Newsletter Form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
+        const footerNewsletter = document.getElementById('footerNewsletter');
+        if (footerNewsletter) {
+            footerNewsletter.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const email = this.querySelector('input[type="email"]').value;
                 alert(`Thank you for subscribing with ${email}! You'll receive gallery updates and photo highlights.`);
@@ -2088,14 +2672,57 @@
             });
         }
 
-        // Initialize animations on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Trigger initial animations for elements in view
-            document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .rotate-in').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight) {
-                    el.classList.add('animated');
-                }
+        // Section animations with GSAP ScrollTrigger - MATCHING INDEX.HTML
+        const sections = document.querySelectorAll('.gsap-section');
+        
+        sections.forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top 80%',
+                onEnter: () => {
+                    section.classList.add('animated');
+                    
+                    // Animate section-specific elements
+                    if (section.id === 'filtersSection') {
+                        document.getElementById('galleryFilters').classList.add('animated');
+                    }
+                    
+                    if (section.id === 'uploadSection') {
+                        document.querySelector('.upload-section').classList.add('animated');
+                    }
+                    
+                    if (section.id === 'ctaSection') {
+                        setTimeout(() => {
+                            document.getElementById('ctaSection').classList.add('animate');
+                        }, 300);
+                    }
+                },
+                once: true
             });
+        });
+
+        // Parallax effect for page hero background
+        gsap.to('.page-hero-background', {
+            y: '10%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.page-hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update lightbox images initially
+            updateLightboxImages();
+            
+            // Check for URL filter hash
+            const hash = window.location.hash.substring(1);
+            if (hash && document.querySelector(`.filter-btn[data-filter="${hash}"]`)) {
+                document.querySelector(`.filter-btn[data-filter="${hash}"]`).click();
+            }
         });
     </script>
 </body>

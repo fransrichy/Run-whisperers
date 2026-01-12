@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
     <style>
         /* CSS Reset & Base Styles */
         * {
@@ -36,11 +41,14 @@
             --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
             --shadow-large: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-extra-large: 0 12px 40px rgba(0, 0, 0, 0.2);
             
             --border-radius: 8px;
             --border-radius-large: 16px;
+            --border-radius-extra-large: 24px;
             
             --transition: all 0.3s ease;
+            --transition-slow: all 0.8s ease;
         }
 
         html {
@@ -53,6 +61,12 @@
             background-color: var(--color-off-white);
             line-height: 1.6;
             overflow-x: hidden;
+            opacity: 0;
+        }
+
+        body.loaded {
+            opacity: 1;
+            transition: opacity 0.8s ease;
         }
 
         .container {
@@ -191,6 +205,13 @@
             z-index: 1000;
             transition: var(--transition);
             text-decoration: none;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .whatsapp-float.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .whatsapp-float:hover {
@@ -207,6 +228,41 @@
             transform: scale(1.2);
         }
 
+        /* Cricket Ball Animation - REMOVED as requested */
+        /* I've removed the cricket ball animation CSS since you asked to remove it */
+
+        /* Scrolling Marquee - Added after header */
+        .scrolling-marquee {
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            padding: 0.8rem 0;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px; /* Account for fixed header */
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            padding: 0 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-cricket-gold);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
         /* Header & Navigation */
         .header {
             position: fixed;
@@ -214,10 +270,15 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            transform: translateY(-100%);
+        }
+
+        .header.visible {
+            transform: translateY(0);
         }
 
         .navbar {
@@ -241,11 +302,19 @@
             max-width: 180px;
             object-fit: contain;
             transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .logo-image.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .logo-text {
             display: flex;
             flex-direction: column;
+            margin-left: 10px;
         }
 
         .logo-main {
@@ -253,46 +322,64 @@
             font-weight: 900;
             font-size: 1.4rem;
             line-height: 1.2;
+            color: var(--color-cricket-green);
         }
 
+        /* Logo subtext REMOVED as requested */
         .logo-sub {
-            font-size: 0.75rem;
-            color: var(--color-gray);
-            letter-spacing: 0.5px;
+            display: none; /* Removed as requested since it's already in the marquee */
         }
 
+        /* Enhanced Navigation Menu with Boxes */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
+        }
+
+        .nav-menu li {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .nav-menu li.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .nav-menu a {
             text-decoration: none;
             color: var(--color-black);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: var(--transition);
             position: relative;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 110px;
+            text-align: center;
+            box-shadow: var(--shadow-small);
         }
 
         .nav-menu a:hover {
-            color: var(--color-cricket-green);
+            background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--color-cricket-green);
         }
 
         .nav-menu a.active {
-            color: var(--color-cricket-green);
-            font-weight: 600;
-        }
-
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
             background-color: var(--color-cricket-green);
+            color: var(--color-white);
+            font-weight: 600;
+            border-color: var(--color-cricket-green);
+            box-shadow: var(--shadow-medium);
         }
 
         .nav-toggle {
@@ -300,6 +387,10 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-off-white);
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         .nav-toggle span {
@@ -310,7 +401,7 @@
             transition: var(--transition);
         }
 
-        /* Hero Section */
+        /* Hero Section - Fixed for Mobile */
         .hero {
             position: relative;
             height: 100vh;
@@ -318,7 +409,19 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 80px;
+            padding-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 600px;
+                padding-top: 0;
+                margin-top: 0;
+            }
+            
+            .hero-content {
+                padding-top: 60px;
+            }
         }
 
         .hero-background {
@@ -328,16 +431,33 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(rgba(26, 71, 42, 0.7), rgba(43, 90, 61, 0.7)), 
-                        url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(43, 90, 61, 0.8)), 
+                        url('./images/home\ bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            transform: scale(1.1);
+            opacity: 0;
+        }
+
+        .hero-background.animate {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 1.5s ease;
         }
 
         .hero-content {
             max-width: 800px;
             color: var(--color-white);
+            opacity: 0;
+            transform: translateY(50px);
+            width: 100%;
+        }
+
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease 0.5s;
         }
 
         .hero-title {
@@ -345,17 +465,38 @@
             color: var(--color-white);
             margin-bottom: 1.5rem;
             line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-title.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-title .highlight {
             color: var(--color-cricket-gold);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-title .highlight.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-subtitle {
             font-size: clamp(1.1rem, 2vw, 1.3rem);
             margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-buttons {
@@ -363,34 +504,57 @@
             gap: 1rem;
             flex-wrap: wrap;
             margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-buttons.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 3rem;
             max-width: 800px;
         }
 
         .stat-item {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem 1rem;
+            border-radius: var(--border-radius-large);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--color-white);
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
         }
 
         .scroll-indicator {
@@ -401,6 +565,12 @@
             color: var(--color-white);
             font-size: 1.5rem;
             animation: bounce 2s infinite;
+            opacity: 0;
+        }
+
+        .scroll-indicator.animate {
+            opacity: 1;
+            animation: bounce 2s infinite 2s;
         }
 
         @keyframes bounce {
@@ -425,6 +595,179 @@
             transform: none !important;
         }
 
+        .gsap-section {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gsap-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+
+        /* Mobile Hero Text Container - FIXED */
+        .mobile-hero-container {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-hero-container {
+                display: block;
+                background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
+                padding: 2.5rem 1.5rem;
+                border-radius: var(--border-radius-large);
+                box-shadow: var(--shadow-extra-large);
+                margin: -3rem 1.5rem 3rem;
+                position: relative;
+                z-index: 2;
+                border: 2px solid var(--color-cricket-gold);
+                text-align: center;
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            
+            .mobile-hero-container.animate {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.8s ease 1s;
+            }
+            
+            .mobile-hero-title {
+                color: var(--color-white);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+                font-family: var(--font-heading);
+            }
+            
+            .mobile-hero-text {
+                color: rgba(255, 255, 255, 0.95);
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+            
+            .mobile-hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+            
+            .mobile-hero-buttons .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Adjust hero section for mobile */
+            .hero {
+                min-height: 500px;
+                padding-bottom: 3rem;
+            }
+            
+            .hero-content {
+                padding-top: 40px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-buttons {
+                display: none; /* Hide desktop buttons on mobile */
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+            
+            .stat-item {
+                padding: 1.2rem 0.8rem;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Enhanced Boxes for Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 90%;
+                max-width: 400px;
+                flex-direction: column;
+                background-color: var(--color-white);
+                padding: 2rem;
+                box-shadow: var(--shadow-extra-large);
+                transition: var(--transition);
+                z-index: 999;
+                border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+                border: 2px solid var(--color-cricket-green);
+                border-top: none;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+                margin-bottom: 0.8rem;
+                opacity: 1;
+                transform: none;
+            }
+            
+            .nav-menu a {
+                width: 100%;
+                min-width: auto;
+                padding: 14px 20px;
+                font-size: 1rem;
+                justify-content: flex-start;
+                border-radius: var(--border-radius);
+                background-color: var(--color-off-white);
+                border: 2px solid rgba(26, 71, 42, 0.15);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background-color: var(--color-cricket-green);
+                color: var(--color-white);
+                transform: translateX(5px);
+                border-color: var(--color-cricket-green);
+                padding-left: 25px;
+            }
+            
+            .nav-toggle {
+                display: flex;
+            }
+            
+            /* Logo adjustments for mobile */
+            .logo-image {
+                height: 50px;
+                max-width: 150px;
+            }
+            
+            .logo-text {
+                display: none; /* Hide text logo on mobile */
+            }
+        }
+
         /* Intro Section */
         .intro-content {
             display: grid;
@@ -444,20 +787,32 @@
             text-align: center;
             padding: 1.5rem;
             background-color: var(--color-white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-small);
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .feature.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .feature i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--color-cricket-green);
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-cricket-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .feature h3 {
@@ -472,20 +827,28 @@
         }
 
         .image-frame {
-            border-radius: var(--border-radius-large);
+            border-radius: var(--border-radius-extra-large);
             overflow: hidden;
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
+            opacity: 0;
+            transform: translateX(30px);
+            border: 3px solid var(--color-cricket-gold);
+        }
+
+        .image-frame.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .image-frame img {
             width: 100%;
             height: auto;
             display: block;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
 
         .image-frame:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* Benefits Section */
@@ -501,14 +864,23 @@
             align-items: flex-start;
             background-color: var(--color-white);
             padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-small);
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-medium);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .benefit-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .benefit-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .benefit-number {
@@ -517,6 +889,7 @@
             color: var(--color-cricket-gold);
             margin-right: 1.5rem;
             line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .benefit-content h3 {
@@ -534,29 +907,44 @@
 
         .faq-item {
             background-color: var(--color-white);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             overflow: hidden;
-            box-shadow: var(--shadow-small);
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .faq-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .faq-question {
             padding: 1.5rem;
-            background-color: var(--color-cricket-green);
+            background: linear-gradient(135deg, var(--color-cricket-green), var(--color-dark-green));
             color: var(--color-white);
             font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, var(--color-dark-green), var(--color-medium-green));
         }
 
         .faq-answer {
             padding: 1.5rem;
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
 
         .faq-item.active .faq-answer {
-            display: block;
+            max-height: 300px;
         }
 
         .faq-item.active .faq-question i {
@@ -573,28 +961,39 @@
 
         .event-card {
             background-color: var(--color-white);
-            border-radius: var(--border-radius-large);
+            border-radius: var(--border-radius-extra-large);
             overflow: hidden;
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-large);
             transition: var(--transition);
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .event-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .event-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .event-date {
             position: absolute;
             top: 20px;
             left: 20px;
-            background-color: var(--color-cricket-gold);
+            background: linear-gradient(135deg, var(--color-cricket-gold), #e6c158);
             color: var(--color-cricket-green);
-            padding: 10px;
-            border-radius: var(--border-radius);
+            padding: 12px 15px;
+            border-radius: var(--border-radius-large);
             text-align: center;
             z-index: 1;
+            box-shadow: var(--shadow-medium);
+            border: 2px solid var(--color-white);
         }
 
         .date-day {
@@ -619,7 +1018,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
 
         .event-card:hover .event-image img {
@@ -656,6 +1055,13 @@
 
         .section-footer {
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-footer.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Gallery Preview */
@@ -668,16 +1074,32 @@
 
         .gallery-item {
             position: relative;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-large);
             overflow: hidden;
             height: 250px;
+            opacity: 0;
+            transform: scale(0.9);
+            box-shadow: var(--shadow-medium);
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .gallery-item.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item:hover {
+            border-color: var(--color-cricket-gold);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-extra-large);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
 
         .gallery-item:hover img {
@@ -709,7 +1131,7 @@
         }
 
         .gallery-text p {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 0;
             font-size: 0.9rem;
         }
@@ -724,47 +1146,57 @@
         .social-card {
             background-color: var(--color-white);
             padding: 2rem;
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-medium);
+            border-radius: var(--border-radius-extra-large);
+            box-shadow: var(--shadow-large);
             text-align: center;
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(26, 71, 42, 0.1);
+        }
+
+        .social-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .social-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-large);
+            box-shadow: var(--shadow-extra-large);
+            border-color: var(--color-cricket-green);
         }
 
         .social-card.facebook {
-            border-top: 4px solid #1877F2;
+            border-top: 6px solid #1877F2;
         }
 
         .social-card.instagram {
-            border-top: 4px solid #E4405F;
+            border-top: 6px solid #E4405F;
         }
 
         .social-card.youtube {
-            border-top: 4px solid #CD201F;
+            border-top: 6px solid #CD201F;
         }
 
         .social-card.whatsapp {
-            border-top: 4px solid #25D366;
+            border-top: 6px solid #25D366;
         }
 
         .social-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--color-white);
+            box-shadow: var(--shadow-medium);
         }
 
         .social-card.facebook .social-icon {
-            background-color: #1877F2;
+            background: linear-gradient(135deg, #1877F2, #0d5fd8);
         }
 
         .social-card.instagram .social-icon {
@@ -772,11 +1204,11 @@
         }
 
         .social-card.youtube .social-icon {
-            background-color: #CD201F;
+            background: linear-gradient(135deg, #CD201F, #a01815);
         }
 
         .social-card.whatsapp .social-icon {
-            background-color: #25D366;
+            background: linear-gradient(135deg, #25D366, #1da851);
         }
 
         .social-card h3 {
@@ -811,19 +1243,47 @@
             padding: 5rem 0;
             color: var(--color-white);
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Changed from cricket ball pattern to a prayer/team huddle image as requested */
+            background: url('./images/team33.JPG') center/cover no-repeat;
+            opacity: 0.1; /* Reduced opacity to make text readable */
+            z-index: 0;
+        }
+
+        .cta-banner.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .cta-title {
             color: var(--color-white);
             font-size: clamp(2rem, 4vw, 2.8rem);
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Added for better readability */
         }
 
         .cta-text {
             font-size: clamp(1.1rem, 2vw, 1.3rem);
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             max-width: 700px;
             margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Added for better readability */
         }
 
         .cta-buttons {
@@ -831,13 +1291,34 @@
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Footer */
+        /* Footer - Updated background to cricket prayer image as requested */
         .footer {
-            background-color: var(--color-cricket-green);
+            background: linear-gradient(rgba(29, 90, 61, 0.9), rgba(26, 71, 42, 0.95)), 
+                        /* Added cricket prayer image as requested */
+                        url('https://images.unsplash.com/photo-1626248801379-51a0748e9e2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: var(--color-white);
             padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Removed the cricket ball pattern background and replaced with the prayer image */
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text readability */
+            z-index: 0;
         }
 
         .footer-content {
@@ -845,6 +1326,8 @@
             grid-template-columns: 2fr 1fr 1fr 2fr;
             gap: 3rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-logo-section {
@@ -868,7 +1351,7 @@
         }
 
         .footer-description {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
@@ -882,18 +1365,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             color: var(--color-white);
             text-decoration: none;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-social .social-link:hover {
             background-color: var(--color-cricket-gold);
             transform: translateY(-3px);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-title {
@@ -910,8 +1395,9 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
+            height: 3px;
             background-color: var(--color-cricket-gold);
+            border-radius: 2px;
         }
 
         .footer-links ul {
@@ -923,15 +1409,18 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.95rem;
+            display: inline-block;
+            padding: 3px 0;
         }
 
         .footer-links a:hover {
             color: var(--color-white);
-            padding-left: 5px;
+            padding-left: 8px;
+            transform: translateX(5px);
         }
 
         .contact-info {
@@ -943,13 +1432,14 @@
             align-items: flex-start;
             margin-bottom: 1rem;
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-item i {
             margin-right: 10px;
             color: var(--color-cricket-gold);
             width: 20px;
+            font-size: 1.1rem;
         }
 
         .newsletter {
@@ -969,16 +1459,23 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: none;
             border-radius: var(--border-radius);
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             color: var(--color-white);
             font-family: var(--font-body);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .newsletter-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-cricket-gold);
         }
 
         .footer-bottom {
@@ -986,10 +1483,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-legal {
@@ -998,7 +1497,7 @@
         }
 
         .footer-legal a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -1034,58 +1533,26 @@
             .faq-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .intro-content {
+                gap: 3rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
-            /* Navigation */
-            .nav-toggle {
-                display: flex;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                flex-direction: column;
-                background-color: var(--color-white);
-                padding: 2rem;
-                box-shadow: var(--shadow-medium);
-                transition: var(--transition);
-                z-index: 999;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu li {
-                margin-bottom: 1rem;
-            }
-            
-            /* Logo */
-            .logo-image {
-                height: 50px;
-                max-width: 150px;
-            }
-            
-            .footer-logo .logo-image {
-                height: 45px;
-                max-width: 140px;
-            }
+            /* Navigation already handled above */
             
             /* Hero */
             .hero {
-                min-height: 600px;
-                padding-top: 20px;
+                min-height: 500px;
             }
             
             .hero-content {
                 text-align: center;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
             }
             
             /* Intro */
@@ -1106,16 +1573,11 @@
                 margin-right: auto;
             }
             
-            /* Gallery */
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             /* WhatsApp Button */
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
                 bottom: 20px;
                 right: 20px;
             }
@@ -1130,6 +1592,24 @@
             .footer-legal {
                 justify-content: center;
             }
+            
+            /* CTA */
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            /* Marquee */
+            .marquee-content span {
+                font-size: 1rem;
+            }
+            
+            /* Cricket ball on mobile - REMOVED */
         }
 
         @media (max-width: 480px) {
@@ -1147,38 +1627,16 @@
             /* Hero */
             .hero-stats {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
+                gap: 1rem;
             }
             
             /* Sections */
             .section {
-                padding: 3rem 0;
+                padding: 3.5rem 0;
             }
             
             .section-title {
                 font-size: 1.8rem;
-            }
-            
-            /* CTA */
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-buttons .btn {
-                width: 100%;
-                max-width: 300px;
             }
             
             /* Social */
@@ -1204,6 +1662,7 @@
             .benefit-item {
                 flex-direction: column;
                 text-align: center;
+                padding: 1.5rem;
             }
             
             .benefit-number {
@@ -1215,45 +1674,58 @@
             .intro-features {
                 grid-template-columns: 1fr;
             }
+            
+            /* Mobile hero container */
+            .mobile-hero-container {
+                margin: -2.5rem 1rem 2.5rem;
+                padding: 2rem 1.2rem;
+            }
+            
+            .mobile-hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .mobile-hero-text {
+                font-size: 0.95rem;
+            }
         }
 
         /* Extra small devices */
         @media (max-width: 360px) {
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
-            .logo-main {
-                font-size: 1.1rem;
-            }
-            
-            .logo-sub {
-                font-size: 0.65rem;
+            .nav-menu a {
+                padding: 12px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- REMOVED Cricket Ball Animation as requested -->
+
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Header Section -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
                     <!-- REAL LOGO - Replace the image URL with your actual logo -->
                     <img src="./images/logo.png" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
-                    <!-- Fallback text logo (shown if image fails to load) -->
+                    <!-- Fallback text logo - Restored "RUN WHISPERERS" as requested -->
                     <div class="logo-text">
-                        <span class="logo-main">RUN WHISPERERS</span>
-                        <span class="logo-sub">Cricket • Academy • Community</span>
+                        <span class="logo-main"></span>
+                        <!-- Removed "Cricket • Academy • Community" as requested since it's in the marquee -->
                     </div>
                 </a>
                 
@@ -1263,6 +1735,7 @@
                     <span></span>
                 </div>
                 
+                <!-- Enhanced Navigation with Boxes -->
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
@@ -1275,32 +1748,40 @@
         </div>
     </header>
 
+    <!-- Scrolling Marquee - Added after header as requested -->
+    <div class="scrolling-marquee">
+        <div class="marquee-content">
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+            <span>• Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community • Cricket • Academy • Community •</span>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-background"></div>
+        <div class="hero-background" id="heroBackground"></div>
         
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Run Whisperers <span class="highlight">Cricket Academy</span></h1>
-                <p class="hero-subtitle">Professional cricket coaching, skill development, and competitive opportunities in Namibia and internationally.</p>
-                <div class="hero-buttons">
+            <div class="hero-content" id="heroContent">
+                <h1 class="hero-title" id="heroTitle">Run Whisperers <span class="highlight" id="heroHighlight">Cricket Academy</span></h1>
+                <p class="hero-subtitle" id="heroSubtitle">Professional cricket coaching, skill development, and competitive opportunities in Namibia and internationally.</p>
+                <div class="hero-buttons" id="heroButtons">
                     <a href="booking.html" class="btn btn-primary">Book Training Session</a>
                     <a href="events.html" class="btn btn-secondary">View Upcoming Events</a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
+                <div class="hero-stats" id="heroStats">
+                    <div class="stat-item" id="stat1">
                         <div class="stat-number" data-count="45">0</div>
                         <div class="stat-label">Events Hosted</div>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" id="stat2">
                         <div class="stat-number" data-count="120">0</div>
                         <div class="stat-label">Active Players</div>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" id="stat3">
                         <div class="stat-number" data-count="5">0</div>
                         <div class="stat-label">Years Active</div>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" id="stat4">
                         <div class="stat-number" data-count="8">0</div>
                         <div class="stat-label">Countries Played</div>
                     </div>
@@ -1308,13 +1789,23 @@
             </div>
         </div>
         
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" id="scrollIndicator">
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
+    <!-- Mobile Hero Text Container - Shows on mobile only -->
+    <div class="mobile-hero-container" id="mobileHeroContainer">
+        <h2 class="mobile-hero-title">Run Whisperers Cricket Academy</h2>
+        <p class="mobile-hero-text">Professional cricket coaching, skill development, and competitive opportunities in Namibia and internationally.</p>
+        <div class="mobile-hero-buttons">
+            <a href="booking.html" class="btn btn-primary">Book Training Session</a>
+            <a href="events.html" class="btn btn-secondary">View Upcoming Events</a>
+        </div>
+    </div>
+
     <!-- About Section -->
-    <section class="section intro-section">
+    <section class="section intro-section gsap-section" id="introSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Run Whisperers</h2>
@@ -1329,22 +1820,22 @@
                     <p>Today, we are a premier cricket academy dedicated to developing talent, promoting sportsmanship, and providing competitive opportunities both nationally and internationally.</p>
                     
                     <div class="intro-features">
-                        <div class="feature">
+                        <div class="feature" id="feature1">
                             <i class="fas fa-trophy"></i>
                             <h3>Competitive Excellence</h3>
                             <p>National and international tournaments</p>
                         </div>
-                        <div class="feature">
+                        <div class="feature" id="feature2">
                             <i class="fas fa-user-graduate"></i>
                             <h3>Professional Coaching</h3>
                             <p>Experienced certified coaches</p>
                         </div>
-                        <div class="feature">
+                        <div class="feature" id="feature3">
                             <i class="fas fa-users"></i>
                             <h3>Community Focus</h3>
                             <p>Building character and teamwork</p>
                         </div>
-                        <div class="feature">
+                        <div class="feature" id="feature4">
                             <i class="fas fa-globe-africa"></i>
                             <h3>International Reach</h3>
                             <p>Playing across multiple countries</p>
@@ -1353,7 +1844,7 @@
                 </div>
                 
                 <div class="intro-image">
-                    <div class="image-frame">
+                    <div class="image-frame" id="introImage">
                         <img src="./images/cricket-match-with-player.jpg" alt="Cricket team celebration">
                     </div>
                 </div>
@@ -1362,7 +1853,7 @@
     </section>
 
     <!-- Events Section -->
-    <section class="section events-preview">
+    <section class="section events-preview gsap-section" id="eventsSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Events & Tournaments</h2>
@@ -1371,13 +1862,13 @@
             </div>
             
             <div class="events-grid">
-                <div class="event-card">
+                <div class="event-card" id="event1">
                     <div class="event-date">
                         <span class="date-day">15</span>
                         <span class="date-month">JUN</span>
                     </div>
                     <div class="event-image">
-                        <img src="./images/International.jpg" alt="Cricket tournament">
+                        <img src="./images/Namibia.jpg" alt="Cricket tournament">
                     </div>
                     <div class="event-content">
                         <h3 class="event-title">Namibia National Cup</h3>
@@ -1390,7 +1881,7 @@
                     </div>
                 </div>
                 
-                <div class="event-card">
+                <div class="event-card" id="event2">
                     <div class="event-date">
                         <span class="date-day">22</span>
                         <span class="date-month">JUL</span>
@@ -1409,7 +1900,7 @@
                     </div>
                 </div>
                 
-                <div class="event-card">
+                <div class="event-card" id="event3">
                     <div class="event-date">
                         <span class="date-day">10</span>
                         <span class="date-month">AUG</span>
@@ -1429,14 +1920,14 @@
                 </div>
             </div>
             
-            <div class="section-footer">
+            <div class="section-footer" id="eventsFooter">
                 <a href="events.html" class="btn btn-outline">View All Events</a>
             </div>
         </div>
     </section>
 
     <!-- Benefits Section -->
-    <section class="section benefits-section">
+    <section class="section benefits-section gsap-section" id="benefitsSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Why Join Run Whisperers?</h2>
@@ -1445,7 +1936,7 @@
             </div>
             
             <div class="benefits-grid">
-                <div class="benefit-item">
+                <div class="benefit-item" id="benefit1">
                     <div class="benefit-number">01</div>
                     <div class="benefit-content">
                         <h3>Professional Coaching Access</h3>
@@ -1453,7 +1944,7 @@
                     </div>
                 </div>
                 
-                <div class="benefit-item">
+                <div class="benefit-item" id="benefit2">
                     <div class="benefit-number">02</div>
                     <div class="benefit-content">
                         <h3>Improved Physical Fitness</h3>
@@ -1461,7 +1952,7 @@
                     </div>
                 </div>
                 
-                <div class="benefit-item">
+                <div class="benefit-item" id="benefit3">
                     <div class="benefit-number">03</div>
                     <div class="benefit-content">
                         <h3>Skill Development Opportunities</h3>
@@ -1469,7 +1960,7 @@
                     </div>
                 </div>
                 
-                <div class="benefit-item">
+                <div class="benefit-item" id="benefit4">
                     <div class="benefit-number">04</div>
                     <div class="benefit-content">
                         <h3>Social Connection Benefits</h3>
@@ -1477,7 +1968,7 @@
                     </div>
                 </div>
                 
-                <div class="benefit-item">
+                <div class="benefit-item" id="benefit5">
                     <div class="benefit-number">05</div>
                     <div class="benefit-content">
                         <h3>Exclusive Member Events</h3>
@@ -1485,7 +1976,7 @@
                     </div>
                 </div>
                 
-                <div class="benefit-item">
+                <div class="benefit-item" id="benefit6">
                     <div class="benefit-number">06</div>
                     <div class="benefit-content">
                         <h3>Year-Round Play</h3>
@@ -1497,7 +1988,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="section faq-section">
+    <section class="section faq-section gsap-section" id="faqSection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Frequently Asked Questions</h2>
@@ -1506,7 +1997,7 @@
             </div>
             
             <div class="faq-grid">
-                <div class="faq-item">
+                <div class="faq-item" id="faq1">
                     <div class="faq-question">
                         When and where do you train?
                         <i class="fas fa-chevron-down"></i>
@@ -1516,7 +2007,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq2">
                     <div class="faq-question">
                         Do you have junior teams?
                         <i class="fas fa-chevron-down"></i>
@@ -1526,7 +2017,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq3">
                     <div class="faq-question">
                         How do I register?
                         <i class="fas fa-chevron-down"></i>
@@ -1536,7 +2027,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq4">
                     <div class="faq-question">
                         Which leagues do you play?
                         <i class="fas fa-chevron-down"></i>
@@ -1546,7 +2037,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq5">
                     <div class="faq-question">
                         What equipment do I need?
                         <i class="fas fa-chevron-down"></i>
@@ -1556,7 +2047,7 @@
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" id="faq6">
                     <div class="faq-question">
                         How can I get involved?
                         <i class="fas fa-chevron-down"></i>
@@ -1570,7 +2061,7 @@
     </section>
 
     <!-- Gallery Preview -->
-    <section class="section gallery-preview">
+    <section class="section gallery-preview gsap-section" id="gallerySection">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Gallery</h2>
@@ -1579,8 +2070,8 @@
             </div>
             
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="./images/Namibia 1.jpeg" alt="Cricket match action">
+                <div class="gallery-item" id="gallery1">
+                    <img src="./images/home bg.jpg" alt="Cricket match action">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Match Action</h3>
@@ -1589,8 +2080,8 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1595435742681-2f8a4d75a7b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Team training">
+                <div class="gallery-item" id="gallery2">
+                    <img src="./images/team training.JPG" alt="Team training">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Team Training</h3>
@@ -1599,8 +2090,8 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1536599018109-73a2d2c7039f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Trophy celebration">
+                <div class="gallery-item" id="gallery3">
+                    <img src="./images/trophy cerebration.jpg" alt="Trophy celebration">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Trophy Celebration</h3>
@@ -1609,8 +2100,8 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Junior cricket">
+                <div class="gallery-item" id="gallery4">
+                    <img src="./images/juniors.JPG" alt="Junior cricket">
                     <div class="gallery-overlay">
                         <div class="gallery-text">
                             <h3>Junior Development</h3>
@@ -1620,14 +2111,14 @@
                 </div>
             </div>
             
-            <div class="section-footer">
+            <div class="section-footer" id="galleryFooter">
                 <a href="gallery.html" class="btn btn-outline">View Full Gallery</a>
             </div>
         </div>
     </section>
 
     <!-- Call to Action Banner -->
-    <section class="cta-banner">
+    <section class="cta-banner gsap-section" id="ctaSection">
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title">Ready to Join Our Cricket Academy?</h2>
@@ -1650,7 +2141,7 @@
                         <img src="./images/logo.png" alt="Run Whisperers Cricket Academy Logo" class="logo-image">
                         <div class="logo-text">
                             <span class="logo-main">RUN WHISPERERS</span>
-                            <span class="logo-sub">Cricket • Academy • Community</span>
+                            <!-- Removed "Cricket • Academy • Community" as requested -->
                         </div>
                     </a>
                     <p class="footer-description">Run Whisperers Cricket Academy is Namibia's premier cricket development program, dedicated to nurturing talent, promoting sportsmanship, and competing internationally.</p>
@@ -1732,6 +2223,75 @@
 
     <!-- JavaScript -->
     <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Page load animation sequence
+        document.addEventListener('DOMContentLoaded', () => {
+            // REMOVED cricket ball animation as requested
+            
+            // Animate header elements individually
+            const logoImage = document.querySelector('.logo-image');
+            const navItems = document.querySelectorAll('.nav-menu li');
+            
+            // Animate logo image
+            setTimeout(() => {
+                logoImage.classList.add('animate');
+            }, 500);
+            
+            // Animate each navigation item with delay
+            navItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animate');
+                }, 700 + (index * 100));
+            });
+            
+            // Show header
+            setTimeout(() => {
+                document.getElementById('header').classList.add('visible');
+            }, 1500);
+            
+            // Animate hero elements
+            setTimeout(() => {
+                document.getElementById('heroBackground').classList.add('animate');
+                document.getElementById('heroContent').classList.add('animate');
+                document.getElementById('heroTitle').classList.add('animate');
+                document.getElementById('heroHighlight').classList.add('animate');
+                document.getElementById('heroSubtitle').classList.add('animate');
+                document.getElementById('heroButtons').classList.add('animate');
+                
+                // Animate stats with delay
+                const stats = ['stat1', 'stat2', 'stat3', 'stat4'];
+                stats.forEach((stat, index) => {
+                    setTimeout(() => {
+                        document.getElementById(stat).classList.add('animate');
+                    }, 100 + (index * 100));
+                });
+                
+                // Show scroll indicator
+                document.getElementById('scrollIndicator').classList.add('animate');
+                
+                // Show mobile hero container on mobile
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        document.getElementById('mobileHeroContainer').classList.add('animate');
+                    }, 1200);
+                }
+            }, 2000);
+            
+            // Show WhatsApp button
+            setTimeout(() => {
+                document.querySelector('.whatsapp-float').classList.add('visible');
+            }, 2800);
+            
+            // Show body
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1000);
+            
+            // REMOVED cricket ball removal as requested
+        });
+
         // Mobile Navigation Toggle
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
@@ -1782,17 +2342,17 @@
             });
         };
         
+        // Start counter when page loads
+        setTimeout(() => {
+            animateCounter();
+        }, 3200);
+        
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
                 item.classList.toggle('active');
             });
-        });
-        
-        // Start counter when page loads
-        window.addEventListener('load', () => {
-            animateCounter();
         });
         
         // Header scroll effect
@@ -1802,7 +2362,7 @@
                 header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
             }
         });
@@ -1817,19 +2377,117 @@
                 this.reset();
             });
         }
+
+        // Section animations with GSAP ScrollTrigger
+        const sections = document.querySelectorAll('.gsap-section');
         
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Make sure all content is visible immediately
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = '1';
-                section.style.visibility = 'visible';
-                section.style.transform = 'none';
+        sections.forEach(section => {
+            // Add scroll animation for each section
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top 80%',
+                onEnter: () => {
+                    section.classList.add('animated');
+                    
+                    // Animate section-specific elements
+                    if (section.id === 'introSection') {
+                        // Animate features with delay
+                        const features = ['feature1', 'feature2', 'feature3', 'feature4'];
+                        features.forEach((feature, index) => {
+                            setTimeout(() => {
+                                document.getElementById(feature).classList.add('animate');
+                            }, 200 + (index * 100));
+                        });
+                        
+                        // Animate image
+                        setTimeout(() => {
+                            document.getElementById('introImage').classList.add('animate');
+                        }, 600);
+                    }
+                    
+                    if (section.id === 'eventsSection') {
+                        // Animate event cards with delay
+                        const events = ['event1', 'event2', 'event3'];
+                        events.forEach((event, index) => {
+                            setTimeout(() => {
+                                document.getElementById(event).classList.add('animate');
+                            }, 200 + (index * 100));
+                        });
+                        
+                        // Animate footer
+                        setTimeout(() => {
+                            document.getElementById('eventsFooter').classList.add('animate');
+                        }, 500);
+                    }
+                    
+                    if (section.id === 'benefitsSection') {
+                        // Animate benefit items with delay
+                        const benefits = ['benefit1', 'benefit2', 'benefit3', 'benefit4', 'benefit5', 'benefit6'];
+                        benefits.forEach((benefit, index) => {
+                            setTimeout(() => {
+                                document.getElementById(benefit).classList.add('animate');
+                            }, 100 + (index * 80));
+                        });
+                    }
+                    
+                    if (section.id === 'faqSection') {
+                        // Animate FAQ items with delay
+                        const faqs = ['faq1', 'faq2', 'faq3', 'faq4', 'faq5', 'faq6'];
+                        faqs.forEach((faq, index) => {
+                            setTimeout(() => {
+                                document.getElementById(faq).classList.add('animate');
+                            }, 100 + (index * 80));
+                        });
+                    }
+                    
+                    if (section.id === 'gallerySection') {
+                        // Animate gallery items with delay
+                        const galleries = ['gallery1', 'gallery2', 'gallery3', 'gallery4'];
+                        galleries.forEach((gallery, index) => {
+                            setTimeout(() => {
+                                document.getElementById(gallery).classList.add('animate');
+                            }, 100 + (index * 100));
+                        });
+                        
+                        // Animate footer
+                        setTimeout(() => {
+                            document.getElementById('galleryFooter').classList.add('animate');
+                        }, 500);
+                    }
+                    
+                    if (section.id === 'ctaSection') {
+                        // Animate CTA section
+                        setTimeout(() => {
+                            document.getElementById('ctaSection').classList.add('animate');
+                        }, 300);
+                    }
+                },
+                once: true
             });
-            
-            // Ensure body is visible
-            document.body.style.opacity = '1';
-            document.body.style.visibility = 'visible';
+        });
+
+        // Parallax effect for hero background
+        gsap.to('.hero-background', {
+            y: '10%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+        
+        // Handle window resize to show/hide mobile elements
+        window.addEventListener('resize', function() {
+            const mobileHeroContainer = document.getElementById('mobileHeroContainer');
+            if (window.innerWidth <= 768) {
+                if (!mobileHeroContainer.classList.contains('animate')) {
+                    setTimeout(() => {
+                        mobileHeroContainer.classList.add('animate');
+                    }, 500);
+                }
+            }
         });
     </script>
 </body>
